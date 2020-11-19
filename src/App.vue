@@ -1,15 +1,28 @@
 <template>
-  <div class="bg-gray-500">okokok</div>
-  <HelloWorld msg="Hello Vue 3.0 + Vite" />
+  <div
+    class="bg-indigo-50 dark:bg-blue-gray-700 dark:text-white box-border flex flex-col h-full"
+  >
+    <Header class="" />
+    <Container class="flex-grow">
+      <router-view></router-view>
+    </Container>
+    <Footer class="flex-shrink-0" />
+  </div>
 </template>
 
 <script>
-  import HelloWorld from './components/HelloWorld.vue';
+  import Header from './components/UI/Header.vue';
+  import Footer from './components/UI/Footer.vue';
+  import Container from './components/UI/Container.vue';
+  import Overview from './components/Overview.vue';
 
   export default {
     name: 'App',
     components: {
-      HelloWorld,
+      Header,
+      Footer,
+      Container,
+      Overview,
     },
   };
 </script>

@@ -6,13 +6,16 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@headlessui/vue": "^0.2.0",
     "vue": "^3.0.2"
   },
   "devDependencies": {
-    "@tailwindcss/ui": "^0.7.2",
+    "@tailwindcss/forms": "^0.2.1",
     "@vue/compiler-sfc": "^3.0.2",
     "autoprefixer": "^9.8.6",
-    "tailwindcss": "^1.9.6",
-    "vite": "^1.0.0-rc.8"
+    "postcss": "^7.0.35",
+    "tailwindcss": "^2.0.1-compat",
+    "vite": "^1.0.0-rc.8",
+    "vue-router": "^4.0.0-rc.3"
   }
 }

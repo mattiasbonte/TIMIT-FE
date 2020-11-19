@@ -1,8 +1,6 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
-  future: {
-    removeDeprecatedGapUtilities: true,
-    purgeLayersByDefault: true,
-  },
   purge: [
     'src/**/*.vue',
     'src/**/*.js',
@@ -10,9 +8,23 @@ module.exports = {
     'src/**/*.html',
     '*.html',
   ],
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
+    extend: {
+      colors: {
+        'blue-gray': colors.blueGray,
+        teal: colors.teal,
+        rose: colors.rose,
+        'light-blue': colors.lightBlue,
+        amber: colors.amber,
+      },
+    },
+  },
+  variants: {
     extend: {},
   },
-  variants: {},
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+    // ...
+  ],
 };
