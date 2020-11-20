@@ -1,13 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
+import Home from './Home.vue';
 import Overview from './components/Overview.vue';
 import NotFound from './components/NotFound.vue';
 import Project from './components/Project/Project.vue';
 
 // Routes
 let routes = [
-  { path: '/', component: NotFound },
+  { path: '/', component: Home },
+  { path: '/home', component: Home },
   { name: 'overview', path: '/overview', component: Overview },
+  { path: '/projects', redirect: '/overview' },
   { path: '/projects/:id', component: Project },
   { path: '/:notFound(.*)', component: NotFound },
 ];

@@ -14,6 +14,7 @@
     @apply px-4 py-6;
     @apply rounded-md shadow-md cursor-pointer;
     @apply transform hover:shadow-lg hover:scale-101;
+    /* dark */
     @apply dark:text-black;
   }
 </style>

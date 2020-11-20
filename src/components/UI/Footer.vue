@@ -102,6 +102,8 @@
     @apply text-gray-600 dark:text-gray-300;
     @apply transform hover:scale-110;
     @apply hover:text-black;
+
+    /* dark */
     @apply dark:hover:text-white;
   }
 </style>

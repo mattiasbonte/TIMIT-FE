@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="space-y-6">
     <Form />
     <div class="space-y-6">
       <Feature
@@ -45,6 +45,8 @@
     @apply px-4 py-2 rounded-md shadow-md cursor-pointer;
     @apply bg-white hover:bg-gray-100;
     @apply border-black border-solid;
+
+    /* dark */
     @apply dark:text-black;
   }
 </style>
