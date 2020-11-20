@@ -15,16 +15,17 @@
 
 ## Show your support
 
-# Libraries
+# Packages / Libraries
 
 ## Front End
 
+- [Nanoid](https://www.npmjs.com/package/nanoid)
 -
 
 ## Back End
 
-- Nodemon
-- Express
+- [Nodemon](https://www.npmjs.com/package/nodemon)
+- [Express](https://www.npmjs.com/package/express)
 - OIDC
 
 Give a ⭐️ if this project helped you!

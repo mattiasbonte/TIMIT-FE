@@ -1,47 +1,35 @@
 <template>
   <div class="p-4 space-y-6">
     <Project
-      v-for="project in projects"
+      v-for="project in users[0].projects"
       :key="project.id"
-      :name="project.name"
-      :hours="project.hours"
+      @click="navToProject(project.id)"
+      :title="project.title"
     />
   </div>
 </template>
 
 <script>
-  import Project from './Project.vue';
+  import { nanoid } from 'nanoid';
+  import user_data from '../data.json';
+
+  import Project from './Project/Project.vue';
+  import Form from './Project/Feature/FeatureForm.vue';
 
   export default {
-    name: 'Overview',
     components: {
       Project,
+      Form,
     },
     data() {
       return {
-        projects: [
-          {
-            id: 1,
-            name: 'Project feature 1',
-            hours: 1,
-          },
-          {
-            id: 2,
-            name: 'Project feature 2',
-            hours: 5,
-          },
-          {
-            id: 3,
-            name: 'Project feature 3',
-            hours: 3,
-          },
-          {
-            id: 4,
-            name: 'Project feature 4',
-            hours: 10,
-          },
-        ],
+        users: user_data,
       };
+    },
+    methods: {
+      navToProject(id) {
+        this.$router.push(`/projects/:${id}`);
+      },
     },
   };
 </script>
