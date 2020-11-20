@@ -1,12 +1,12 @@
 <template>
-  <nav class="bg-gray-800">
-    <div class="max-w-7xl sm:px-6 lg:px-8 px-2 mx-auto">
+  <nav class="dark:bg-gray-800 bg-white shadow">
+    <div class="sm:px-6 lg:px-8 container px-2 mx-auto">
       <div class="relative flex items-center justify-between h-16">
+        <!-- MENU DROPDOWN TOGGLE -->
         <div class="sm:hidden absolute inset-y-0 left-0 flex items-center">
-          <!-- MENU DROPDOWN TOGGLE -->
           <button
             @click="menu_dropdown = !menu_dropdown"
-            class="hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white inline-flex items-center justify-center p-2 text-gray-400 rounded-md"
+            class="dark:hover:text-white dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white dark:text-gray-400 hover:bg-gray-200 inline-flex items-center justify-center p-2 text-gray-600 rounded-md"
             aria-expanded="false"
           >
             <span class="sr-only">Open main menu</span>
@@ -48,10 +48,13 @@
             </svg>
           </button>
         </div>
+        <!-- LOGO & TITLE -->
         <div
           class="sm:items-stretch sm:justify-start flex items-center justify-center flex-1"
         >
-          <div class="flex items-center flex-shrink-0">
+          <div
+            class="bg-gradient-to-r from-light-blue-400 hover:shadow-md sm:hover:scale-101 hover:scale-105 to-teal-600 dark:border-white flex items-center flex-shrink-0 transform bg-gray-700 border border-gray-800 rounded-full shadow-md cursor-wait"
+          >
             <svg
               class="w-10 h-10 text-white"
               fill="currentColor"
@@ -64,7 +67,11 @@
                 clip-rule="evenodd"
               ></path>
             </svg>
-            <p class="sm:inline hidden m-3 font-extrabold text-white">TIMIT</p>
+            <p
+              class="sm:inline hidden ml-2 mr-6 font-mono text-2xl italic font-black text-white"
+            >
+              TIMIT
+            </p>
           </div>
           <div class="sm:flex sm:ml-6 items-center hidden">
             <div class="flex items-center space-x-4">
@@ -73,7 +80,7 @@
                 to="/home"
                 exact
                 title="Navigate Home"
-                class="hover:text-white hover:bg-gray-700 flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md"
+                class="dark:over:text-white dark:hover:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md"
               >
                 <svg
                   class="w-5 h-5"
@@ -93,7 +100,7 @@
                 to="/overview"
                 exact
                 title="See all Projects"
-                class="hover:text-white hover:bg-gray-700 flex items-center px-3 py-2 text-sm font-medium text-gray-300 rounded-md"
+                class="dark:over:text-white dark:hover:bg-gray-700 dark:text-gray-300 hover:bg-gray-100 flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md"
               >
                 <svg
                   class="w-5 h-5"
@@ -115,7 +122,7 @@
         >
           <!-- BELL BUTTON-ICON -->
           <button
-            class="hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white p-1 text-gray-400 bg-gray-800 rounded-full"
+            class="dark:hover:text-white hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white dark:bg-gray-800 dark:text-gray-400 p-1 text-gray-500 bg-white rounded-full"
           >
             <span class="sr-only">View notifications</span>
 
@@ -143,7 +150,7 @@
           >
             <div>
               <button
-                class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white hover:border-white flex text-sm bg-gray-800 border border-transparent rounded-full"
+                class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white dark:hover:border-white hover:border-gray-800 dark:bg-gray-800 flex text-sm bg-white border border-transparent rounded-full"
                 id="user-menu"
                 aria-haspopup="true"
               >
@@ -156,55 +163,7 @@
               </button>
             </div>
 
-            <!-- PROFILE DROPDOWN SHOW/HIDE -->
-            <div
-              v-if="profile_dropdown"
-              class="ring-1 ring-black ring-opacity-5 absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg"
-              role="menu"
-              aria-orientation="vertical"
-              aria-labelledby="user-menu"
-            >
-              <!-- PROFILE DROPDOWN SETTINGS -->
-              <router-link
-                to="/settings"
-                class="hover:bg-gray-100 flex items-center justify-between px-4 py-2 text-sm text-gray-700"
-                role="menuitem"
-                ><span>Settings</span>
-                <svg
-                  class="inline w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </router-link>
-
-              <!-- PROFILE DROPDOWN SIGNOUT -->
-              <router-link
-                to="/logout"
-                class="hover:bg-gray-100 flex items-center justify-between px-4 py-2 text-sm text-gray-700"
-                role="menuitem"
-              >
-                <span>Sign out</span>
-                <svg
-                  class="inline w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M3 3a1 1 0 00-1 1v12a1 1 0 102 0V4a1 1 0 00-1-1zm10.293 9.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L14.586 9H7a1 1 0 100 2h7.586l-1.293 1.293z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
-              </router-link>
-            </div>
+            <ProfilePopup :toggle="profile_dropdown" />
           </div>
         </div>
       </div>
@@ -218,7 +177,7 @@
           to="/home"
           exact
           title="Navigate Home"
-          class="hover:text-white hover:bg-gray-700 flex items-center px-3 py-2 space-x-2 text-base font-medium text-gray-300 rounded-md"
+          class="dark:hover:text-white dark:hover:bg-gray-700 dark:text-gray-300 dark:border-transparent hover:text-black hover:bg-gray-100 flex items-center px-3 py-2 space-x-2 text-base font-medium text-gray-700 rounded-md"
         >
           <svg
             class="w-5 h-5"
@@ -238,7 +197,7 @@
           to="/overview"
           exact
           title="See all Projects"
-          class="hover:text-white hover:bg-gray-700 flex items-center px-3 py-2 space-x-2 text-base font-medium text-gray-300 rounded-md"
+          class="dark:hover:text-white dark:hover:bg-gray-700 dark:text-gray-300 dark:border-transparent hover:text-black hover:bg-gray-100 flex items-center px-3 py-2 space-x-2 text-base font-medium text-gray-700 rounded-md"
         >
           <svg
             class="w-5 h-5"
@@ -258,7 +217,12 @@
 </template>
 
 <script>
+  import ProfilePopup from './ProfilePopup.vue';
+
   export default {
+    components: {
+      ProfilePopup,
+    },
     data() {
       return {
         profile_dropdown: false,
@@ -269,23 +233,8 @@
 </script>
 
 <style scoped>
-  .apply-header {
-    @apply container p-2 mx-auto;
-    @apply flex flex-row flex-wrap justify-between;
-    @apply py-4;
-  }
-
-  .apply-nav-item {
-    @apply shadow-md rounded-xl bg-white text-black;
-    @apply flex space-x-1;
-    @apply p-2;
-    @apply cursor-pointer transform;
-    @apply bg-gradient-to-r hover:from-blue-500 hover:to-teal-600;
-    @apply hover:text-white hover:shadow-lg hover:scale-105;
-  }
-
   .active,
   .active-exact {
-    @apply bg-gray-900;
+    @apply dark:bg-gray-900 bg-gray-200;
   }
 </style>

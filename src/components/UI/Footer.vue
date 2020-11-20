@@ -73,7 +73,7 @@
       </div>
 
       <!-- COPYRIGHT TEXT -->
-      <div class="md:mt-0 md:order-1 mt-8 font-thin">
+      <div class="md:mt-0 md:order-1 mt-4 font-thin">
         <p class="dark:text-gray-300 text-center text-gray-600">
           &copy; 2020
           <a
@@ -95,7 +95,7 @@
 
 <style scoped>
   .apply-footer {
-    @apply md:flex md:items-center md:justify-between py-12;
+    @apply md:flex md:items-center md:justify-between py-4;
   }
 
   .apply-icon {
