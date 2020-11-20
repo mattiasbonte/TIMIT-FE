@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="bg-indigo-50 dark:bg-blue-gray-700 dark:text-white box-border flex flex-col h-full"
-  >
+  <div class="apply-main">
     <Header class="" />
     <Container class="flex-grow">
       <router-view></router-view>
@@ -26,3 +24,9 @@
     },
   };
 </script>
+
+<style scoped>
+  .apply-main {
+    @apply bg-indigo-50 dark:bg-blue-gray-700 dark:text-white box-border flex flex-col h-full;
+  }
+</style>

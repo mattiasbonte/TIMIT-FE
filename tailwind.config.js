@@ -18,6 +18,9 @@ module.exports = {
         'light-blue': colors.lightBlue,
         amber: colors.amber,
       },
+      scale: {
+        101: '1.01',
+      },
     },
   },
   variants: {

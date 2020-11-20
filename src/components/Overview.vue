@@ -1,10 +1,12 @@
 <template>
-  <div class="p-4 space-y-6">
-    <Project
+  <div
+    class="sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid grid-cols-1 gap-4"
+  >
+    <Preview
       v-for="project in users[0].projects"
       :key="project.id"
-      @click="navToProject(project.id)"
       :title="project.title"
+      @click="navToProject(project.id)"
     />
   </div>
 </template>
@@ -13,13 +15,11 @@
   import { nanoid } from 'nanoid';
   import user_data from '../data.json';
 
-  import Project from './Project/Project.vue';
-  import Form from './Project/Feature/FeatureForm.vue';
+  import Preview from './Project/Preview.vue';
 
   export default {
     components: {
-      Project,
-      Form,
+      Preview,
     },
     data() {
       return {
@@ -28,10 +28,10 @@
     },
     methods: {
       navToProject(id) {
-        this.$router.push(`/projects/:${id}`);
+        this.$router.push(`/projects/${id}`);
       },
     },
   };
 </script>
 
-<style></style>
+<style scoped></style>

@@ -1,5 +1,5 @@
 <template>
-  <div>My form</div>
+  <p>Page not found....</p>
 </template>
 
 <script>

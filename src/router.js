@@ -1,27 +1,34 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import Overview from './components/Overview.vue';
-import FeatureForm from './components/Project/Feature/FeatureForm.vue';
+import NotFound from './components/NotFound.vue';
+import Project from './components/Project/Project.vue';
 
-import user_data from './data.json';
-
-// Dynamically project routes to router based on projects inside user_data
+// Routes
 let routes = [
-  { name: 'home', path: '/', component: Overview },
+  { path: '/', component: NotFound },
   { name: 'overview', path: '/overview', component: Overview },
+  { path: '/projects/:id', component: Project },
+  { path: '/:notFound(.*)', component: NotFound },
 ];
 
-user_data[0].projects.forEach((project) => {
-  console.log(project.id);
-  routes.push({
-    path: `/projects/:${project.id}`,
-    component: FeatureForm,
-  });
-});
-
+// Router
 const router = createRouter({
   history: createWebHistory(),
   routes: routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    }
+    return { left: 0, top: 0 };
+  },
+  linkActiveClass: 'active',
+  linkExactActiveClass: 'exact-active',
+});
+
+// beforeEach Hook
+router.beforeEach(function (to, from, next) {
+  return next();
 });
 
 export default router;
