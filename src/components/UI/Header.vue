@@ -8,7 +8,7 @@
                 >
                     <button
                         @click="menu_dropdown = !menu_dropdown"
-                        class="dropdown-links-toggle"
+                        class="hamburger-button"
                         aria-expanded="false"
                     >
                         <span class="sr-only">Open main menu</span>
@@ -80,7 +80,7 @@
                                 to="/home"
                                 exact
                                 title="Navigate Home"
-                                class="desktop-dropdown-link"
+                                class="nav-link"
                             >
                                 <svg
                                     class="w-5 h-5"
@@ -100,7 +100,7 @@
                                 to="/overview"
                                 exact
                                 title="See all Projects"
-                                class="desktop-dropdown-link"
+                                class="nav-link"
                             >
                                 <svg
                                     class="w-5 h-5"
@@ -150,7 +150,7 @@
                     >
                         <div>
                             <button
-                                class="profile-toggle"
+                                class="profile-button"
                                 id="user-menu"
                                 aria-haspopup="true"
                             >
@@ -178,7 +178,7 @@
                     to="/home"
                     exact
                     title="Navigate Home"
-                    class="mobile-dropdown-link"
+                    class="hamburger-link"
                 >
                     <svg
                         class="w-5 h-5"
@@ -198,7 +198,7 @@
                     to="/overview"
                     exact
                     title="See all Projects"
-                    class="mobile-dropdown-link"
+                    class="hamburger-link"
                 >
                     <svg
                         class="w-5 h-5"
@@ -234,28 +234,44 @@
 </script>
 
 <style scoped>
-    /* NAV DROPDOWN LINKS */
-    .dropdown-links-toggle {
+    /* HAMBURGER & NAV LINKS */
+    .hamburger-button {
         @apply inline-flex items-center justify-center p-2 text-gray-600 rounded-md;
         @apply focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white;
         @apply hover:bg-gray-200;
         @apply dark:hover:text-white dark:hover:bg-gray-700 dark:text-gray-400;
     }
-    .desktop-dropdown-link {
+    .nav-link {
         @apply flex items-center px-3 py-2 text-sm font-medium text-gray-900 rounded-md;
         @apply hover:bg-gray-100;
         @apply dark:hover:text-white dark:hover:bg-gray-700 dark:text-gray-300;
     }
-    .mobile-dropdown-link {
+    .hamburger-link {
         @apply flex items-center px-3 py-2 space-x-2 text-base font-medium text-gray-700 rounded-md;
         @apply hover:text-black hover:bg-gray-100;
         @apply dark:hover:text-white dark:hover:bg-gray-700 dark:text-gray-300 dark:border-transparent;
     }
-    /* ACTIVE NAV LINKS */
+    /* ACTIVE LINKS */
     .active,
     .active-exact {
         @apply bg-gray-200;
         @apply dark:bg-gray-900;
+    }
+
+    /* BELL */
+    .bell-button {
+        @apply p-1 text-gray-500 bg-white rounded-full;
+        @apply hover:text-gray-800;
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
+        @apply dark:hover:text-white dark:bg-gray-800 dark:text-gray-400;
+    }
+
+    /* PROFILE MENU LINKS */
+    .profile-button {
+        @apply flex text-sm bg-white border border-transparent rounded-full;
+        @apply hover:border-gray-800;
+        @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
+        @apply dark:hover:border-white dark:bg-gray-800;
     }
 
     /* LOGO */
@@ -270,21 +286,5 @@
     }
     .logo-text {
         @apply sm:inline hidden ml-2 mr-6 font-mono text-2xl italic font-black text-white;
-    }
-
-    /* BELL */
-    .bell-button {
-        @apply p-1 text-gray-500 bg-white rounded-full;
-        @apply hover:text-gray-800;
-        @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
-        @apply dark:hover:text-white dark:bg-gray-800 dark:text-gray-400;
-    }
-
-    /* PROFILE MENU DROPDOWN */
-    .profile-toggle {
-        @apply flex text-sm bg-white border border-transparent rounded-full;
-        @apply hover:border-gray-800;
-        @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white;
-        @apply dark:hover:border-white dark:bg-gray-800;
     }
 </style>
