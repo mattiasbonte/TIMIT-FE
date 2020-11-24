@@ -10,12 +10,14 @@
         "features": [
           {
             "id": 1,
-            "title": "Feature 1",
+            "title": "Feature 1 wooofsjlfm lsqjflmsqjglds qgjlqksdjgdsql mgjdlsmgjsq mljgqs",
             "segments": [
               {
                 "id": 1,
-                "start": "02-03-2020t10:30",
-                "stop": "02-03-2020t12:00"
+                "day": "FRI",
+                "date": "02-10-2020",
+                "start": "10:30",
+                "stop": "12:00"
               },
               {
                 "id": 2,
