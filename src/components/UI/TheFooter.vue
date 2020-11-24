@@ -78,6 +78,7 @@
           &copy; 2020
           <a
             href="https://mattiasbonte.dev"
+            rel="noreferrer"
             class="hover:underline hover:text-black dark:hover:text-white"
             title="Check out my portflio!"
             target="_blank"

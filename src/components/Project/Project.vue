@@ -13,8 +13,8 @@
 </template>
 
 <script>
-  import Form from './Feature/FeatureForm.vue';
-  import Feature from './Feature/Feature.vue';
+  import Form from './components/FeatureForm.vue';
+  import Feature from './components/Feature.vue';
 
   import user_data from '../../data.json';
 
