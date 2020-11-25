@@ -27,7 +27,7 @@
     </div>
     <transition name="toggle-details" mode="out-in">
       <div v-if="toggle_details" class="feature__segments">
-        <Segment
+        <FeatureSegment
           v-for="segment in segments"
           :key="segment.id"
           :start="segment.start"
@@ -39,11 +39,11 @@
 </template>
 
 <script>
-  import Segment from './FeatureSegment.vue';
+  import FeatureSegment from './FeatureSegment.vue';
 
   export default {
     components: {
-      Segment,
+      FeatureSegment,
     },
     props: {
       title: { type: String, required: true },
@@ -61,7 +61,7 @@
     },
     computed: {
       featureBarClasses() {
-        return this.toggle_details ? 'border-b-2 duration-200' : 'duration-75';
+        return this.toggle_details ? 'border-b duration-200' : 'duration-75';
       },
       toggleDetailsClasses() {
         return this.toggle_details
@@ -76,14 +76,13 @@
   .feature {
     @apply flex flex-col;
     @apply rounded-md shadow-md bg-white;
-    @apply border border-white;
     @apply dark:text-white dark:bg-gray-800;
   }
   .feature__bar {
     @apply p-2 space-x-4 z-20;
     @apply flex flex-nowrap justify-between items-center;
     @apply transform;
-    @apply border-gray-100 dark:border-white;
+    @apply border-gray-100 dark:border-gray-700;
   }
   .feature__wrap {
     @apply flex items-center w-full justify-between space-x-2 overflow-hidden;

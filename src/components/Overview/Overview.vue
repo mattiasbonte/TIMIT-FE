@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 grid grid-cols-1 gap-4"
-  >
+  <div class="preview__grid">
     <Preview
       v-for="project in users[0].projects"
       :key="project.id"
@@ -12,7 +10,6 @@
 </template>
 
 <script>
-  import { nanoid } from 'nanoid';
   import user_data from '../../data.json';
 
   import Preview from './components/Preview.vue';
@@ -34,4 +31,8 @@
   };
 </script>
 
-<style scoped></style>
+<style scoped>
+  .preview__grid {
+    @apply grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+  }
+</style>
