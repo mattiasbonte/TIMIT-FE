@@ -61,12 +61,12 @@
     },
     computed: {
       featureBarClasses() {
-        return this.toggle_details ? 'border-b duration-200' : 'duration-75';
+        return this.toggle_details ? 'border-b duration-75' : 'duration-75';
       },
       toggleDetailsClasses() {
         return this.toggle_details
           ? 'transform -rotate-90 duration-200'
-          : 'transform rotate-0 duration-500';
+          : 'transform rotate-0 duration-200';
       },
     },
   };
@@ -112,11 +112,9 @@
     transform: translateY(-25px);
     opacity: 0.4;
   }
-  .toggle-details-enter-active {
-    transition: all 0.1s ease-out;
-  }
+  .toggle-details-enter-active,
   .toggle-details-leave-active {
-    transition: all 0.3s cubic-bezier(1, 0.5, 0.8, 1);
+    transition: all 0.1s ease-out;
   }
   .toggle-details-enter-to,
   .toggle-details-leave-from {

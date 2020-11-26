@@ -1,126 +1,182 @@
 <template>
-  <form action="" class="form">
-    <!-- DESCRIPTION -->
-    <div>
-      <label for="description" class="sr-only">Feature Description</label>
+  <!-- START FORM -->
+  <form v-if="!started" @submit.prevent="submitStartForm" class="form__start">
+    <!-- FEATURE DESCRIPTION -->
+    <input
+      type="text"
+      class="form__description"
+      name="description"
+      id="description"
+      placeholder="Describe feature..."
+      required
+    />
+
+    <!-- START DATE -->
+    <div class="form__date__wrapper">
+      <button
+        type="button"
+        class="form__button rounded-l-md"
+        @click="subtractDate"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
       <input
-        type="text"
-        class="form__description"
-        id="description"
-        placeholder="Describe feature..."
+        type="date"
+        class="form__date flex-grow"
+        name="start_date"
+        id="start_date"
+        v-model="start.date"
+        @input="setStartDate"
         required
       />
-    </div>
-    <!-- START DATETIME -->
-    <p class="text-center">START: FRI 10:00 - 09/11/2020</p>
-
-    <!-- START DAY -->
-    <div class="p-2 overflow-hidden">
-      <!-- SELECT DAY BUTTONS -->
-      <div class="flex justify-center space-x-2 overflow-x-scroll">
-        <button type="button" class="button">
-          <svg
-            class="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M15.707 15.707a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 010 1.414zm-6 0a1 1 0 01-1.414 0l-5-5a1 1 0 010-1.414l5-5a1 1 0 011.414 1.414L5.414 10l4.293 4.293a1 1 0 010 1.414z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-        </button>
-        <input type="date" class="button" @input="setDate" v-model="date" />
-        <button type="button" class="button">
-          <svg
-            class="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            ></path>
-            <path
-              fill-rule="evenodd"
-              d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-        </button>
-      </div>
-    </div>
-
-    <!-- SELECT START TIME -->
-    <div>
-      <label for="location" class="block text-sm font-medium text-gray-700"
-        >Hours</label
+      <button
+        v-if="dateBeforeToday"
+        type="button"
+        class="form__button rounded-r-md"
+        @click="addDate"
       >
+        <svg
+          class="w-4 h-4"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10.293 15.707a1 1 0 010-1.414L14.586 10l-4.293-4.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+            clip-rule="evenodd"
+          ></path>
+          <path
+            fill-rule="evenodd"
+            d="M4.293 15.707a1 1 0 010-1.414L8.586 10 4.293 5.707a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+      <button
+        v-else
+        type="button"
+        class="form__button rounded-r-md cursor-not-allowed"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- START TIME -->
+    <div class="form__time__wrapper">
+      <label class="form__time__label" for="start_date">
+        <div class="uppercase">{{ start.day }}</div>
+      </label>
       <select
-        id="start_hours"
-        class="focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm dark:text-black block w-full py-2 pl-3 pr-10 mt-1 text-base border-gray-300 rounded-md"
+        class="form__time"
+        v-model="start.time"
+        name="start_time"
+        id="start_time"
+        required
       >
         <option
           v-for="time_stamp in time_stamps"
           :key="time_stamp"
-          :selected="time_stamp === closest_time_stamp"
+          :value="time_stamp"
+          :selected="time_stamp === start.time"
         >
           {{ time_stamp }}
         </option>
       </select>
-      <button type="submit" name="submit" id="submit" class="button">
+      <!-- SUBMIT START -->
+      <button
+        type="submit"
+        class="form__button rounded-r-md flex-1"
+        name="start_submit"
+        id="start_submit"
+      >
         START
+      </button>
+    </div>
+  </form>
+
+  <!-- STOP FORM -->
+  <form v-else @submit.prevent="submitStopForm" class="form__stop">
+    <!-- STOP TIME -->
+    <div class="flex">
+      <label class="form__time__label" for="stop_time">
+        <div class="uppercase">{{ stop.day }}</div>
+        <span class="sm:inline hidden ml-2">{{ stop.date }}</span>
+      </label>
+
+      <select
+        class="form__time flex-grow"
+        v-model="stop.time"
+        name="stop_time"
+        id="stop_time"
+        required
+      >
+        <option
+          v-for="time_stamp in time_stamps"
+          :key="time_stamp"
+          :value="time_stamp"
+          :selected="time_stamp === stop.time"
+        >
+          {{ time_stamp }}
+        </option>
+      </select>
+      <!-- SUBMIT START -->
+      <button
+        type="submit"
+        class="form__button rounded-r-md"
+        name="stop_submit"
+        id="stop_submit"
+      >
+        STOP
       </button>
     </div>
   </form>
 </template>
 
 <script>
-  // import dayjs from 'dayjs';
+  import dayjs from 'dayjs';
 
   export default {
     data() {
       return {
-        date: '',
         time_stamps: [],
-        closest_time_stamp: '',
+        description: '',
+        started: false,
+        start: { date: '', day: '', time: '' },
+        stop: { date: '', day: '', time: '' },
       };
     },
     created() {
-      this.generateTimeStamps;
-      this.calcClosestTimeStamp;
+      this.time_stamps = this.generateTimeStamps;
+      this.start.date = this.setDate();
+      this.start.day = this.setDay(this.start.date);
+      this.start.time = this.calcClosestTimeStamp();
     },
     methods: {
-      generateTimeStamps() {
-        // generate array of times format hh:mm, 15 minute interval
-        let time_stamps = [];
-        let hours = 0;
-
-        //hourly loop
-        for (let index = 0; index < 24; index++) {
-          let times = [];
-          let minutes = 0;
-
-          //15m interval loop
-          for (let i = 0; i < 4; i++) {
-            times.push(
-              `${hours < 10 ? '0' : ''}${hours}:${
-                minutes < 10 ? '0' : ''
-              }${minutes}`
-            );
-            minutes += 15;
-          }
-
-          hours++;
-          time_stamps.push(...times);
-        }
-        this.time_stamps = time_stamps;
-      },
       calcClosestTimeStamp() {
+        // Calculates which timestamp is closest to the current time.
         const date = new Date();
         let hours = date.getHours();
         let minutes = date.getMinutes();
@@ -134,35 +190,160 @@
         else if (minutes < 45) minutes = '30';
         else minutes = '45';
 
-        this.closest_time_stamp = `${hours}:${minutes}`;
+        return `${hours}:${minutes}`;
       },
-      setDate(event) {
-        const e = event.target.value;
-        const date = new Date();
-        const year = date.getFullYear();
-        console.log(year, e);
-        console.log(this.date, 'lol date');
-        // this.date = today;
+      setDate() {
+        // Format: 2020-10-20
+        return dayjs().format('YYYY-MM-DD');
       },
-      decreaseDate() {
-        //
+      setDay(input_date) {
+        // Format: MONDAY, TUESDAY...
+        if (input_date !== '') {
+          return dayjs(this.start.date).format('ddd');
+        } else {
+          return `...`;
+        }
       },
-      increaseDate() {
-        //
+      subtractDate() {
+        // when input is empty, add today as a the starting date
+        if (this.start.date === '') {
+          this.start.date = dayjs().format('YYYY-MM-DD');
+        }
+
+        // Format: 2020-10-20
+        const decreased_date = dayjs(this.start.date)
+          .subtract(1, 'day')
+          .format('YYYY-MM-DD');
+
+        this.start.date = decreased_date;
+        this.start.day = this.setDay();
+      },
+      addDate() {
+        // when input is empty, add today as a the starting date
+        if (this.start.date === '') {
+          this.start.date = dayjs().format('YYYY-MM-DD');
+        }
+
+        // Format: 2020-10-20
+        const increased_date = dayjs(this.start.date)
+          .add(1, 'day')
+          .format('YYYY-MM-DD');
+
+        this.start.date = increased_date;
+        this.start.day = this.setDay();
+
+        const now = dayjs().format('YYYY-MM-DD');
+        if (this.start.date > now) return false;
+        return true;
+      },
+      setStartDate() {
+        if (dayjs(this.start.date).isAfter(dayjs())) {
+          this.start.date = this.setDate();
+        }
+        this.start.day = this.setDay(this.start.date);
+      },
+      submitStartForm() {
+        this.stop.date = this.setDate();
+        this.stop.day = this.setDay(this.stop.date);
+        this.stop.time = this.calcClosestTimeStamp();
+        this.started = !this.started;
+      },
+      submitStopForm() {
+        // code
+        this.started = !this.started;
+      },
+    },
+    computed: {
+      generateTimeStamps() {
+        // generate array of times format hh:mm, 15 minute interval
+        let time_stamps = [];
+        let hours = 0;
+
+        // 24 hour loop
+        for (let index = 0; index < 24; index++) {
+          let times = [];
+          let minutes = 0;
+
+          // 4 x 15m interval loop
+          for (let i = 0; i < 4; i++) {
+            times.push(
+              `${hours < 10 ? '0' : ''}${hours}:${
+                minutes < 10 ? '0' : ''
+              }${minutes}`
+            );
+            minutes += 15;
+          }
+
+          hours++;
+          time_stamps.push(...times);
+        }
+        return time_stamps;
+      },
+      dateBeforeToday() {
+        if (
+          dayjs(this.start.date).isBefore(dayjs()) &&
+          dayjs().isSame(this.start.date, 'day')
+        ) {
+          return false;
+        }
+        return true;
       },
     },
   };
 </script>
 
 <style scoped>
-  .form {
-    @apply rounded-md shadow-md bg-white;
-    @apply dark:text-white dark:bg-gray-800;
+  .form__start {
+    @apply p-2 rounded-md shadow-md bg-white;
+    @apply flex flex-col justify-center space-y-2;
+    @apply sm:space-x-0 sm:flex-row sm:flex-wrap sm:items-stretch;
+    @apply lg:space-y-0 lg:space-x-2 lg:flex-nowrap;
+    @apply dark:bg-gray-800 dark:text-black;
   }
+  .form__stop {
+    @apply max-w-xl mx-auto;
+    @apply p-2 rounded-md shadow-md bg-white;
+    @apply dark:bg-gray-800 dark:text-black;
+  }
+
   .form__description {
-    @apply focus:ring-teal-500 focus:border-teal-500 sm:text-sm block w-full border-gray-300 rounded-md shadow-sm;
+    @apply w-full;
+    @apply border-gray-300 rounded-md shadow-sm;
+    @apply focus:ring-indigo-500 focus:border-indigo-500;
   }
-  .button {
-    @apply hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm;
+
+  .form__date__wrapper {
+    @apply flex flex-1;
+    @apply sm:pr-1 lg:pr-0;
+  }
+  .form__date {
+    @apply px-3 p-2 text-center shadow-sm sm:w-auto w-full;
+    @apply text-white bg-indigo-600;
+    @apply border border-transparent;
+    @apply hover:bg-indigo-700 cursor-pointer;
+  }
+
+  .form__time__wrapper {
+    @apply flex flex-1;
+    @apply rounded-md shadow-sm;
+    @apply sm:flex-row sm:pl-1 lg:pl-0;
+  }
+  .form__time__label {
+    @apply rounded-l-md bg-gray-50 sm:text-sm inline-flex items-center px-3 cursor-pointer;
+    @apply text-gray-500 border border-r-0 border-gray-300;
+  }
+  .form__time {
+    @apply text-center w-full sm:w-auto cursor-pointer;
+    @apply border-gray-300;
+    @apply focus:border-indigo-500 focus:outline-none focus:ring-indigo-500;
+    @apply dark:text-black;
+  }
+
+  .form__button {
+    @apply px-3 p-2 text-center shadow-sm;
+    @apply text-white bg-indigo-600;
+    @apply border border-transparent;
+    @apply hover:bg-indigo-700;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
   }
 </style>
