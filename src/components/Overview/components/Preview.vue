@@ -1,10 +1,10 @@
 <template>
-  <div class="preview">{{ title }}</div>
+  <div class="preview">{{ description }}</div>
 </template>
 
 <script>
   export default {
-    props: { title: { type: String, required: true } },
+    props: { description: { type: String, required: true } },
   };
 </script>
 

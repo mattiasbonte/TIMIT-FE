@@ -3,7 +3,7 @@
     <Preview
       v-for="project in this.$store.getters.getProjects"
       :key="project.id"
-      :title="project.title"
+      :description="project.description"
       @click="navToProject(project.id)"
     />
   </div>

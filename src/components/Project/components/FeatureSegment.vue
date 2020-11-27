@@ -2,12 +2,23 @@
   <div class="flex flex-wrap items-center justify-between">
     <!-- TIMESTAMPS -->
     <div class="flex space-x-2">
-      <p>FRI</p>
-      <p>04/09/2020</p>
-      <p>4h</p>
+      <div v-if="!stop_date">
+        <svg
+          class="w-4 h-4"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+      <span>{{ start_day }} {{ start_time }} -</span>
+      <span>{{ stop_date }} {{ stop_time }}</span>
     </div>
-    <!-- <p class="self-end">{{ stop }}</p>
-    <p class="items-end">{{ start }}</p> -->
 
     <!-- CONTROLS -->
     <div v-if="expandSegment" class="flex space-x-1">
@@ -40,7 +51,7 @@
     </div>
 
     <!-- CONTROL TOGGLE -->
-    <div @click="openSegment" class="cursor-pointer">
+    <div @click="expandSegment = !expandSegment" class="cursor-pointer">
       <svg
         v-if="!expandSegment"
         class="w-6 h-6"
@@ -72,25 +83,36 @@
 </template>
 
 <script>
+  import dayjs from 'dayjs';
+
   export default {
     props: {
-      start: {
-        type: String,
-        required: true,
-      },
-      stop: {
-        type: String,
-        required: true,
-      },
+      project_id: { type: String, required: true },
+      feature_id: { type: String, required: true },
+      start_date: { type: String, required: true },
+      start_time: { type: String, required: true },
+      stop_date: { type: String, required: true },
+      stop_time: { type: String, required: true },
     },
     data() {
       return {
         expandSegment: false,
+        start_day: '',
       };
     },
+    mounted() {
+      this.start_day = dayjs(this.start_date).format('ddd');
+    },
     methods: {
-      openSegment() {
-        this.expandSegment = !this.expandSegment;
+      stopSegment() {
+        this.$store.commit({
+          type: 'stopSegment',
+          project_id: this.project_id,
+          feature_id: this.feature_id,
+          segment_id: this.segment_id,
+          stop_date: this.stop_date,
+          stop_time: this.stop_time,
+        });
       },
     },
   };

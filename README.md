@@ -10,8 +10,8 @@
 
 👤 **Mattias Bonte**
 
--   Website: mattiasbonte.dev
--   Github: [@mattiasbonte](https://github.com/mattiasbonte)
+- Website: [mattiasbonte.dev](https://mattiasbonte.dev)
+- Github: [@mattiasbonte](https://github.com/mattiasbonte)
 
 ## Show your support
 
@@ -19,13 +19,13 @@
 
 ## Front End
 
--   [Nanoid](https://www.npmjs.com/package/nanoid)
--
+- [Nanoid](https://www.npmjs.com/package/nanoid)
+- [DayJS](https://www.npmjs.com/package/dayjs)
 
 ## Back End
 
--   [Nodemon](https://www.npmjs.com/package/nodemon)
--   [Express](https://www.npmjs.com/package/express)
--   OIDC
+- [Nodemon](https://www.npmjs.com/package/nodemon)
+- [Express](https://www.npmjs.com/package/express)
+- OIDC
 
 Give a ⭐️ if this project helped you!

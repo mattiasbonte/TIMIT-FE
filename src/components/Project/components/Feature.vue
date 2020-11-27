@@ -3,7 +3,7 @@
     <div class="feature__bar" :class="featureBarClasses">
       <div class="feature__wrap">
         <div class="feature__description">
-          <p class="whitespace-nowrap">{{ title }}</p>
+          <p class="whitespace-nowrap">{{ description }}</p>
         </div>
         <p class="feature__total-time">
           99 <span class="sm:inline-flex hidden">hours</span>
@@ -30,8 +30,13 @@
         <FeatureSegment
           v-for="segment in segments"
           :key="segment.id"
-          :start="segment.start"
-          :stop="segment.stop"
+          :project_id="this.project_id"
+          :feature_id="this.feature_id"
+          :segment_id="segment.id"
+          :start_date="segment.start_date"
+          :start_time="segment.start_time"
+          :stop_date="segment.stop_date"
+          :stop_time="segment.stop_time"
         />
       </div>
     </transition>
@@ -46,8 +51,10 @@
       FeatureSegment,
     },
     props: {
-      title: { type: String, required: true },
+      description: { type: String, required: true },
       segments: { type: Array, required: true },
+      project_id: { type: String, required: true },
+      feature_id: { type: String, required: true },
     },
     data() {
       return {

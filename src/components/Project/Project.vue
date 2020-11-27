@@ -3,9 +3,11 @@
     <FeatureForm />
     <div class="space-y-5">
       <Feature
-        v-for="feature in this.features"
+        v-for="feature in this.getFeatures"
         :key="feature.id"
-        :title="feature.title"
+        :project_id="this.id"
+        :feature_id="feature.id"
+        :description="feature.description"
         :segments="feature.segments"
       />
     </div>
@@ -16,26 +18,18 @@
   import FeatureForm from './components/FeatureForm.vue';
   import Feature from './components/Feature.vue';
 
-  import user_data from '../../data.json';
-
   export default {
     components: { FeatureForm, Feature },
     data() {
       return {
         id: this.$route.params.id,
-        features: [],
       };
     },
-    methods: {
-      printFeatures() {
-        const features = user_data[0].projects.filter(
-          (feature) => feature.id === this.id
-        )[0].features;
-        this.features = features;
+    computed: {
+      getFeatures() {
+        // Returns all the features of a specific project, project ID is send as payload
+        return this.$store.getters.getFeatures(this.id);
       },
-    },
-    mounted() {
-      this.printFeatures();
     },
   };
 </script>

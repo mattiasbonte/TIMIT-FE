@@ -10,40 +10,18 @@ export default createStore({
     projects: [
       {
         id: 'lfjla21jflmq902s',
-        title: 'Timit',
+        description: 'Timit',
         features: [
           {
             id: 1,
-            title:
-              'Feature 1 wooofsjlfm lsqjflmsqjglds qgjlqksdjgdsql mgjdlsmgjsq mljgqs',
+            description: 'Feature 1',
             segments: [
               {
                 id: 1,
-                day: 'FRI',
-                date: '02-10-2020',
-                start: '10:30',
-                stop: '12:00',
-              },
-              {
-                id: 2,
-                start: '03-03-2020t09:30',
-                stop: '03-03-2020t14:00',
-              },
-              {
-                id: 3,
-                start: '05-03-2020t14:30',
-                stop: '05-03-2020t15:00',
-              },
-            ],
-          },
-          {
-            id: 2,
-            title: 'Feature 2',
-            segments: [
-              {
-                id: 1,
-                start: '06-03-2020t10:30',
-                stop: '06-03-2020t18:30',
+                start_date: '2020-10-02',
+                start_time: '10:30',
+                stop_date: '2020-10-02',
+                stop_time: '12:00',
               },
             ],
           },
@@ -51,11 +29,11 @@ export default createStore({
       },
       {
         id: 'lfjla41jopmq902s',
-        title: 'Wind Down',
+        description: 'Wind Down',
         features: [
           {
             id: 1,
-            title: 'Create API login',
+            description: 'Create API login',
             segments: [
               {
                 id: 1,
@@ -76,7 +54,7 @@ export default createStore({
           },
           {
             id: 2,
-            title: 'Testing API calls',
+            description: 'Testing API calls',
             segments: [
               {
                 id: 1,
@@ -87,7 +65,7 @@ export default createStore({
           },
           {
             id: 3,
-            title: 'Styling Front End',
+            description: 'Styling Front End',
             segments: [
               {
                 id: 1,
@@ -104,16 +82,38 @@ export default createStore({
     getProjects(state) {
       return state.projects;
     },
+    getFeatures: (state) => (id) => {
+      return state.projects.find((project) => project.id === id).features;
+    },
   },
   mutations: {
     addNewFeature(state, payload) {
-      // Search for project based on payload.id
-      const project = state.projects.filter((x) => {
-        x.id === payload.id;
+      // Adds a new feature object (payload.feature) to an existing project with id === payload.id
+      state.projects = state.projects.map((project) => {
+        if (project.id === payload.id) {
+          project.features.unshift(payload.feature);
+        }
+        return project;
       });
-      console.log(project);
-      // Add new payload.feature object to projects.features array
-      // project.features.unshift(payload.feature);
+    },
+    stopSegment(state, payload) {
+      state.projects = state.projects.map((project) => {
+        if (project.id === payload.project_id) {
+          project.features.map((feature) => {
+            if (feature.id === payload.feature_id) {
+              feature.segments.map((segment) => {
+                if (segment.id === payload.segment_id) {
+                  segment.stop_date = payload.stop_date;
+                  segment.stop_time = payload.stop_time;
+                }
+                return segment;
+              });
+            }
+            return feature;
+          });
+        }
+        return project;
+      });
     },
   },
   actions: {},

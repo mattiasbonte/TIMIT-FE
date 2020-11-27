@@ -8,11 +8,11 @@
       v-model="description"
       name="description"
       id="description"
-      placeholder="Describe feature..."
+      placeholder="Add new feature..."
       required
     />
 
-    <div class="form__datetime__wrapper">
+    <div v-if="description" class="form__datetime__wrapper">
       <!-- START DATE -->
       <div class="form__date__wrapper">
         <button
@@ -136,8 +136,15 @@
     <!-- STOP TIME -->
     <div class="form__time__wrapper">
       <label class="form__time__label" for="stop_time">
-        <div class="uppercase">{{ stop.day }}</div>
+        <div class="mx-auto uppercase">{{ stop.day }}</div>
         <span class="sm:inline hidden ml-2">{{ stop.date }}</span>
+        <!-- <input
+          class="hidden w-0 h-0"
+          type="date"
+          name="stop_date"
+          id="stop_date"
+          v-model="stop.date"
+        /> -->
       </label>
 
       <select
@@ -170,6 +177,7 @@
 </template>
 
 <script>
+  import { nanoid } from 'nanoid';
   import dayjs from 'dayjs';
 
   export default {
@@ -196,13 +204,12 @@
         this.start.day = this.setDay(this.start.date);
       },
       setDate() {
-        // Format: 2020-10-20
         return dayjs().format('YYYY-MM-DD');
       },
       setDay(input_date) {
         // Format: MONDAY, TUESDAY...
         if (input_date !== '') {
-          return dayjs(this.start.date).format('ddd');
+          return dayjs(input_date).format('ddd');
         } else {
           return `...`;
         }
@@ -219,7 +226,7 @@
           .format('YYYY-MM-DD');
 
         this.start.date = decreased_date;
-        this.start.day = this.setDay();
+        this.start.day = this.setDay(this.start.date);
       },
       addDate() {
         // when input is empty, add today as a the starting date
@@ -233,7 +240,7 @@
           .format('YYYY-MM-DD');
 
         this.start.date = increased_date;
-        this.start.day = this.setDay();
+        this.start.day = this.setDay(this.start.date);
 
         const now = dayjs().format('YYYY-MM-DD');
         if (this.start.date > now) return false;
@@ -274,25 +281,29 @@
         this.stop.day = this.setDay(this.stop.date);
         this.stop.time = this.calcClosestTimeStamp('stop');
         this.started = !this.started;
-
+        // Save feature in vuex store
         this.$store.commit({
           type: 'addNewFeature',
-          id: 'lfjla21jflmq902s',
+          id: this.$route.params.id,
           feature: {
-            id: 3,
-            title: 'WOOOO OK OK',
+            id: nanoid(),
+            description: this.description,
             segments: [
               {
-                id: 1,
-                start: '06-03-2020t10:30',
-                stop: '06-03-2020t18:30',
+                id: nanoid(),
+                start_date: this.start.date,
+                start_time: this.start.time,
+                stop_date: '',
+                stop_time: '',
               },
             ],
           },
         });
       },
       submitStopForm() {
-        // code
+        this.stop.date = this.setDate();
+        this.stop.day = this.setDay(this.stop.date);
+        this.stop.time = this.calcClosestTimeStamp('stop');
         this.started = !this.started;
       },
     },
