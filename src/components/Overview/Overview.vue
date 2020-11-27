@@ -1,7 +1,7 @@
 <template>
   <div class="preview__grid">
     <Preview
-      v-for="project in users[0].projects"
+      v-for="project in this.$store.getters.getProjects"
       :key="project.id"
       :title="project.title"
       @click="navToProject(project.id)"
@@ -10,8 +10,6 @@
 </template>
 
 <script>
-  import user_data from '../../data.json';
-
   import Preview from './components/Preview.vue';
 
   export default {
@@ -19,9 +17,7 @@
       Preview,
     },
     data() {
-      return {
-        users: user_data,
-      };
+      return {};
     },
     methods: {
       navToProject(id) {

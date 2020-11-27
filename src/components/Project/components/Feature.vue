@@ -79,7 +79,7 @@
     @apply dark:text-white dark:bg-gray-800;
   }
   .feature__bar {
-    @apply p-2 space-x-4 z-20;
+    @apply p-3 space-x-4 z-20;
     @apply flex flex-nowrap justify-between items-center;
     @apply transform;
     @apply border-gray-100 dark:border-gray-700;

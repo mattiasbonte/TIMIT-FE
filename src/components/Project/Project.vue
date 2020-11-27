@@ -1,7 +1,7 @@
 <template>
-  <div class="space-y-4">
-    <Form />
-    <div class="space-y-4">
+  <div class="space-y-8">
+    <FeatureForm />
+    <div class="space-y-5">
       <Feature
         v-for="feature in this.features"
         :key="feature.id"
@@ -13,13 +13,13 @@
 </template>
 
 <script>
-  import Form from './components/FeatureForm.vue';
+  import FeatureForm from './components/FeatureForm.vue';
   import Feature from './components/Feature.vue';
 
   import user_data from '../../data.json';
 
   export default {
-    components: { Form, Feature },
+    components: { FeatureForm, Feature },
     data() {
       return {
         id: this.$route.params.id,

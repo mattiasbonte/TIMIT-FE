@@ -274,7 +274,7 @@
 
   /* LOGO */
   .logo-box {
-    @apply flex items-center flex-shrink-0 bg-gray-700 border border-gray-800 rounded-full shadow-md cursor-wait;
+    @apply flex items-center flex-shrink-0 bg-gray-700 border border-gray-800 rounded-full shadow-md;
     @apply hover:shadow-md transform hover:scale-105 sm:hover:scale-101;
     @apply bg-gradient-to-r  from-light-blue-400 to-teal-600;
     @apply dark:from-light-blue-600 dark:to-teal-800 dark:border-white;
