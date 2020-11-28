@@ -5,9 +5,11 @@
         <div class="feature__description">
           <p class="whitespace-nowrap">{{ description }}</p>
         </div>
-        <div v-if="featureInProgress" class="feature__total-time">
+
+        <!-- Feature in progress -->
+        <div v-if="featureInProgress" class="">
           <svg
-            class="w-6 h-6 mx-auto text-red-500"
+            class="animate-pulse w-6 h-6 mx-auto text-red-500"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -22,27 +24,28 @@
             ></path>
           </svg>
         </div>
+
+        <!-- Feature Total Time -->
         <p v-else class="feature__total-time">
-          {{ getFeatureTotalTime
-          }}<span class="sm:inline-flex hidden pl-1">Hours</span>
+          {{ getFeatureTotalTime }}
+          <span class="sm:hidden pl-1 text-xs font-thin">h</span>
+          <span class="sm:inline-flex hidden pl-1 text-xs font-thin"
+            >hours</span
+          >
         </p>
       </div>
-      <div class="feature__toggle-details" @click="toggleDetails">
-        <svg
-          class="w-5 h-5"
-          :class="toggleDetailsClasses"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
+
+      <!-- Feature Details Toggle -->
+      <div
+        @click="toggleDetails"
+        class="feature__details__toggle"
+        :class="toggleDetailsClasses"
+      >
+        💡
       </div>
     </div>
+
+    <!-- Transition -->
     <transition name="toggle-details" mode="out-in">
       <div v-if="toggle_details" class="feature__segments">
         <FeatureSegment
@@ -56,6 +59,25 @@
           :stop_date="segment.stop_date"
           :stop_time="segment.stop_time"
         />
+
+        <!-- Add New Segment -->
+        <form v-if="!featureInProgress">
+          <button class="feature__segments__new">
+            <span>START</span>
+            <svg
+              class="w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </button>
+        </form>
       </div>
     </transition>
   </div>
@@ -90,8 +112,8 @@
       },
       toggleDetailsClasses() {
         return this.toggle_details
-          ? 'transform -rotate-90 duration-200'
-          : 'transform rotate-0 duration-200';
+          ? 'transform scale-125 duration-200'
+          : 'transform scale-100 duration-200';
       },
       featureInProgress() {
         return this.$store.getters.getFeatureInProgress({
@@ -125,7 +147,7 @@
     @apply flex items-center w-full justify-between space-x-2 overflow-hidden;
   }
   .feature__total-time {
-    @apply p-1 whitespace-nowrap text-center w-14 sm:w-28;
+    @apply p-1 whitespace-nowrap text-right w-auto;
     @apply rounded-md bg-gray-600 text-white font-bold;
     @apply dark:bg-white dark:text-black;
   }
@@ -134,13 +156,17 @@
     @apply overflow-x-auto;
     @apply dark:bg-transparent;
   }
-  .feature__toggle-details {
-    @apply rounded-full border-transparent border;
-    @apply hover:bg-teal-500 hover:text-white cursor-pointer hover:border-white;
-    @apply dark:bg-white text-black;
+  .feature__details__toggle {
+    @apply rounded-full;
+    @apply cursor-pointer hover:text-blue-400 hover:shadow-lg;
   }
   .feature__segments {
-    @apply px-2 py-2;
+    @apply p-3;
+  }
+  .feature__segments__new {
+    @apply p-2 mt-2 bg-blue-600 rounded-md;
+    @apply flex px-4 text-center;
+    @apply hover:bg-green-500;
   }
 
   /* transition */

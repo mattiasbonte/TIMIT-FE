@@ -1,7 +1,6 @@
 <template>
-  <!-- STOP FORM -->
   <form v-if="toggleStopForm" @submit.prevent="stopSegment" class="">
-    <!-- STOP TIME -->
+    <!-- Stop Time -->
     <label class="form__label" for="stop_time">{{ stop_day }}</label>
     <select
       v-model="stop_time"
@@ -20,14 +19,14 @@
       </option>
     </select>
 
-    <!-- SUBMIT START -->
+    <!-- Submit Stop -->
     <button
       type="submit"
       class="form__button"
       name="stop_submit"
       id="stop_submit"
     >
-      STOP
+      STOP WORK
     </button>
   </form>
 </template>
@@ -91,7 +90,7 @@
           project_id: this.project_id,
           feature_id: this.feature_id,
           segment_id: this.segment_id,
-          stop_date: this.stop_date,
+          stop_date: dayjs().format('YYYY-MM-DD'),
           stop_time: this.stop_time,
         });
 
@@ -155,7 +154,8 @@
     @apply cursor-pointer;
   }
   .form__select {
-    @apply p-0 pr-7 bg-transparent border-transparent outline-none appearance-none;
+    @apply p-0 pr-7 underline;
+    @apply bg-transparent border-transparent outline-none appearance-none;
     @apply cursor-pointer;
     @apply focus:border-transparent focus:ring-transparent;
   }
