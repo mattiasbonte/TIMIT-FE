@@ -1,29 +1,16 @@
 <template>
-  <div class="flex flex-wrap items-center justify-between">
+  <div class="flex flex-wrap items-center justify-start">
+    <!-- TIMESTAMPS -->
+    <div class="flex space-x-2">
+      <span>{{ start_day }} {{ start_time }}</span>
+      <span>{{ stopDay }} {{ stop_time }}</span>
+    </div>
+
     <FeatureStopForm
       :project_id="this.project_id"
       :feature_id="this.feature_id"
       :segment_id="this.segment_id"
     />
-    <!-- TIMESTAMPS -->
-    <div class="flex space-x-2">
-      <div v-if="!stop_date">
-        <svg
-          class="w-4 h-4"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </div>
-      <span>{{ start_day }} {{ start_time }} -</span>
-      <span>{{ stop_day }} {{ stop_time }}</span>
-    </div>
 
     <!-- CONTROLS -->
     <div v-if="expandSegment" class="flex space-x-1">
@@ -108,14 +95,18 @@
       return {
         expandSegment: false,
         start_day: '',
-        stop_day: '',
       };
     },
     created() {
-      this.start_day = dayjs(this.start_date).format('ddd');
-      if (this.stop_date !== '') {
-        this.stop_day = dayjs(this.stop_date).format('ddd');
-      }
+      this.start_day = dayjs(this.start_date).format('dd');
+    },
+    computed: {
+      stopDay() {
+        if (this.stop_date !== '') {
+          return dayjs(this.stop_date).format('dd');
+        }
+        return '';
+      },
     },
   };
 </script>

@@ -1,33 +1,34 @@
 <template>
   <!-- STOP FORM -->
-  <form @submit.prevent="stopSegment" class="form">
+  <form v-if="toggleStopForm" @submit.prevent="stopSegment" class="">
     <!-- STOP TIME -->
-    <div class="form__time__wrapper">
-      <select
-        class="form__time flex-grow"
-        name="stop_time"
-        id="stop_time"
-        required
+    <label class="form__label" for="stop_time">{{ stop_day }}</label>
+    <select
+      v-model="stop_time"
+      class="form__select"
+      name="stop_time"
+      id="stop_time"
+      required
+    >
+      <option
+        v-for="time_stamp in time_stamps"
+        :key="time_stamp"
+        :value="time_stamp"
+        :selected="time_stamp === stop_time"
       >
-        <option
-          v-for="time_stamp in time_stamps"
-          :key="time_stamp"
-          :value="time_stamp"
-          :selected="time_stamp === calcClosestTimeStamp('stop')"
-        >
-          {{ time_stamp }}
-        </option>
-      </select>
-      <!-- SUBMIT START -->
-      <button
-        type="submit"
-        class="form__button rounded-r-md"
-        name="stop_submit"
-        id="stop_submit"
-      >
-        STOP
-      </button>
-    </div>
+        {{ time_stamp }}
+      </option>
+    </select>
+
+    <!-- SUBMIT START -->
+    <button
+      type="submit"
+      class="form__button"
+      name="stop_submit"
+      id="stop_submit"
+    >
+      STOP
+    </button>
   </form>
 </template>
 
@@ -43,6 +44,9 @@
     data() {
       return {
         time_stamps: [],
+        stop_date: dayjs().format('YYYY-MM-DD'),
+        stop_day: dayjs().format('dd'),
+        stop_time: this.calcClosestTimeStamp('stop'),
       };
     },
     created() {
@@ -77,16 +81,18 @@
         //add 0 in front when hour < 10
         hours = hours < 10 ? `0${hours}` : hours.toString();
 
+        // output timestamp format "hh:mm"
         return `${hours}:${minutes}`;
       },
       stopSegment() {
+        // Save stop date & time inside store
         this.$store.commit({
           type: 'stopSegment',
           project_id: this.project_id,
           feature_id: this.feature_id,
           segment_id: this.segment_id,
-          stop_date: dayjs().format('YYYY-MM-DD'),
-          stop_time: this.calcClosestTimeStamp('stop'),
+          stop_date: this.stop_date,
+          stop_time: this.stop_time,
         });
 
         // Enable start form
@@ -94,6 +100,9 @@
           id: this.project_id,
           disable: false,
         });
+
+        // Hide stop form
+        this.hide_stop_form = true;
       },
     },
     computed: {
@@ -122,59 +131,37 @@
         }
         return time_stamps;
       },
+      toggleStopForm() {
+        // get segment from store and check if a stop_time is set
+        const payload = {
+          project_id: this.project_id,
+          feature_id: this.feature_id,
+          segment_id: this.segment_id,
+        };
+
+        // if no stop_time is set, show the stop form
+        const stop_time = this.$store.getters.getSegment(payload).stop_time;
+        if (!stop_time) return true;
+
+        // when there is a stop time set, hide the stop form
+        return false;
+      },
     },
   };
 </script>
 
 <style scoped>
-  .form {
-    @apply p-3 rounded-md shadow-md bg-white;
-    @apply flex flex-col justify-center space-y-3;
-    @apply sm:space-x-0 sm:flex-row sm:flex-wrap sm:items-stretch;
-    @apply lg:space-y-0 lg:space-x-3 lg:flex-nowrap;
-    @apply dark:bg-gray-800 dark:text-black;
+  .form__label {
+    @apply cursor-pointer;
   }
-
-  .form__description {
-    @apply w-full;
-    @apply border-gray-300 rounded-md shadow-sm;
-    @apply focus:ring-indigo-500 focus:border-indigo-500;
-  }
-
-  .form__datetime__wrapper {
-    @apply sm:flex-row sm:space-y-0 sm:space-x-3 flex flex-col justify-between w-full space-y-3;
-  }
-
-  .form__date__wrapper {
-    @apply flex flex-1;
-  }
-  .form__date {
-    @apply px-3 p-3 text-center shadow-sm sm:w-auto w-full;
-    @apply text-white bg-indigo-600;
-    @apply border border-transparent;
-    @apply hover:bg-indigo-700 cursor-pointer;
-  }
-
-  .form__time__wrapper {
-    @apply flex flex-1;
-    @apply rounded-md shadow-sm;
-    @apply sm:flex-row;
-  }
-  .form__time__label {
-    @apply rounded-l-md bg-gray-50 inline-flex items-center px-3 cursor-pointer;
-    @apply sm:w-auto w-24;
-    @apply text-gray-500 border border-r-0 border-gray-300;
-  }
-  .form__time {
-    @apply text-center flex-1 sm:w-auto cursor-pointer;
-    @apply border-gray-300;
-    @apply focus:border-indigo-500 focus:outline-none focus:ring-indigo-500;
-    @apply dark:text-black;
+  .form__select {
+    @apply p-0 pr-7 bg-transparent border-transparent outline-none appearance-none;
+    @apply cursor-pointer;
+    @apply focus:border-transparent focus:ring-transparent;
   }
 
   .form__button {
-    @apply sm:w-auto w-24;
-    @apply px-3 p-3 text-center shadow-sm;
+    @apply px-1 text-center shadow-sm rounded-md;
     @apply text-white bg-indigo-600;
     @apply border border-transparent;
     @apply hover:bg-indigo-700;
