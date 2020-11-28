@@ -1,18 +1,27 @@
 <template>
   <!-- START FORM -->
-  <form v-if="!started" @submit.prevent="submitStartForm" class="form">
+  <form @submit.prevent="submitStartForm" class="form">
     <!-- FEATURE DESCRIPTION -->
     <input
       type="text"
       class="form__description"
+      :class="getStartFormDisabledState ? 'cursor-not-allowed' : ''"
       v-model="description"
       name="description"
       id="description"
-      placeholder="Add new feature..."
+      :placeholder="
+        !getStartFormDisabledState
+          ? 'Add new feature...'
+          : 'Stop timer first...'
+      "
+      :disabled="getStartFormDisabledState"
       required
     />
 
-    <div v-if="description" class="form__datetime__wrapper">
+    <div
+      v-if="description && !getStartFormDisabledState"
+      class="form__datetime__wrapper"
+    >
       <!-- START DATE -->
       <div class="form__date__wrapper">
         <button
@@ -113,65 +122,11 @@
           class="form__button rounded-r-md"
           name="start_submit"
           id="start_submit"
+          :disabled="getStartFormDisabledState"
         >
           START
         </button>
       </div>
-    </div>
-  </form>
-
-  <!-- STOP FORM -->
-  <form v-else @submit.prevent="submitStopForm" class="form">
-    <!-- FEATURE DESCRIPTION -->
-    <input
-      type="text"
-      class="form__description"
-      v-model="description"
-      name="description"
-      id="description"
-      placeholder="Describe feature..."
-      required
-    />
-
-    <!-- STOP TIME -->
-    <div class="form__time__wrapper">
-      <label class="form__time__label" for="stop_time">
-        <div class="mx-auto uppercase">{{ stop.day }}</div>
-        <span class="sm:inline hidden ml-2">{{ stop.date }}</span>
-        <!-- <input
-          class="hidden w-0 h-0"
-          type="date"
-          name="stop_date"
-          id="stop_date"
-          v-model="stop.date"
-        /> -->
-      </label>
-
-      <select
-        class="form__time flex-grow"
-        v-model="stop.time"
-        name="stop_time"
-        id="stop_time"
-        required
-      >
-        <option
-          v-for="time_stamp in time_stamps"
-          :key="time_stamp"
-          :value="time_stamp"
-          :selected="time_stamp === stop.time"
-        >
-          {{ time_stamp }}
-        </option>
-      </select>
-      <!-- SUBMIT START -->
-      <button
-        type="submit"
-        class="form__button rounded-r-md"
-        name="stop_submit"
-        id="stop_submit"
-      >
-        STOP
-      </button>
     </div>
   </form>
 </template>
@@ -181,13 +136,14 @@
   import dayjs from 'dayjs';
 
   export default {
+    props: {
+      project_id: { type: String, required: true },
+    },
     data() {
       return {
         time_stamps: [],
         description: '',
-        started: false,
         start: { date: '', day: '', time: '' },
-        stop: { date: '', day: '', time: '' },
       };
     },
     created() {
@@ -277,14 +233,10 @@
         return `${hours}:${minutes}`;
       },
       submitStartForm() {
-        this.stop.date = this.setDate();
-        this.stop.day = this.setDay(this.stop.date);
-        this.stop.time = this.calcClosestTimeStamp('stop');
-        this.started = !this.started;
-        // Save feature in vuex store
+        // Save new feature in vuex store
         this.$store.commit({
           type: 'addNewFeature',
-          id: this.$route.params.id,
+          id: this.project_id,
           feature: {
             id: nanoid(),
             description: this.description,
@@ -299,12 +251,14 @@
             ],
           },
         });
-      },
-      submitStopForm() {
-        this.stop.date = this.setDate();
-        this.stop.day = this.setDay(this.stop.date);
-        this.stop.time = this.calcClosestTimeStamp('stop');
-        this.started = !this.started;
+
+        // Reset, Hide & Disable Form
+        this.description = '';
+        this.$store.commit('toggleStartForm', {
+          id: this.project_id,
+          disable: true,
+        });
+        this.getStartFormDisabledState;
       },
     },
     computed: {
@@ -341,6 +295,10 @@
           return false;
         }
         return true;
+      },
+      getStartFormDisabledState() {
+        return this.$store.getters.getProject(this.project_id)
+          .disable_start_form;
       },
     },
   };

@@ -11,13 +11,14 @@ export default createStore({
       {
         id: 'lfjla21jflmq902s',
         description: 'Timit',
+        disable_start_form: false,
         features: [
           {
-            id: 1,
+            id: '3mlj2',
             description: 'Feature 1',
             segments: [
               {
-                id: 1,
+                id: '3123lfjslqfj',
                 start_date: '2020-10-02',
                 start_time: '10:30',
                 stop_date: '2020-10-02',
@@ -30,6 +31,7 @@ export default createStore({
       {
         id: 'lfjla41jopmq902s',
         description: 'Wind Down',
+        disable_start_form: false,
         features: [
           {
             id: 1,
@@ -82,6 +84,9 @@ export default createStore({
     getProjects(state) {
       return state.projects;
     },
+    getProject: (state) => (id) => {
+      return state.projects.find((project) => project.id === id);
+    },
     getFeatures: (state) => (id) => {
       return state.projects.find((project) => project.id === id).features;
     },
@@ -111,6 +116,14 @@ export default createStore({
             }
             return feature;
           });
+        }
+        return project;
+      });
+    },
+    toggleStartForm(state, payload) {
+      state.projects = state.projects.map((project) => {
+        if (project.id === payload.id) {
+          project.disable_start_form = payload.disable;
         }
         return project;
       });

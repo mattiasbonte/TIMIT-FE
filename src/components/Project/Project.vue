@@ -1,11 +1,16 @@
 <template>
   <div class="space-y-8">
-    <FeatureForm />
+    <h1
+      class="dark:text-white -mb-2 text-xl italic font-thin text-center text-black"
+    >
+      {{ project_description }}
+    </h1>
+    <FeatureStartForm :project_id="this.project_id" />
     <div class="space-y-5">
       <Feature
         v-for="feature in this.getFeatures"
         :key="feature.id"
-        :project_id="this.id"
+        :project_id="this.project_id"
         :feature_id="feature.id"
         :description="feature.description"
         :segments="feature.segments"
@@ -15,20 +20,27 @@
 </template>
 
 <script>
-  import FeatureForm from './components/FeatureForm.vue';
+  import FeatureStartForm from './components/FeatureStartForm.vue';
   import Feature from './components/Feature.vue';
 
   export default {
-    components: { FeatureForm, Feature },
+    components: { FeatureStartForm, Feature },
     data() {
       return {
-        id: this.$route.params.id,
+        project_id: this.$route.params.id,
+        project_description: '',
       };
+    },
+    created() {
+      this.project_description = this.getDescription;
     },
     computed: {
       getFeatures() {
         // Returns all the features of a specific project, project ID is send as payload
-        return this.$store.getters.getFeatures(this.id);
+        return this.$store.getters.getFeatures(this.project_id);
+      },
+      getDescription() {
+        return this.$store.getters.getProject(this.project_id).description;
       },
     },
   };
@@ -39,8 +51,6 @@
     @apply px-4 py-2 rounded-md shadow-md cursor-pointer;
     @apply bg-white hover:bg-gray-100;
     @apply border-black border-solid;
-
-    /* dark */
     @apply dark:text-black;
   }
 </style>

@@ -1,5 +1,10 @@
 <template>
   <div class="flex flex-wrap items-center justify-between">
+    <FeatureStopForm
+      :project_id="this.project_id"
+      :feature_id="this.feature_id"
+      :segment_id="this.segment_id"
+    />
     <!-- TIMESTAMPS -->
     <div class="flex space-x-2">
       <div v-if="!stop_date">
@@ -17,7 +22,7 @@
         </svg>
       </div>
       <span>{{ start_day }} {{ start_time }} -</span>
-      <span>{{ stop_date }} {{ stop_time }}</span>
+      <span>{{ stop_day }} {{ stop_time }}</span>
     </div>
 
     <!-- CONTROLS -->
@@ -84,11 +89,16 @@
 
 <script>
   import dayjs from 'dayjs';
+  import FeatureStopForm from './FeatureStopForm';
 
   export default {
+    components: {
+      FeatureStopForm,
+    },
     props: {
       project_id: { type: String, required: true },
       feature_id: { type: String, required: true },
+      segment_id: { type: String, required: true },
       start_date: { type: String, required: true },
       start_time: { type: String, required: true },
       stop_date: { type: String, required: true },
@@ -98,22 +108,14 @@
       return {
         expandSegment: false,
         start_day: '',
+        stop_day: '',
       };
     },
-    mounted() {
+    created() {
       this.start_day = dayjs(this.start_date).format('ddd');
-    },
-    methods: {
-      stopSegment() {
-        this.$store.commit({
-          type: 'stopSegment',
-          project_id: this.project_id,
-          feature_id: this.feature_id,
-          segment_id: this.segment_id,
-          stop_date: this.stop_date,
-          stop_time: this.stop_time,
-        });
-      },
+      if (this.stop_date !== '') {
+        this.stop_day = dayjs(this.stop_date).format('ddd');
+      }
     },
   };
 </script>
