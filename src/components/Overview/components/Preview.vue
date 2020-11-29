@@ -10,11 +10,11 @@
 
 <style scoped>
   .preview {
-    @apply bg-white;
-    @apply px-4 py-6;
+    @apply px-4 py-6 bg-white;
+    @apply border border-transparent;
     @apply rounded-md shadow-md cursor-pointer;
     @apply transform hover:shadow-lg hover:scale-101;
     /* dark */
-    @apply dark:text-white dark:bg-gray-800;
+    @apply dark:text-white dark:bg-gray-900 dark:border-gray-600 dark:hover:border-gray-400;
   }
 </style>

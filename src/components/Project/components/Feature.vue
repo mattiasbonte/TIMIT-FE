@@ -47,7 +47,7 @@
 
     <!-- Transition -->
     <transition name="toggle-details" mode="out-in">
-      <div v-if="toggle_details" class="feature__segments">
+      <div v-if="toggle_details" class="feature__segments space-y-2">
         <FeatureSegment
           v-for="segment in segments"
           :key="segment.id"
@@ -61,21 +61,23 @@
         />
 
         <!-- Add New Segment -->
-        <form v-if="!featureInProgress">
+        <form v-if="!featureInProgress" class="form">
           <button class="feature__segments__new">
-            <span>START</span>
-            <svg
-              class="w-6 h-6"
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
+            <div class="flex mx-auto">
+              <span>NEW</span>
+              <svg
+                class="w-6 h-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
           </button>
         </form>
       </div>
@@ -163,10 +165,19 @@
   .feature__segments {
     @apply p-3;
   }
+
+  .form {
+    @apply flex flex-col justify-center space-y-3;
+    @apply sm:flex-row sm:items-stretch sm:space-y-0 sm:space-x-3;
+    @apply lg:space-y-0 lg:space-x-3 lg:flex-nowrap;
+    @apply dark:bg-gray-800 dark:text-black;
+  }
   .feature__segments__new {
-    @apply p-2 mt-2 bg-blue-600 rounded-md;
-    @apply flex px-4 text-center;
-    @apply hover:bg-green-500;
+    @apply flex px-3 p-2 shadow-sm rounded-md;
+    @apply text-white bg-indigo-600;
+    @apply border border-transparent;
+    @apply hover:bg-indigo-700;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
   }
 
   /* transition */

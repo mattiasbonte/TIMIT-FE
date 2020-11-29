@@ -1,19 +1,34 @@
 <template>
-  <div class="preview__grid">
-    <Preview
-      v-for="project in this.$store.getters.getProjects"
-      :key="project.id"
-      :description="project.description"
-      @click="navToProject(project.id)"
-    />
+  <div class="space-y-8">
+    <h1
+      class="dark:text-white -mb-2 text-xl italic font-thin text-center text-black"
+    >
+      Add New
+    </h1>
+    <AddProjectForm />
+    <h1
+      class="dark:text-white -mb-2 text-xl italic font-thin text-center text-black"
+    >
+      Projects
+    </h1>
+    <div class="preview__grid">
+      <Preview
+        v-for="project in this.$store.getters.getProjects"
+        :key="project.id"
+        :description="project.description"
+        @click="navToProject(project.id)"
+      />
+    </div>
   </div>
 </template>
 
 <script>
+  import AddProjectForm from './components/AddProjectForm.vue';
   import Preview from './components/Preview.vue';
 
   export default {
     components: {
+      AddProjectForm,
       Preview,
     },
     data() {
@@ -29,6 +44,6 @@
 
 <style scoped>
   .preview__grid {
-    @apply grid gap-4 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4;
+    @apply grid gap-4 grid-cols-1 lg:grid-cols-2;
   }
 </style>

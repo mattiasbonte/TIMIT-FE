@@ -308,14 +308,16 @@
   .form {
     @apply p-3 rounded-md shadow-md bg-white;
     @apply flex flex-col justify-center space-y-3;
+    @apply border border-transparent;
     @apply sm:space-x-0 sm:flex-row sm:flex-wrap sm:items-stretch;
     @apply lg:space-y-0 lg:space-x-3 lg:flex-nowrap;
-    @apply dark:bg-gray-800 dark:text-black;
+    @apply dark:bg-gray-900 dark:text-black dark:border-gray-600 dark:hover:border-gray-400;
   }
 
   .form__description {
     @apply w-full;
     @apply border-gray-300 rounded-md shadow-sm;
+    @apply hover:border-indigo-500 ring-indigo-500;
     @apply focus:ring-indigo-500 focus:border-indigo-500;
   }
 

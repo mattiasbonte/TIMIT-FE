@@ -4,15 +4,19 @@ import dayjs from 'dayjs';
 export default createStore({
   state: {
     user: {
-      name: 'Mattias Bonte',
+      first_name: 'Mattias',
+      last_name: 'Bonte',
       email: 'accounts@mattiasbonte.dev',
       token: 'lflmqsjfljfmqjfjsqlfjlaofozfmlsqfjlémfqsjlmf',
     },
     projects: [
       {
-        id: 'lfjla21jflmq902s',
+        id: 'FR2_mAljUdjmcuSquriql',
         description: 'Timit',
+        project_start_date: '2020-11-20',
         disable_start_form: false,
+        hourly_rate: 25,
+        currency: 'EUR',
         features: [
           {
             id: '3mlj2',
@@ -29,59 +33,12 @@ export default createStore({
           },
         ],
       },
-      {
-        id: 'lfjla41jopmq902s',
-        description: 'Wind Down',
-        disable_start_form: false,
-        features: [
-          {
-            id: '1',
-            description: 'Create API login',
-            segments: [
-              {
-                id: '1',
-                start: '02-03-2020t10:30',
-                stop: '02-03-2020t12:00',
-              },
-              {
-                id: '2',
-                start: '03-03-2020t09:30',
-                stop: '03-03-2020t14:00',
-              },
-              {
-                id: '3',
-                start: '05-03-2020t14:30',
-                stop: '05-03-2020t15:00',
-              },
-            ],
-          },
-          {
-            id: '2',
-            description: 'Testing API calls',
-            segments: [
-              {
-                id: '1',
-                start: '06-03-2020t10:30',
-                stop: '06-03-2020t18:30',
-              },
-            ],
-          },
-          {
-            id: '3',
-            description: 'Styling Front End',
-            segments: [
-              {
-                id: '1',
-                start: '07-03-2020t14:30',
-                stop: '07-03-2020t18:30',
-              },
-            ],
-          },
-        ],
-      },
     ],
   },
   getters: {
+    getUser(state) {
+      return state.user;
+    },
     getProjects(state) {
       return state.projects;
     },
@@ -136,6 +93,9 @@ export default createStore({
     },
   },
   mutations: {
+    addNewProject(state, payload) {
+      state.projects = [...state.projects, payload.project];
+    },
     addNewFeature(state, payload) {
       // Adds a new feature object (payload.feature) to an existing project with id === payload.id
       state.projects = state.projects.map((project) => {
