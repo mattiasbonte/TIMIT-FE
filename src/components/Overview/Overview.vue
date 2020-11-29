@@ -1,15 +1,13 @@
 <template>
   <div class="space-y-8">
     <h1
-      class="dark:text-white -mb-2 text-xl italic font-thin text-center text-black"
+      class="dark:text-white -mb-4 text-xl italic font-thin text-center text-black"
     >
-      Add New
+      Add Project
     </h1>
     <AddProjectForm />
-    <h1
-      class="dark:text-white -mb-2 text-xl italic font-thin text-center text-black"
-    >
-      Projects
+    <h1 class="dark:text-white text-xl italic font-thin text-center text-black">
+      Overview
     </h1>
     <div class="preview__grid">
       <Preview

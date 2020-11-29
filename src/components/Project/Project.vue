@@ -1,20 +1,35 @@
 <template>
   <div class="space-y-8">
-    <h1
-      class="dark:text-white -mb-2 text-xl italic font-thin text-center text-black"
-    >
-      {{ project_description }}
-    </h1>
-    <FeatureStartForm :project_id="this.project_id" />
-    <div class="space-y-5">
-      <Feature
-        v-for="feature in this.getFeatures"
-        :key="feature.id"
-        :project_id="this.project_id"
-        :feature_id="feature.id"
-        :description="feature.description"
-        :segments="feature.segments"
-      />
+    <!-- ADD FEATURE & PROJECT DESCRIPTION -->
+    <div class="space-y-4">
+      <h1
+        class="dark:text-white text-xl italic font-thin text-center text-black"
+      >
+        {{ project_description }}
+      </h1>
+      <FeatureStartForm :project_id="this.project_id" />
+    </div>
+
+    <!-- FEATURES -->
+    <div class="space-y-4">
+      <h1
+        class="dark:text-white text-xl italic font-thin text-center text-black"
+      >
+        Features
+      </h1>
+      <div class="space-y-5">
+        <div v-if="getFeatures.length === 0" class="font-thin text-center">
+          💡 Please add a feature...
+        </div>
+        <Feature
+          v-for="feature in this.getFeatures"
+          :key="feature.id"
+          :project_id="this.project_id"
+          :feature_id="feature.id"
+          :description="feature.description"
+          :segments="feature.segments"
+        />
+      </div>
     </div>
   </div>
 </template>

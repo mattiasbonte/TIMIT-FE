@@ -1,6 +1,6 @@
 <template>
   <div class="feature">
-    <div class="feature__bar" :class="featureBarClasses">
+    <div @click="toggleDetails" class="feature__bar" :class="featureBarClasses">
       <div class="feature__wrap">
         <div class="feature__description">
           <p class="whitespace-nowrap">{{ description }}</p>
@@ -37,9 +37,8 @@
 
       <!-- Feature Details Toggle -->
       <div
-        @click="toggleDetails"
         class="feature__details__toggle"
-        :class="toggleDetailsClasses"
+        :class="toggle_details ? 'scale-150' : ''"
       >
         💡
       </div>
@@ -51,8 +50,8 @@
         <FeatureSegment
           v-for="segment in segments"
           :key="segment.id"
-          :project_id="this.project_id"
-          :feature_id="this.feature_id"
+          :project_id="project_id"
+          :feature_id="feature_id"
           :segment_id="segment.id"
           :start_date="segment.start_date"
           :start_time="segment.start_time"
@@ -112,11 +111,6 @@
       featureBarClasses() {
         return this.toggle_details ? 'border-b duration-75' : 'duration-75';
       },
-      toggleDetailsClasses() {
-        return this.toggle_details
-          ? 'transform scale-125 duration-200'
-          : 'transform scale-100 duration-200';
-      },
       featureInProgress() {
         return this.$store.getters.getFeatureInProgress({
           project_id: this.project_id,
@@ -137,12 +131,16 @@
   .feature {
     @apply flex flex-col;
     @apply rounded-md shadow-md bg-white;
+    @apply border border-transparent;
     @apply dark:text-white dark:bg-gray-800;
+    /* dark */
+    @apply dark:text-white dark:bg-gray-800 dark:border-gray-500;
+    @apply dark:hover:border-gray-300 dark:hover:bg-gray-900;
   }
   .feature__bar {
     @apply p-3 space-x-4;
     @apply flex flex-nowrap justify-between items-center;
-    @apply transform;
+    @apply transform cursor-pointer;
     @apply border-gray-100 dark:border-gray-700;
   }
   .feature__wrap {
@@ -159,8 +157,9 @@
     @apply dark:bg-transparent;
   }
   .feature__details__toggle {
-    @apply rounded-full;
-    @apply cursor-pointer hover:text-blue-400 hover:shadow-lg;
+    @apply cursor-pointer;
+    @apply transform duration-200 scale-100;
+    @apply hover:scale-125;
   }
   .feature__segments {
     @apply p-3;
@@ -170,7 +169,7 @@
     @apply flex flex-col justify-center space-y-3;
     @apply sm:flex-row sm:items-stretch sm:space-y-0 sm:space-x-3;
     @apply lg:space-y-0 lg:space-x-3 lg:flex-nowrap;
-    @apply dark:bg-gray-800 dark:text-black;
+    @apply dark:text-black;
   }
   .feature__segments__new {
     @apply flex px-3 p-2 shadow-sm rounded-md;

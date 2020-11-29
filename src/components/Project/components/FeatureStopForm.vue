@@ -1,5 +1,5 @@
 <template>
-  <form v-if="toggleStopForm" @submit.prevent="stopSegment" class="">
+  <form v-if="toggleStopForm" @submit.prevent="stopSegment">
     <!-- Stop Time -->
     <label class="form__label" for="stop_time">{{ stop_day }}</label>
     <select
@@ -26,7 +26,7 @@
       name="stop_submit"
       id="stop_submit"
     >
-      STOP WORK
+      STOP
     </button>
   </form>
 </template>

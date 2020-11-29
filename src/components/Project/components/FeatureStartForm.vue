@@ -26,7 +26,7 @@
       <div class="form__date__wrapper">
         <button
           type="button"
-          class="form__button rounded-l-md"
+          class="form__date__button rounded-l-md"
           @click="subtractDate"
         >
           <svg
@@ -54,7 +54,7 @@
         <button
           v-if="dateBeforeToday"
           type="button"
-          class="form__button rounded-r-md"
+          class="form__date__button rounded-r-md"
           @click="addDate"
         >
           <svg
@@ -78,7 +78,7 @@
         <button
           v-else
           type="button"
-          class="form__button rounded-r-md cursor-not-allowed"
+          class="form__date__button rounded-r-md cursor-not-allowed"
         >
           <svg
             class="w-4 h-4 mx-auto"
@@ -306,19 +306,21 @@
 
 <style scoped>
   .form {
-    @apply p-3 rounded-md shadow-md bg-white;
     @apply flex flex-col justify-center space-y-3;
-    @apply border border-transparent;
     @apply sm:space-x-0 sm:flex-row sm:flex-wrap sm:items-stretch;
     @apply lg:space-y-0 lg:space-x-3 lg:flex-nowrap;
-    @apply dark:bg-gray-900 dark:text-black dark:border-gray-600 dark:hover:border-gray-400;
   }
 
   .form__description {
-    @apply w-full;
+    @apply w-full p-3;
     @apply border-gray-300 rounded-md shadow-sm;
     @apply hover:border-indigo-500 ring-indigo-500;
     @apply focus:ring-indigo-500 focus:border-indigo-500;
+    /* dark */
+    @apply dark:bg-gray-800 dark:text-white;
+    @apply dark:placeholder-gray-400;
+    @apply dark:hover:border-white dark:hover:bg-gray-900;
+    @apply dark:focus:ring-white dark:focus:border-white dark:focus:bg-gray-900;
   }
 
   .form__datetime__wrapper {
@@ -327,29 +329,62 @@
 
   .form__date__wrapper {
     @apply flex flex-1;
+    @apply rounded-md;
+    @apply border border-gray-300;
+    @apply hover:border-indigo-500;
+    /* dark */
+    @apply dark:hover:border-white;
   }
   .form__date {
     @apply px-3 p-3 text-center shadow-sm sm:w-auto w-full;
-    @apply text-white bg-indigo-600;
+    @apply bg-white;
     @apply border border-transparent;
-    @apply hover:bg-indigo-700 cursor-pointer;
+    @apply cursor-pointer;
+    @apply hover:bg-gray-50;
+    /* dark */
+    @apply dark:bg-gray-800 dark:hover:bg-gray-900;
+  }
+  .form__date__button {
+    @apply sm:w-auto w-24;
+    @apply px-3 p-3 text-center shadow-sm;
+    @apply bg-white;
+    @apply border border-transparent;
+    @apply hover:bg-gray-50;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+    /* dark */
+    @apply dark:bg-gray-800 dark:hover:bg-gray-900;
   }
 
   .form__time__wrapper {
     @apply flex flex-1;
-    @apply rounded-md shadow-sm;
     @apply sm:flex-row;
+    @apply rounded-md shadow-sm;
+    @apply border border-gray-300;
+    @apply hover:border-indigo-500;
+    /* dark */
+    @apply dark:hover:border-white;
   }
   .form__time__label {
-    @apply rounded-l-md bg-gray-50 inline-flex items-center px-3 cursor-pointer;
+    @apply rounded-l-md bg-white inline-flex items-center px-3 cursor-pointer;
     @apply sm:w-auto w-24;
-    @apply text-gray-500 border border-r-0 border-gray-300;
+    @apply text-gray-500;
+    @apply hover:border-indigo-500 hover:bg-gray-50;
+    /* dark */
+    @apply dark:bg-gray-800 dark:text-white;
+    @apply dark:placeholder-gray-400;
+    @apply dark:hover:bg-gray-900;
+    @apply dark:focus:ring-white dark:focus:border-white dark:focus:bg-gray-900;
   }
   .form__time {
     @apply text-center flex-1 sm:w-auto cursor-pointer;
-    @apply border-gray-300;
-    @apply focus:border-indigo-500 focus:outline-none focus:ring-indigo-500;
-    @apply dark:text-black;
+    @apply border-none;
+    @apply hover:bg-gray-50;
+    @apply focus:outline-none focus:ring-transparent;
+    /* dark */
+    @apply dark:bg-gray-800 dark:text-white;
+    @apply dark:placeholder-gray-400;
+    @apply dark:hover:bg-gray-900;
+    @apply dark:focus:bg-gray-900;
   }
 
   .form__button {
