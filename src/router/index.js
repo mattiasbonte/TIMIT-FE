@@ -9,7 +9,11 @@ const routes = [
   { path: '/home', name: 'Home', component: Home },
   { name: 'overview', path: '/overview', component: Overview },
   { path: '/projects', redirect: '/overview' },
-  { path: '/projects/:id', component: Project },
+  {
+    path: '/projects/:id',
+    component: Project,
+    meta: { transition: 'slide_down' },
+  },
   { path: '/:notFound(.*)', name: '404', component: NotFound },
 ];
 

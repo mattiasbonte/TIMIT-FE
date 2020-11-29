@@ -7,11 +7,14 @@
       >
         {{ project_description }}
       </h1>
-      <FeatureStartForm :project_id="this.project_id" />
+      <FeatureStartForm
+        class="max-w-5xl mx-auto"
+        :project_id="this.project_id"
+      />
     </div>
 
     <!-- FEATURES -->
-    <div class="space-y-4">
+    <div class="max-w-5xl mx-auto space-y-4">
       <h1
         class="dark:text-white text-xl italic font-thin text-center text-black"
       >

@@ -3,6 +3,19 @@
     <div @click="toggleDetails" class="feature__bar" :class="featureBarClasses">
       <div class="feature__wrap">
         <div class="feature__description">
+          <!-- Feature Details Toggle -->
+          <div
+            class="feature__details__toggle"
+            :class="
+              toggle_details
+                ? 'scale-150 transform duration-200'
+                : 'scale-100 transform duration-200'
+            "
+          >
+            💡
+          </div>
+
+          <!-- Feature Description -->
           <p class="whitespace-nowrap">{{ description }}</p>
         </div>
 
@@ -33,14 +46,6 @@
             >hours</span
           >
         </p>
-      </div>
-
-      <!-- Feature Details Toggle -->
-      <div
-        class="feature__details__toggle"
-        :class="toggle_details ? 'scale-150' : ''"
-      >
-        💡
       </div>
     </div>
 
@@ -153,13 +158,11 @@
   }
 
   .feature__description {
-    @apply overflow-x-auto;
+    @apply overflow-x-auto flex space-x-3;
     @apply dark:bg-transparent;
   }
   .feature__details__toggle {
     @apply cursor-pointer;
-    @apply transform duration-200 scale-100;
-    @apply hover:scale-125;
   }
   .feature__segments {
     @apply p-3;

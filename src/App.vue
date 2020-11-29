@@ -2,7 +2,14 @@
   <div class="main">
     <TheHeader class="" />
     <Container class="flex-grow">
-      <router-view></router-view>
+      <router-view v-slot="{ Component, route }">
+        <transition
+          :name="route.meta.transition || 'slide_right'"
+          mode="out-in"
+        >
+          <component :is="Component" />
+        </transition>
+      </router-view>
     </Container>
     <TheFooter class="flex-shrink-0" />
   </div>
@@ -23,7 +30,7 @@
   };
 </script>
 
-<style scoped>
+<style>
   .main {
     @apply bg-indigo-50 dark:bg-blue-gray-700 dark:text-white box-border flex flex-col h-full;
   }

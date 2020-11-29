@@ -133,7 +133,7 @@
 
   .form__input {
     @apply flex w-1/2 lg:w-auto p-3;
-    @apply border-gray-300 rounded-md;
+    @apply border-gray-300 rounded-md cursor-pointer;
     @apply hover:border-indigo-500 outline-none hover:bg-gray-50;
     @apply focus:ring-indigo-500 focus:border-indigo-500;
     /* dark */

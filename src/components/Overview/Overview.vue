@@ -5,7 +5,7 @@
     >
       Add Project
     </h1>
-    <AddProjectForm />
+    <AddProjectForm class="max-w-5xl mx-auto" />
     <h1 class="dark:text-white text-xl italic font-thin text-center text-black">
       Overview
     </h1>
@@ -42,6 +42,7 @@
 
 <style scoped>
   .preview__grid {
+    @apply max-w-5xl mx-auto;
     @apply grid gap-4 grid-cols-1 lg:grid-cols-2;
   }
 </style>
