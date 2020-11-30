@@ -1,6 +1,10 @@
 <template>
   <div class="feature">
-    <div @click="toggleDetails" class="feature__bar" :class="featureBarClasses">
+    <div
+      @click="toggleDetails"
+      class="feature__bar"
+      :class="toggle_details ? 'border-b duration-75' : 'duration-75'"
+    >
       <div class="feature__wrap">
         <div class="feature__description">
           <!-- Feature Details Toggle -->
@@ -20,9 +24,9 @@
         </div>
 
         <!-- Feature in progress -->
-        <div v-if="featureInProgress" class="">
+        <div v-if="featureInProgress">
           <svg
-            class="animate-pulse w-6 h-6 mx-auto text-red-500"
+            class="animate-pulse w-8 h-8 mx-auto text-red-500"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -51,7 +55,11 @@
 
     <!-- Transition -->
     <transition name="toggle-details" mode="out-in">
-      <div v-if="toggle_details" class="feature__segments space-y-2">
+      <div
+        v-if="toggle_details"
+        class="feature__segments"
+        :class="!featureInProgress ? 'space-y-3' : ''"
+      >
         <FeatureSegment
           v-for="segment in segments"
           :key="segment.id"
@@ -65,31 +73,22 @@
         />
 
         <!-- Add New Segment -->
-        <form v-if="!featureInProgress" class="form">
-          <button class="feature__segments__new">
-            <div class="flex mx-auto">
-              <span>NEW</span>
-              <svg
-                class="w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </div>
-          </button>
-        </form>
+
+        <button
+          v-if="!featureInProgress"
+          @click="addSegment"
+          class="feature__segments__new"
+        >
+          continue
+        </button>
       </div>
     </transition>
   </div>
 </template>
 
 <script>
+  import { nanoid } from 'nanoid';
+  import dayjs from 'dayjs';
   import FeatureSegment from './FeatureSegment.vue';
 
   export default {
@@ -111,11 +110,22 @@
       toggleDetails() {
         this.toggle_details = !this.toggle_details;
       },
+      addSegment() {
+        this.$store.commit({
+          type: 'addNewSegment',
+          project_id: this.project_id,
+          feature_id: this.feature_id,
+          segment: {
+            id: nanoid(),
+            start_date: dayjs().format('YYYY-MM-DD'),
+            start_time: '',
+            stop_date: '',
+            stop_time: '',
+          },
+        });
+      },
     },
     computed: {
-      featureBarClasses() {
-        return this.toggle_details ? 'border-b duration-75' : 'duration-75';
-      },
       featureInProgress() {
         return this.$store.getters.getFeatureInProgress({
           project_id: this.project_id,
@@ -168,14 +178,8 @@
     @apply p-3;
   }
 
-  .form {
-    @apply flex flex-col justify-center space-y-3;
-    @apply sm:flex-row sm:items-stretch sm:space-y-0 sm:space-x-3;
-    @apply lg:space-y-0 lg:space-x-3 lg:flex-nowrap;
-    @apply dark:text-black;
-  }
   .feature__segments__new {
-    @apply flex px-3 p-2 shadow-sm rounded-md;
+    @apply px-3 p-1 shadow-sm rounded-md text-center w-full;
     @apply text-white bg-indigo-600;
     @apply border border-transparent;
     @apply hover:bg-indigo-700;

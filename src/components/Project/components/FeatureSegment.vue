@@ -1,16 +1,31 @@
 <template>
-  <div class="flex flex-wrap items-center justify-between">
+  <div class=" flex flex-wrap items-center justify-between">
     <!-- SEGMENT START & STOP DATE & TIME -->
-    <div class="flex items-center flex-grow space-x-2">
-      <span>{{ startDay }} {{ start_time }}</span>
+    <div
+      v-if="!featureInProgress"
+      class="sm:space-x-3 flex items-center flex-grow space-x-3 space-x-reverse"
+    >
+      <span class="sm:inline segment__label hidden">{{ start_date }}</span>
+      <span
+        :title="`${start_date} ${startDay} ${start_time}`"
+        class="segment__label"
+        >{{ startDay }} {{ start_time }}</span
+      >
       <span>👉🏼</span>
-      <FeatureStopForm
-        :project_id="this.project_id"
-        :feature_id="this.feature_id"
-        :segment_id="this.segment_id"
-      />
-      <span>{{ stopDay }} {{ stop_time }}</span>
+      <span class="sm:inline segment__label hidden">{{ stop_date }}</span>
+      <span
+        :title="`${stop_date} ${stopDay} ${stop_time}`"
+        class="segment__label"
+        >{{ stopDay }} {{ stop_time }}</span
+      >
     </div>
+
+    <FeatureStopForm
+      v-else
+      :project_id="this.project_id"
+      :feature_id="this.feature_id"
+      :segment_id="this.segment_id"
+    />
 
     <!-- CONTROLS -->
     <div v-if="expandSegment" class="flex space-x-1">
@@ -23,7 +38,11 @@
     </div>
 
     <!-- INFO TOGGLE -->
-    <div @click="expandSegment = !expandSegment" class="cursor-pointer">
+    <div
+      v-if="!featureInProgress"
+      @click="expandSegment = !expandSegment"
+      class="cursor-pointer"
+    >
       <svg
         v-if="!expandSegment"
         class="w-6 h-6"
@@ -77,12 +96,18 @@
       };
     },
     computed: {
+      featureInProgress() {
+        return this.$store.getters.getFeatureInProgress({
+          project_id: this.project_id,
+          feature_id: this.feature_id,
+        });
+      },
       startDay() {
-        return dayjs(this.start_date).format('dd');
+        return dayjs(this.start_date).format('ddd');
       },
       stopDay() {
         if (this.stop_date !== '') {
-          return dayjs(this.stop_date).format('dd');
+          return dayjs(this.stop_date).format('ddd');
         }
         return '';
       },
@@ -91,6 +116,10 @@
 </script>
 
 <style scoped>
+  .segment__label {
+    @apply px-2 py-1 rounded-md bg-gray-100 w-28;
+    @apply dark:bg-gray-700;
+  }
   .button {
     @apply flex items-center p-1 rounded-md cursor-pointer;
     @apply hover:text-white;

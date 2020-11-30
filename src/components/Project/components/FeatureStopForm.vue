@@ -1,23 +1,76 @@
 <template>
-  <form v-if="toggleStopForm" @submit.prevent="stopSegment">
-    <!-- Stop Time -->
-    <label class="form__label" for="stop_time">{{ stop_day }}</label>
-    <select
-      v-model="stop_time"
-      class="form__select"
-      name="stop_time"
-      id="stop_time"
+  <form v-if="toggleStopForm" @submit.prevent="stopSegment" class="form">
+    <!-- Start Date / Time -->
+    <input
+      v-model="start.date"
+      @change="start.day = setStartDay"
+      class="form__input"
+      type="date"
+      name="start_date"
+      id="start_date"
       required
-    >
-      <option
-        v-for="time_stamp in time_stamps"
-        :key="time_stamp"
-        :value="time_stamp"
-        :selected="time_stamp === stop_time"
+    />
+
+    <div class="label__wrap">
+      <label class="form__label" for="start_date" title="Change Start Date">{{
+        start.day
+      }}</label>
+
+      <select
+        v-model="start.time"
+        class="form__select"
+        title="Change Start Time"
+        name="start_time"
+        id="start_time"
+        required
       >
-        {{ time_stamp }}
-      </option>
-    </select>
+        <option
+          v-for="time_stamp in time_stamps"
+          :key="time_stamp"
+          :value="time_stamp"
+          :selected="time_stamp === start.time"
+        >
+          {{ time_stamp }}
+        </option>
+      </select>
+    </div>
+
+    <span>👉🏼</span>
+
+    <input
+      v-model="stop.date"
+      @change="stop.day = setStopDay"
+      class="form__input"
+      type="date"
+      name="stop_date"
+      id="stop_date"
+      required
+    />
+
+    <!-- Stop Date / Time -->
+    <div class="label__wrap">
+      <label class="form__label" for="stop_date" title="Change Stop Date">{{
+        stop.day
+      }}</label>
+
+      <select
+        v-model="stop.time"
+        class="form__select"
+        title="Change Stop Time"
+        name="stop_time"
+        id="stop_time"
+        required
+      >
+        <option
+          v-for="time_stamp in time_stamps"
+          :key="time_stamp"
+          :value="time_stamp"
+          :selected="time_stamp === stop.time"
+        >
+          {{ time_stamp }}
+        </option>
+      </select>
+    </div>
 
     <!-- Submit Stop -->
     <button
@@ -43,13 +96,20 @@
     data() {
       return {
         time_stamps: [],
-        stop_date: dayjs().format('YYYY-MM-DD'),
-        stop_day: dayjs().format('dd'),
-        stop_time: this.calcClosestTimeStamp('stop'),
+        start: { date: '', time: '', day: '' },
+        stop: { date: '', time: '', day: '' },
       };
     },
     created() {
       this.time_stamps = this.generateTimeStamps;
+      // Get Start Data
+      this.start.date = this.getStartDate;
+      this.start.time = this.getStartTime;
+      this.start.day = this.setStartDay;
+      // Set Initial Stop Data
+      this.stop.date = dayjs().format('YYYY-MM-DD');
+      this.stop.time = this.calcClosestTimeStamp('stop');
+      this.stop.day = this.setStopDay;
     },
     methods: {
       calcClosestTimeStamp(submit) {
@@ -84,14 +144,16 @@
         return `${hours}:${minutes}`;
       },
       stopSegment() {
-        // Save stop date & time inside store
+        // Save start and stop date & time in store
         this.$store.commit({
           type: 'stopSegment',
           project_id: this.project_id,
           feature_id: this.feature_id,
           segment_id: this.segment_id,
-          stop_date: dayjs().format('YYYY-MM-DD'),
-          stop_time: this.stop_time,
+          start_date: this.start.date,
+          start_time: this.start.time,
+          stop_date: this.stop.date,
+          stop_time: this.stop.time,
         });
 
         // Enable start form
@@ -145,18 +207,61 @@
         // when there is a stop time set, hide the stop form
         return false;
       },
+      getSegment() {
+        // Get segment's data from the store
+        return this.$store.getters.getSegment({
+          project_id: this.project_id,
+          feature_id: this.feature_id,
+          segment_id: this.segment_id,
+        });
+      },
+      getStartDate() {
+        return this.getSegment.start_date;
+      },
+      getStartTime() {
+        if (this.getSegment.start_time === '') {
+          return this.calcClosestTimeStamp('start');
+        }
+        return this.getSegment.start_time;
+      },
+      setStartDay() {
+        return dayjs(this.start.date).format('ddd');
+      },
+      setStopDay() {
+        return dayjs(this.stop.date).format('ddd');
+      },
     },
   };
 </script>
 
 <style scoped>
-  .form__label {
+  .form {
+    @apply flex items-stretch space-x-2 space-x-reverse text-center;
+    @apply sm:space-x-2;
+  }
+
+  .form__input {
+    @apply hidden p-0 appearance-none;
+    @apply cursor-pointer rounded-md bg-gray-700 border-transparent;
+    @apply hover:bg-gray-600;
+    /* SM */
+    @apply pl-2 sm:block;
+  }
+
+  .label__wrap {
     @apply cursor-pointer;
+    @apply rounded-md bg-gray-100;
+    @apply dark:bg-gray-700;
+  }
+  .form__label {
+    @apply px-2 py-1 rounded-l-md;
+    @apply cursor-pointer;
+    @apply hover:bg-gray-600;
   }
   .form__select {
-    @apply p-0 pr-7 underline;
+    @apply p-0 px-1 cursor-pointer rounded-r-md;
     @apply bg-transparent border-transparent outline-none appearance-none;
-    @apply cursor-pointer;
+    @apply hover:bg-gray-600;
     @apply focus:border-transparent focus:ring-transparent;
   }
 

@@ -32,6 +32,6 @@
 
 <style>
   .main {
-    @apply bg-indigo-50 dark:bg-blue-gray-700 dark:text-white box-border flex flex-col h-full;
+    @apply bg-indigo-50 dark:bg-blue-gray-700 dark:text-white box-border flex flex-col min-h-full;
   }
 </style>

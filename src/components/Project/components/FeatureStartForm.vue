@@ -236,7 +236,7 @@
         // Save new feature in vuex store
         this.$store.commit({
           type: 'addNewFeature',
-          id: this.project_id,
+          project_id: this.project_id,
           feature: {
             id: nanoid(),
             description: this.description,

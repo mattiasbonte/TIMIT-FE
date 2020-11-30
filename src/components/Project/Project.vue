@@ -1,7 +1,7 @@
 <template>
   <div class="space-y-8">
     <!-- ADD FEATURE & PROJECT DESCRIPTION -->
-    <div class="space-y-4">
+    <div class="space-y-3">
       <h1
         class="dark:text-white text-xl italic font-thin text-center text-black"
       >
@@ -14,13 +14,13 @@
     </div>
 
     <!-- FEATURES -->
-    <div class="max-w-5xl mx-auto space-y-4">
+    <div class="max-w-5xl mx-auto space-y-3">
       <h1
         class="dark:text-white text-xl italic font-thin text-center text-black"
       >
         Features
       </h1>
-      <div class="space-y-5">
+      <div class="space-y-3">
         <div v-if="getFeatures.length === 0" class="font-thin text-center">
           💡 Please add a feature...
         </div>

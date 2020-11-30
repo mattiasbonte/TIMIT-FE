@@ -94,13 +94,26 @@ export default createStore({
   },
   mutations: {
     addNewProject(state, payload) {
-      state.projects = [...state.projects, payload.project];
+      state.projects = [payload.project, ...state.projects];
     },
     addNewFeature(state, payload) {
       // Adds a new feature object (payload.feature) to an existing project with id === payload.id
       state.projects = state.projects.map((project) => {
-        if (project.id === payload.id) {
+        if (project.id === payload.project_id) {
           project.features.unshift(payload.feature);
+        }
+        return project;
+      });
+    },
+    addNewSegment(state, payload) {
+      state.projects = state.projects.map((project) => {
+        if (project.id === payload.project_id) {
+          project.features.map((feature) => {
+            if (feature.id === payload.feature_id) {
+              feature.segments.push(payload.segment);
+            }
+            return feature;
+          });
         }
         return project;
       });
@@ -112,6 +125,8 @@ export default createStore({
             if (feature.id === payload.feature_id) {
               feature.segments.map((segment) => {
                 if (segment.id === payload.segment_id) {
+                  segment.start_date = payload.start_date;
+                  segment.start_time = payload.start_time;
                   segment.stop_date = payload.stop_date;
                   segment.stop_time = payload.stop_time;
                 }
