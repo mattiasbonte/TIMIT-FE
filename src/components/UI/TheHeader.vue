@@ -277,7 +277,7 @@
     @apply flex items-center flex-shrink-0 bg-gray-700 rounded-full shadow-md;
     @apply hover:shadow-lg transform hover:scale-105 sm:hover:scale-101;
     @apply bg-gradient-to-r  from-light-blue-400 to-teal-600;
-    @apply dark:from-light-blue-600 dark:to-teal-800 dark:border-white;
+    @apply dark:from-light-blue-600 dark:to-teal-800;
   }
   .logo-icon {
     @apply w-10 h-10 text-white;

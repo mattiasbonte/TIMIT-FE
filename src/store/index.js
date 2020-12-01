@@ -118,7 +118,7 @@ export default createStore({
         return project;
       });
     },
-    stopSegment(state, payload) {
+    stopNewSegment(state, payload) {
       state.projects = state.projects.map((project) => {
         if (project.id === payload.project_id) {
           project.features.map((feature) => {
@@ -132,6 +132,19 @@ export default createStore({
                 }
                 return segment;
               });
+            }
+            return feature;
+          });
+        }
+        return project;
+      });
+    },
+    deleteSegment(state, payload) {
+      state.projects = state.projects.map((project) => {
+        if (project.id === payload.project_id) {
+          project.features.map((feature) => {
+            if (feature.id === payload.feature_id) {
+              feature.segments.slice(0, 1);
             }
             return feature;
           });

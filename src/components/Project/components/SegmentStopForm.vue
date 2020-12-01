@@ -1,5 +1,5 @@
 <template>
-  <form v-if="toggleStopForm" @submit.prevent="stopSegment" class="form">
+  <form v-if="toggleStopForm" @submit.prevent="stopNewSegment" class="form">
     <!-- Start Date / Time -->
     <input
       v-model="start.date"
@@ -35,8 +35,9 @@
       </select>
     </div>
 
-    <span>👉🏼</span>
+    <span class="self-center">👉🏼</span>
 
+    <!-- Stop Date / Time -->
     <input
       v-model="stop.date"
       @change="stop.day = setStopDay"
@@ -47,7 +48,6 @@
       required
     />
 
-    <!-- Stop Date / Time -->
     <div class="label__wrap">
       <label class="form__label" for="stop_date" title="Change Stop Date">{{
         stop.day
@@ -143,10 +143,10 @@
         // output timestamp format "hh:mm"
         return `${hours}:${minutes}`;
       },
-      stopSegment() {
+      stopNewSegment() {
         // Save start and stop date & time in store
         this.$store.commit({
-          type: 'stopSegment',
+          type: 'stopNewSegment',
           project_id: this.project_id,
           feature_id: this.feature_id,
           segment_id: this.segment_id,
@@ -236,37 +236,40 @@
 
 <style scoped>
   .form {
-    @apply flex items-stretch space-x-2 space-x-reverse text-center;
+    @apply flex items-stretch space-x-2 space-x-reverse text-center w-full;
     @apply sm:space-x-2;
   }
 
   .form__input {
     @apply hidden p-0 appearance-none;
-    @apply cursor-pointer rounded-md bg-gray-700 border-transparent;
-    @apply hover:bg-gray-600;
+    @apply cursor-pointer rounded-md bg-gray-100 border-transparent;
+    @apply hover:bg-gray-200;
+    @apply dark:bg-gray-700 dark:hover:bg-gray-600;
     /* SM */
     @apply pl-2 sm:block;
   }
 
   .label__wrap {
-    @apply cursor-pointer;
+    @apply cursor-pointer w-28 flex justify-between items-center;
     @apply rounded-md bg-gray-100;
     @apply dark:bg-gray-700;
   }
   .form__label {
-    @apply px-2 py-1 rounded-l-md;
+    @apply pl-2 pr-1 py-1 rounded-l-md;
     @apply cursor-pointer;
-    @apply hover:bg-gray-600;
+    @apply hover:bg-gray-200;
+    @apply dark:bg-gray-700 dark:hover:bg-gray-600;
   }
   .form__select {
-    @apply p-0 px-1 cursor-pointer rounded-r-md;
+    @apply p-0 pr-1 py-1 cursor-pointer rounded-r-md flex-grow;
     @apply bg-transparent border-transparent outline-none appearance-none;
-    @apply hover:bg-gray-600;
+    @apply hover:bg-gray-200;
     @apply focus:border-transparent focus:ring-transparent;
+    @apply dark:bg-gray-700 dark:hover:bg-gray-600;
   }
 
   .form__button {
-    @apply px-1 text-center shadow-sm rounded-md;
+    @apply px-1 text-center shadow-sm rounded-md flex-grow;
     @apply text-white bg-indigo-600;
     @apply border border-transparent;
     @apply hover:bg-indigo-700;

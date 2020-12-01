@@ -25,21 +25,20 @@
 
         <!-- Feature in progress -->
         <div v-if="featureInProgress">
-          <svg
-            class="animate-pulse w-8 h-8 mx-auto text-red-500"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M6 6V5a3 3 0 013-3h2a3 3 0 013 3v1h2a2 2 0 012 2v3.57A22.952 22.952 0 0110 13a22.95 22.95 0 01-8-1.43V8a2 2 0 012-2h2zm2-1a1 1 0 011-1h2a1 1 0 011 1v1H8V5zm1 5a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1z"
-              clip-rule="evenodd"
-            ></path>
-            <path
-              d="M2 13.692V16a2 2 0 002 2h12a2 2 0 002-2v-2.308A24.974 24.974 0 0110 15c-2.796 0-5.487-.46-8-1.308z"
-            ></path>
-          </svg>
+          <div class="feature__logo">
+            <svg
+              class=""
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
         </div>
 
         <!-- Feature Total Time -->
@@ -60,7 +59,7 @@
         class="feature__segments"
         :class="!featureInProgress ? 'space-y-3' : ''"
       >
-        <FeatureSegment
+        <Segment
           v-for="segment in segments"
           :key="segment.id"
           :project_id="project_id"
@@ -75,11 +74,11 @@
         <!-- Add New Segment -->
 
         <button
-          v-if="!featureInProgress"
+          v-if="!featureInProgress && !getStartFormDisabledState"
           @click="addSegment"
           class="feature__segments__new"
         >
-          continue
+          Add
         </button>
       </div>
     </transition>
@@ -89,11 +88,11 @@
 <script>
   import { nanoid } from 'nanoid';
   import dayjs from 'dayjs';
-  import FeatureSegment from './FeatureSegment.vue';
+  import Segment from './Segment.vue';
 
   export default {
     components: {
-      FeatureSegment,
+      Segment,
     },
     props: {
       description: { type: String, required: true },
@@ -123,6 +122,12 @@
             stop_time: '',
           },
         });
+
+        // Disable Start Form and other Add buttons
+        this.$store.commit('toggleStartForm', {
+          id: this.project_id,
+          disable: true,
+        });
       },
     },
     computed: {
@@ -137,6 +142,10 @@
           project_id: this.project_id,
           feature_id: this.feature_id,
         });
+      },
+      getStartFormDisabledState() {
+        return this.$store.getters.getProject(this.project_id)
+          .disable_start_form;
       },
     },
   };
@@ -167,6 +176,12 @@
     @apply dark:bg-white dark:text-black;
   }
 
+  .feature__logo {
+    @apply rounded-full w-8 h-8 text-white animate-pulse;
+    @apply bg-gradient-to-r  from-red-500 to-red-700;
+    @apply dark:from-amber-600 dark:to-amber-800;
+  }
+
   .feature__description {
     @apply overflow-x-auto flex space-x-3;
     @apply dark:bg-transparent;
@@ -179,7 +194,7 @@
   }
 
   .feature__segments__new {
-    @apply px-3 p-1 shadow-sm rounded-md text-center w-full;
+    @apply p-3 shadow-sm rounded-md text-center w-full;
     @apply text-white bg-indigo-600;
     @apply border border-transparent;
     @apply hover:bg-indigo-700;

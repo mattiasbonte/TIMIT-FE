@@ -252,13 +252,12 @@
           },
         });
 
-        // Reset, Hide & Disable Form
+        // Reset, Hide & Disable Start Form
         this.description = '';
         this.$store.commit('toggleStartForm', {
           id: this.project_id,
           disable: true,
         });
-        this.getStartFormDisabledState;
       },
     },
     computed: {

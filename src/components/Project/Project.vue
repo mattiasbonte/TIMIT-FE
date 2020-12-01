@@ -7,7 +7,7 @@
       >
         {{ project_description }}
       </h1>
-      <FeatureStartForm
+      <SegmentStartForm
         class="max-w-5xl mx-auto"
         :project_id="this.project_id"
       />
@@ -38,11 +38,11 @@
 </template>
 
 <script>
-  import FeatureStartForm from './components/FeatureStartForm.vue';
+  import SegmentStartForm from './components/SegmentStartForm.vue';
   import Feature from './components/Feature.vue';
 
   export default {
-    components: { FeatureStartForm, Feature },
+    components: { SegmentStartForm, Feature },
     data() {
       return {
         project_id: this.$route.params.id,
