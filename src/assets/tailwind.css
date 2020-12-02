@@ -39,6 +39,21 @@
   opacity: 1;
 }
 
+/* Slide Up */
+.slide_up-enter-from,
+.slide_up-leave-to {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+.slide_up-enter-active,
+.slide_up-leave-active {
+  transition: all 0.4s ease;
+}
+.slide_up-enter-to,
+.slide_up-leave-from {
+  opacity: 1;
+}
+
 /* Slide Down */
 .slide_down-enter-from,
 .slide_down-leave-to {

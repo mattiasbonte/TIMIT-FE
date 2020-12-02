@@ -242,8 +242,8 @@
 
 <style scoped>
   .form {
-    @apply flex items-stretch space-x-2 space-x-reverse text-center w-full;
-    @apply sm:space-x-2;
+    @apply flex items-stretch space-x-3 space-x-reverse text-center w-full;
+    @apply sm:space-x-3;
   }
 
   .form__input {
@@ -277,7 +277,7 @@
   }
 
   .form__button {
-    @apply px-1 py-4 text-center text-white shadow-sm rounded-md flex-grow;
+    @apply px-1 py-4 text-center text-white font-bold shadow-sm rounded-md flex-grow;
     @apply transform translate-x-2;
     @apply sm:py-3 sm:translate-x-0;
     @apply border border-transparent;

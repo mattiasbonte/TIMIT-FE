@@ -54,11 +54,7 @@
 
     <!-- Transition -->
     <transition name="toggle-details" mode="out-in">
-      <div
-        v-if="toggle_details"
-        class="feature__segments"
-        :class="!featureInProgress ? 'space-y-3' : ''"
-      >
+      <div v-if="toggle_details" class="feature__segments">
         <Segment
           v-for="segment in segments"
           :key="segment.id"
@@ -193,11 +189,11 @@
     @apply cursor-pointer;
   }
   .feature__segments {
-    @apply p-3;
+    @apply p-3 space-y-3;
   }
 
   .feature__segments__new {
-    @apply px-3 py-5 shadow-sm rounded-md text-center text-white w-full;
+    @apply px-3 py-5 shadow-sm rounded-md text-center font-bold text-white w-full;
     @apply sm:py-3;
     @apply border border-transparent;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;

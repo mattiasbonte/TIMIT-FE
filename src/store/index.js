@@ -48,6 +48,24 @@ export default createStore({
     getFeatures: (state) => (id) => {
       return state.projects.find((project) => project.id === id).features;
     },
+    getProjectInProgress: (state) => (payload) => {
+      // If we can find an empty stop_time timestamp in our segments, return true
+      const project = state.projects.find(
+        (project) => project.id === payload.project_id
+      );
+
+      let projectInProgress = 0;
+
+      project.features.forEach((feature) => {
+        // When stop_time === '' is truthy, we return true, otherwise false
+        const featureInProgress = feature.segments.some((segment) => {
+          return segment.stop_time === '';
+        });
+        featureInProgress ? projectInProgress++ : '';
+      });
+
+      return projectInProgress > 0 ? true : false;
+    },
     getFeatureInProgress: (state) => (payload) => {
       // If we can find an empty stop_time timestamp in our segments, return true
       const project = state.projects.find(
@@ -161,7 +179,6 @@ export default createStore({
               feature.segments.map((segment) => {
                 if (segment.id === payload.segment_id) {
                   segment.stop_time = '';
-                  console.log(segment);
                 }
                 return segment;
               });

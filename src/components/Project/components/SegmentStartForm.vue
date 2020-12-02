@@ -18,10 +18,7 @@
       required
     />
 
-    <div
-      v-if="description && !getStartFormDisabledState"
-      class="form__datetime__wrapper"
-    >
+    <div v-if="!getStartFormDisabledState" class="form__datetime__wrapper">
       <!-- START DATE -->
       <div class="form__date__wrapper">
         <button
@@ -136,6 +133,7 @@
   import dayjs from 'dayjs';
 
   export default {
+    emits: ['toggle-feature-button'],
     props: {
       project_id: { type: String, required: true },
     },
@@ -252,8 +250,11 @@
           },
         });
 
-        // Reset, Hide & Disable Start Form
+        // Reset, Hide
         this.description = '';
+        this.$emit('toggle-feature-button');
+
+        // Disable Start Form
         this.$store.commit('toggleStartForm', {
           id: this.project_id,
           disable: true,
@@ -389,7 +390,7 @@
 
   .form__button {
     @apply sm:w-auto w-24;
-    @apply px-3 p-3 text-center shadow-sm;
+    @apply px-3 p-3 text-center shadow-sm font-bold;
     @apply text-white;
     @apply border border-transparent;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-600;

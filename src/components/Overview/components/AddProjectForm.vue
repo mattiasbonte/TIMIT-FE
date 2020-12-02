@@ -1,9 +1,5 @@
 <template>
-  <form
-    @submit.prevent="submitNewProjectForm"
-    class="form"
-    :class="description ? 'lg:space-x-3 space-y-3' : ''"
-  >
+  <form @submit.prevent="submitNewProjectForm" class="form">
     <!-- FEATURE DESCRIPTION -->
     <input
       type="text"
@@ -19,7 +15,7 @@
     <div
       class="sm:flex-row sm:space-y-0 sm:space-x-3 flex flex-col flex-grow space-y-3"
     >
-      <div v-if="description" class="sm:w-1/2 md:w-auto flex space-x-3">
+      <div class="sm:w-1/2 md:w-auto flex space-x-3">
         <input
           v-model="hourly_rate"
           class="form__input"
@@ -46,28 +42,13 @@
       </div>
 
       <button
-        v-if="description"
         type="submit"
         class="form__button"
         name="project_submit"
         id="project_submit"
         title="Save new project."
       >
-        <div class="flex items-center mx-auto space-x-1">
-          <svg
-            class="w-6 h-6"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              clip-rule="evenodd"
-              d="M4 4a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V8a2 2 0 00-2-2h-5L9 4H4zm7 5a1 1 0 00-2 0v1H8a1 1 0 000 2h1v1a1 1 0 002 0v-1h1a1 1 0 000-2h-1V9z"
-              fill-rule="evenodd"
-            ></path>
-          </svg>
-          <span>ADD</span>
-        </div>
+        ADD
       </button>
     </div>
   </form>
@@ -116,7 +97,8 @@
   .form {
     @apply flex flex-col justify-center;
     @apply border border-transparent;
-    @apply lg:flex-row lg:items-stretch lg:space-y-0;
+    @apply space-y-3;
+    @apply lg:flex-row lg:items-stretch lg:space-y-0 lg:space-x-3;
   }
 
   .form__description {
@@ -160,12 +142,11 @@
   }
 
   .form__button {
-    @apply flex flex-grow;
+    @apply flex-grow text-white text-center font-bold;
     @apply px-3 py-6 rounded-md;
     @apply sm:py-2 sm:w-1/2;
     @apply md:w-auto;
     @apply lg:w-auto;
-    @apply text-white;
     @apply border border-transparent;
     @apply hover:bg-indigo-700 hover:shadow-lg;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-600;

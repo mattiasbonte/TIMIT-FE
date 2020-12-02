@@ -12,9 +12,13 @@ const routes = [
   {
     path: '/projects/:id',
     component: Project,
+  },
+  {
+    path: '/:notFound(.*)',
+    name: '404',
+    component: NotFound,
     meta: { transition: 'slide_down' },
   },
-  { path: '/:notFound(.*)', name: '404', component: NotFound },
 ];
 
 const router = createRouter({
