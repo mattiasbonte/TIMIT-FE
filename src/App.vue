@@ -1,6 +1,6 @@
 <template>
   <div class="main">
-    <TheHeader class="" />
+    <TheHeader />
     <Container class="flex-grow">
       <router-view v-slot="{ Component, route }">
         <transition

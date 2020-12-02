@@ -139,6 +139,25 @@ export default createStore({
         return project;
       });
     },
+    editSegment(state, payload) {
+      state.projects = state.projects.map((project) => {
+        if (project.id === payload.project_id) {
+          project.features.map((feature) => {
+            if (feature.id === payload.feature_id) {
+              feature.segments.map((segment) => {
+                if (segment.id === payload.segment_id) {
+                  segment.stop_time = '';
+                  console.log(segment);
+                }
+                return segment;
+              });
+            }
+            return feature;
+          });
+        }
+        return project;
+      });
+    },
     deleteSegment(state, payload) {
       state.projects = state.projects.map((project) => {
         if (project.id === payload.project_id) {

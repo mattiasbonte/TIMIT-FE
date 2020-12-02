@@ -5,9 +5,9 @@ import Overview from '../components/Overview/Overview.vue';
 import Project from '../components/Project/Project.vue';
 
 const routes = [
-  { path: '/', name: 'Landing', redirect: 'Overview' },
-  { path: '/home', name: 'Home', component: Home },
-  { path: '/overview', name: 'Overview', component: Overview },
+  { path: '/', name: 'landing', redirect: 'Overview' },
+  { path: '/home', name: 'home', component: Home },
+  { path: '/overview', name: 'overview', component: Overview },
   { path: '/projects', redirect: '/overview' },
   {
     path: '/projects/:id',

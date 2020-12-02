@@ -1,5 +1,5 @@
 <template>
-  <nav class="dark:bg-gray-800 bg-white shadow">
+  <header class="dark:bg-gray-800 sticky bg-white shadow">
     <div class="sm:px-6 lg:px-8 container px-2 mx-auto">
       <div class="relative flex items-center justify-between h-16">
         <!-- HAMBURGER MENU DROPDOWN TOGGLE -->
@@ -11,41 +11,40 @@
           >
             <span class="sr-only">Open main menu</span>
 
-            <!-- HAMBURGER ICON ACTIVE -->
-            <svg
-              :class="menu_dropdown ? 'hidden' : 'block'"
-              class="w-6 h-6"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
+            <transition name="hamburger" mode="out-in">
+              <svg
+                v-if="!menu_dropdown"
+                class="w-6 h-6"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
 
-            <!-- HAMBURGER ICON INACTIVE -->
-            <svg
-              class="w-6 h-6"
-              :class="menu_dropdown ? 'block' : 'hidden'"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              aria-hidden="true"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
+              <svg
+                v-else
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </transition>
           </button>
         </div>
 
@@ -212,7 +211,7 @@
         </router-link>
       </div>
     </div>
-  </nav>
+  </header>
 </template>
 
 <script>
@@ -245,7 +244,7 @@
     @apply dark:hover:text-white dark:hover:bg-gray-700 dark:text-gray-300;
   }
   .hamburger-link {
-    @apply flex items-center px-3 py-2 space-x-2 text-base font-medium text-gray-700 rounded-md;
+    @apply flex items-center px-3 py-4 space-x-2 text-base font-medium text-gray-700 rounded-md;
     @apply hover:text-black hover:bg-gray-100;
     @apply dark:hover:text-white dark:hover:bg-gray-700 dark:text-gray-300 dark:border-transparent;
   }
@@ -284,5 +283,21 @@
   }
   .logo-text {
     @apply sm:inline hidden ml-2 mr-6 font-mono text-xl font-black text-white;
+  }
+
+  /* TRANSITION */
+  .hamburger-enter-active {
+    @apply transition ease-out duration-100;
+  }
+  .hamburger-enter-from,
+  .hamburger-leave-to {
+    @apply transform opacity-0 scale-95;
+  }
+  .hamburger-enter-to,
+  .hamburger-leave-from {
+    @apply transform opacity-100 scale-100;
+  }
+  .hamburger-leave-active {
+    @apply transition ease-in duration-75;
   }
 </style>

@@ -133,7 +133,8 @@
   }
 
   .form__input {
-    @apply flex w-1/2 p-3;
+    @apply flex w-1/2 px-3 py-6;
+    @apply sm:py-3;
     @apply lg:w-40;
     @apply border-gray-300 rounded-md cursor-pointer;
     @apply hover:border-light-blue-600 outline-none hover:bg-gray-50;

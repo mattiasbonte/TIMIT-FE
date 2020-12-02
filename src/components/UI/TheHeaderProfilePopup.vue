@@ -2,17 +2,13 @@
   <!-- PROFILE DROPDOWN SHOW/HIDE -->
   <div
     v-if="toggle"
-    class="ring-1 ring-black ring-opacity-5 absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg"
+    class="popup__frame"
     role="menu"
     aria-orientation="vertical"
     aria-labelledby="user-menu"
   >
     <!-- PROFILE DROPDOWN SETTINGS -->
-    <router-link
-      to="/settings"
-      exact
-      class="hover:bg-gray-100 flex items-center justify-between px-4 py-2 text-sm text-gray-700"
-      role="menuitem"
+    <router-link to="/settings" exact class="popup__link" role="menuitem"
       ><span>Settings</span>
       <svg
         class="inline w-5 h-5"
@@ -29,12 +25,7 @@
     </router-link>
 
     <!-- PROFILE DROPDOWN SIGNOUT -->
-    <router-link
-      to="/logout"
-      exact
-      class="hover:bg-gray-100 flex items-center justify-between px-4 py-2 text-sm text-gray-700"
-      role="menuitem"
-    >
+    <router-link to="/logout" exact class="popup__link" role="menuitem">
       <span>Sign out</span>
       <svg
         class="inline w-5 h-5"
@@ -62,5 +53,14 @@
   .active,
   .active-exact {
     @apply bg-gray-200;
+  }
+
+  .popup__frame {
+    @apply ring-1 ring-black ring-opacity-5 absolute right-0 z-50 w-48 py-1 mt-2 origin-top-right bg-white rounded-md shadow-lg;
+  }
+  .popup__link {
+    @apply flex items-center justify-between px-4 py-4 text-sm text-gray-700;
+    @apply sm:py-2;
+    @apply hover:bg-gray-100;
   }
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div
+    @click="expandSegment = !expandSegment"
     v-if="!featureInProgress"
     class=" flex flex-wrap items-center justify-between"
   >
     <!-- SEGMENT START & STOP DATE & TIME -->
     <div
-      @click="expandSegment = !expandSegment"
       class="sm:space-x-3 flex items-center flex-grow space-x-3 space-x-reverse cursor-pointer"
     >
       <div class="sm:inline segment__label hidden">{{ start_date }}</div>
@@ -56,6 +56,9 @@
         </svg>
       </button>
     </div>
+    <div v-else class="hover:scale-125 transform cursor-pointer">
+      💡
+    </div>
   </div>
 
   <SegmentStopForm
@@ -98,7 +101,18 @@
         });
       },
       editSegment() {
-        //
+        this.$store.commit({
+          type: 'editSegment',
+          project_id: this.project_id,
+          feature_id: this.feature_id,
+          segment_id: this.segment_id,
+        });
+
+        // Enable start form
+        this.$store.commit('toggleStartForm', {
+          id: this.project_id,
+          disable: false,
+        });
       },
     },
     computed: {
@@ -123,7 +137,8 @@
 
 <style scoped>
   .segment__label {
-    @apply px-4 py-1 rounded-md bg-gray-100 w-28;
+    @apply px-4 py-4 rounded-md bg-gray-100 w-28;
+    @apply sm:py-3;
     @apply dark:bg-gray-700;
   }
   .button {

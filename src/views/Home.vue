@@ -64,7 +64,8 @@
 
 <style scoped>
   .button {
-    @apply p-2 font-bold text-center text-white rounded-md shadow-md;
+    @apply p-6 font-bold text-center text-white rounded-md shadow-md w-full;
+    @apply sm:py-3 sm:w-auto;
     @apply bg-gradient-to-r from-light-blue-500 to-teal-600;
     @apply hover:from-light-blue-600 hover:to-teal-700;
   }

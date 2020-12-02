@@ -162,7 +162,8 @@
     @apply dark:hover:border-gray-300 dark:hover:bg-gray-900;
   }
   .feature__bar {
-    @apply p-3 space-x-4;
+    @apply px-3 py-4 space-x-4;
+    @apply sm:py-3;
     @apply flex flex-nowrap justify-between items-center;
     @apply transform cursor-pointer;
     @apply border-gray-100 dark:border-gray-700;
@@ -171,13 +172,15 @@
     @apply flex items-center w-full justify-between space-x-2 overflow-hidden;
   }
   .feature__total-time {
-    @apply p-1 whitespace-nowrap text-right w-auto;
+    @apply p-1 py-3 whitespace-nowrap text-right w-auto;
+    @apply sm:py-1;
     @apply rounded-md bg-gray-600 text-white font-bold;
     @apply dark:bg-white dark:text-black;
   }
 
   .feature__logo {
-    @apply rounded-full w-8 h-8 text-white animate-pulse;
+    @apply rounded-full w-12 h-12 text-white animate-pulse;
+    @apply sm:w-8 sm:h-8;
     @apply bg-gradient-to-r  from-red-500 to-red-700;
     @apply dark:from-amber-600 dark:to-amber-800;
   }
@@ -194,12 +197,13 @@
   }
 
   .feature__segments__new {
-    @apply px-3 py-6 shadow-sm rounded-md text-center w-full;
+    @apply px-3 py-5 shadow-sm rounded-md text-center text-white w-full;
     @apply sm:py-3;
-    @apply text-white bg-indigo-600;
     @apply border border-transparent;
-    @apply hover:bg-indigo-700;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+
+    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
+    @apply hover:from-light-blue-600 hover:to-teal-700;
   }
 
   /* transition */

@@ -10,6 +10,20 @@
 /* TRANSITIONS */
 /* ----------- */
 
+/* Fade */
+.fade-enter-from,
+.fade_down-leave-to {
+  opacity: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-enter-to,
+.fade-leave-from {
+  opacity: 1;
+}
+
 /* Slide Right */
 .slide_right-enter-from,
 .slide_right-leave-to {

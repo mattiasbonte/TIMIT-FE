@@ -79,7 +79,7 @@
       name="stop_submit"
       id="stop_submit"
     >
-      STOP
+      SAVE
     </button>
   </form>
 </template>
@@ -107,7 +107,7 @@
       this.start.time = this.getStartTime;
       this.start.day = this.setStartDay;
       // Set Initial Stop Data
-      this.stop.date = dayjs().format('YYYY-MM-DD');
+      this.stop.date = this.getStopDate;
       this.stop.time = this.calcClosestTimeStamp('stop');
       this.stop.day = this.setStopDay;
     },
@@ -218,6 +218,12 @@
       getStartDate() {
         return this.getSegment.start_date;
       },
+      getStopDate() {
+        if (this.getSegment.stop_date === '') {
+          return dayjs().format('YYYY-MM-DD');
+        }
+        return this.getSegment.stop_date;
+      },
       getStartTime() {
         if (this.getSegment.start_time === '') {
           return this.calcClosestTimeStamp('start');
@@ -246,7 +252,7 @@
     @apply hover:bg-gray-200;
     @apply dark:bg-gray-700 dark:hover:bg-gray-600;
     /* SM */
-    @apply pl-2 sm:block;
+    @apply sm:pl-2 sm:block;
   }
 
   .label__wrap {
@@ -255,13 +261,15 @@
     @apply dark:bg-gray-700;
   }
   .form__label {
-    @apply pl-2 pr-1 py-1 rounded-l-md;
+    @apply pl-2 pr-1 py-4 rounded-l-md;
+    @apply sm:py-3;
     @apply cursor-pointer;
     @apply hover:bg-gray-200;
     @apply dark:bg-gray-700 dark:hover:bg-gray-600;
   }
   .form__select {
-    @apply p-0 pr-6 py-1 cursor-pointer rounded-r-md flex-grow;
+    @apply p-0 pr-6 py-4 cursor-pointer rounded-r-md flex-grow;
+    @apply sm:py-3;
     @apply bg-transparent border-transparent outline-none appearance-none;
     @apply hover:bg-gray-200;
     @apply focus:border-transparent focus:ring-transparent;
@@ -269,10 +277,13 @@
   }
 
   .form__button {
-    @apply px-1 text-center shadow-sm rounded-md flex-grow;
-    @apply text-white bg-indigo-600;
+    @apply px-1 py-4 text-center text-white shadow-sm rounded-md flex-grow;
+    @apply transform translate-x-2;
+    @apply sm:py-3 sm:translate-x-0;
     @apply border border-transparent;
-    @apply hover:bg-indigo-700;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+
+    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
+    @apply hover:from-light-blue-600 hover:to-teal-700;
   }
 </style>
