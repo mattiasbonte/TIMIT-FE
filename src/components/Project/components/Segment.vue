@@ -29,7 +29,7 @@
 
     <!-- CONTROLS -->
     <div v-if="expandSegment" class="flex space-x-2">
-      <button class="button">
+      <button @click="editSegment" class="button">
         <svg
           class="hover:text-light-blue-500 w-6 h-6"
           fill="currentColor"

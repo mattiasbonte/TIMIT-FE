@@ -251,7 +251,7 @@
 
   .label__wrap {
     @apply cursor-pointer w-28 flex justify-between items-center;
-    @apply rounded-md bg-gray-100;
+    @apply rounded-md bg-gray-100 overflow-hidden;
     @apply dark:bg-gray-700;
   }
   .form__label {
@@ -261,7 +261,7 @@
     @apply dark:bg-gray-700 dark:hover:bg-gray-600;
   }
   .form__select {
-    @apply p-0 pr-1 py-1 cursor-pointer rounded-r-md flex-grow;
+    @apply p-0 pr-6 py-1 cursor-pointer rounded-r-md flex-grow;
     @apply bg-transparent border-transparent outline-none appearance-none;
     @apply hover:bg-gray-200;
     @apply focus:border-transparent focus:ring-transparent;

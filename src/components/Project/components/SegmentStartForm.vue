@@ -311,10 +311,11 @@
   }
 
   .form__description {
-    @apply w-full p-3;
+    @apply w-full px-3 py-6;
+    @apply sm:py-3;
     @apply border-gray-300 rounded-md shadow-sm;
-    @apply hover:border-indigo-500 ring-indigo-500;
-    @apply focus:ring-indigo-500 focus:border-indigo-500;
+    @apply hover:border-light-blue-600 ring-light-blue-600;
+    @apply focus:ring-light-blue-600 focus:border-light-blue-600;
     /* dark */
     @apply dark:bg-gray-800 dark:text-white;
     @apply dark:placeholder-gray-400;
@@ -330,7 +331,7 @@
     @apply flex flex-1;
     @apply rounded-md;
     @apply border border-gray-300;
-    @apply hover:border-indigo-500;
+    @apply hover:border-light-blue-600;
     /* dark */
     @apply dark:hover:border-white;
   }
@@ -349,7 +350,7 @@
     @apply bg-white;
     @apply border border-transparent;
     @apply hover:bg-gray-50;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-600;
     /* dark */
     @apply dark:bg-gray-800 dark:hover:bg-gray-900;
   }
@@ -359,7 +360,7 @@
     @apply sm:flex-row;
     @apply rounded-md shadow-sm;
     @apply border border-gray-300;
-    @apply hover:border-indigo-500;
+    @apply hover:border-light-blue-600;
     /* dark */
     @apply dark:hover:border-white;
   }
@@ -367,7 +368,7 @@
     @apply rounded-l-md bg-white inline-flex items-center px-3 cursor-pointer;
     @apply sm:w-auto w-24;
     @apply text-gray-500;
-    @apply hover:border-indigo-500 hover:bg-gray-50;
+    @apply hover:border-light-blue-600 hover:bg-gray-50;
     /* dark */
     @apply dark:bg-gray-800 dark:text-white;
     @apply dark:placeholder-gray-400;
@@ -389,9 +390,11 @@
   .form__button {
     @apply sm:w-auto w-24;
     @apply px-3 p-3 text-center shadow-sm;
-    @apply text-white bg-indigo-600;
+    @apply text-white;
     @apply border border-transparent;
-    @apply hover:bg-indigo-700;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-600;
+
+    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
+    @apply hover:from-light-blue-600 hover:to-teal-700;
   }
 </style>

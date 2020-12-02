@@ -4,7 +4,11 @@
 
 @tailwind utilities;
 
+/* BASE COMPONENTS */
+
+/* ----------- */
 /* TRANSITIONS */
+/* ----------- */
 
 /* Slide Right */
 .slide_right-enter-from,

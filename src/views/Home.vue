@@ -1,5 +1,4 @@
 <template>
-  <!-- Text Content -->
   <div
     class="md:max-w-prose font-extralight w-full mx-auto space-y-10 text-justify"
   >
@@ -10,6 +9,7 @@
       Welcome <span class="not-italic">👋🏼</span>
     </h1>
 
+    <!-- Text Content -->
     <p>
       The idea behind TIMIT started out of my own experience with keeping track
       of time for the projects I was building or assisting in for a client. Most
@@ -36,13 +36,15 @@
 
     <p>Thanks for reading and talk soon,</p>
 
-    <p>~Mattias</p>
+    <p class="font-thin">~Mattias</p>
 
-    <button
-      class="bg-gradient-to-r from-light-blue-500 to-teal-600 hover:from-light-blue-600 hover:to-teal-700 p-2 font-bold text-center text-white rounded-md shadow-md"
-    >
-      <router-link exact to="Overview">TRY IT</router-link>
-    </button>
+    <div class="text-center">
+      <router-link exact to="/overview">
+        <button class="button">
+          <p>TRY IT</p>
+        </button>
+      </router-link>
+    </div>
 
     <p class="text-xs">
       Create a project 👉🏼 Add a feature 👉🏼 Start working 👉🏼 Stop working 👉🏼 Work
@@ -50,7 +52,7 @@
       client 📤
     </p>
     <!-- Image + Navigation -->
-    <router-link exact to="Overview">
+    <router-link exact to="/overview">
       <img
         class="max-w-3xl mx-auto"
         src="../assets/home_page_landing.svg"
@@ -59,3 +61,11 @@
     </router-link>
   </div>
 </template>
+
+<style scoped>
+  .button {
+    @apply p-2 font-bold text-center text-white rounded-md shadow-md;
+    @apply bg-gradient-to-r from-light-blue-500 to-teal-600;
+    @apply hover:from-light-blue-600 hover:to-teal-700;
+  }
+</style>

@@ -194,7 +194,8 @@
   }
 
   .feature__segments__new {
-    @apply p-3 shadow-sm rounded-md text-center w-full;
+    @apply px-3 py-6 shadow-sm rounded-md text-center w-full;
+    @apply sm:py-3;
     @apply text-white bg-indigo-600;
     @apply border border-transparent;
     @apply hover:bg-indigo-700;

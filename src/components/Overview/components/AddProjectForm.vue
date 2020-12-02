@@ -32,7 +32,7 @@
         />
         <select
           v-model="currency"
-          class="form__input"
+          class="form__select"
           name="currency"
           id="currency"
           placeholder="EUR..."
@@ -120,10 +120,11 @@
   }
 
   .form__description {
-    @apply w-full p-3;
+    @apply w-full px-3 py-6;
+    @apply sm:py-3;
     @apply border-gray-300 rounded-md shadow-md outline-none;
-    @apply hover:border-indigo-500;
-    @apply focus:ring-indigo-500 focus:border-indigo-500;
+    @apply hover:border-light-blue-600;
+    @apply focus:ring-light-blue-600 focus:border-light-blue-600;
     /* dark */
     @apply dark:bg-gray-800;
     @apply dark:placeholder-gray-400;
@@ -132,25 +133,46 @@
   }
 
   .form__input {
-    @apply flex w-1/2 lg:w-auto p-3;
+    @apply flex w-1/2 p-3;
+    @apply lg:w-40;
     @apply border-gray-300 rounded-md cursor-pointer;
-    @apply hover:border-indigo-500 outline-none hover:bg-gray-50;
-    @apply focus:ring-indigo-500 focus:border-indigo-500;
+    @apply hover:border-light-blue-600 outline-none hover:bg-gray-50;
+    @apply focus:ring-light-blue-600 focus:border-light-blue-600;
     /* dark */
     @apply dark:bg-gray-800;
     @apply dark:placeholder-gray-400;
     @apply dark:hover:border-white dark:hover:bg-gray-900;
     @apply dark:focus:ring-white dark:focus:border-white dark:focus:bg-gray-900;
   }
+
+  .form__select {
+    @apply flex w-1/2 p-3;
+    @apply lg:w-24;
+    @apply border-gray-300 rounded-md cursor-pointer;
+    @apply hover:border-light-blue-600 outline-none hover:bg-gray-50;
+    @apply focus:ring-light-blue-600 focus:border-light-blue-600;
+    /* dark */
+    @apply dark:bg-gray-800;
+    @apply dark:placeholder-gray-400;
+    @apply dark:hover:border-white dark:hover:bg-gray-900;
+    @apply dark:focus:ring-white dark:focus:border-white dark:focus:bg-gray-900;
+  }
+
   .form__button {
-    @apply flex sm:w-1/2 lg:w-auto md:w-auto flex-grow;
-    @apply px-3 p-2 rounded-md;
-    @apply text-white bg-indigo-600;
+    @apply flex flex-grow;
+    @apply px-3 py-6 rounded-md;
+    @apply sm:py-2 sm:w-1/2;
+    @apply md:w-auto;
+    @apply lg:w-auto;
+    @apply text-white;
     @apply border border-transparent;
     @apply hover:bg-indigo-700 hover:shadow-lg;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-600;
     /* dark */
     @apply dark:border-gray-300;
     @apply dark:hover:border-white;
+
+    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
+    @apply hover:from-light-blue-600 hover:to-teal-700;
   }
 </style>
