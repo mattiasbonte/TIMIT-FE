@@ -144,7 +144,10 @@ export default createStore({
         if (project.id === payload.project_id) {
           project.features.map((feature) => {
             if (feature.id === payload.feature_id) {
-              feature.segments.slice(0, 1);
+              const index = feature.segments.findIndex(
+                (segment) => segment.id === payload.segment_id
+              );
+              feature.segments.splice(index, 1);
             }
             return feature;
           });
