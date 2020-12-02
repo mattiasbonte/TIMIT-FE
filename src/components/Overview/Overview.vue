@@ -19,6 +19,7 @@
         <Preview
           v-for="project in this.$store.getters.getProjects"
           :key="project.id"
+          :project_id="project.id"
           :description="project.description"
           @click="navToProject(project.id)"
         />

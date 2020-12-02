@@ -75,6 +75,20 @@ export default createStore({
       );
       return segment;
     },
+    getProjectTotalTime: (state) => (payload) => {
+      const project = state.projects.find(
+        (project) => project.id === payload.project_id
+      );
+      let total_time = 0;
+      project.features.forEach((feature) => {
+        feature.segments.forEach((segment) => {
+          const start = dayjs(`${segment.start_date} ${segment.start_time}`);
+          const stop = dayjs(`${segment.stop_date} ${segment.stop_time}`);
+          total_time += (stop - start) / (1000 * 60 * 60);
+        });
+      });
+      return total_time;
+    },
     getFeatureTotalTime: (state) => (payload) => {
       const project = state.projects.find(
         (project) => project.id === payload.project_id
