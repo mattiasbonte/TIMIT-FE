@@ -17,7 +17,7 @@
           : 'Click to add a new feature'
       "
     >
-      {{ getStartFormDisabledState ? 'Save work first...' : 'NEW FEATURE' }}
+      {{ getStartFormDisabledState ? 'Save your work...' : 'NEW FEATURE' }}
     </button>
 
     <SegmentStartForm

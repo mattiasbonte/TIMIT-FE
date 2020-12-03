@@ -137,13 +137,13 @@
 
 <style scoped>
   .segment__date {
-    @apply px-2 py-4 rounded-md bg-gray-100 hidden;
+    @apply px-3 py-4 rounded-md bg-gray-100 hidden;
     @apply sm:py-3 sm:inline;
     @apply dark:bg-gray-700;
   }
   .segment__datetime {
     @apply flex justify-between;
-    @apply px-2 py-4 rounded-md bg-gray-100 w-28;
+    @apply px-3 py-4 rounded-md bg-gray-100 w-28;
     @apply sm:py-3;
     @apply dark:bg-gray-700;
   }

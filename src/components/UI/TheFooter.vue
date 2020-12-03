@@ -2,6 +2,29 @@
   <footer class="container p-2 mx-auto">
     <div class="apply-footer">
       <div class="md:order-2 flex justify-center space-x-6">
+        <!-- MAIL -->
+        <a
+          href="mailto:info@mattiasbonte.dev"
+          class="apply-icon"
+          title="Say Hi!"
+        >
+          <span class="sr-only">Say hi to me!</span>
+          <svg
+            class="w-6 h-6"
+            stroke-width="1.1"
+            stroke="currentColor"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <line x1="10" y1="14" x2="21" y2="3" />
+            <path
+              d="M21 3l-6.5 18a0.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a0.55 .55 0 0 1 0 -1l18 -6.5"
+            />
+          </svg>
+        </a>
         <!-- GITHUB -->
         <a
           href="https://github.com/mattiasbonte/"

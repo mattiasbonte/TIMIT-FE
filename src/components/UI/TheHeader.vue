@@ -1,5 +1,5 @@
 <template>
-  <header class="dark:bg-gray-800 sticky bg-white shadow">
+  <header class="fixed top-0 dark:bg-gray-800 sticky bg-white shadow">
     <div class="sm:px-6 lg:px-8 container px-2 mx-auto">
       <div class="relative flex items-center justify-between h-16">
         <!-- HAMBURGER MENU DROPDOWN TOGGLE -->
@@ -79,17 +79,7 @@
                 title="Navigate Home"
                 class="nav-link"
               >
-                <svg
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
-                  ></path>
-                </svg>
-                <span>Home</span>
+                Home
               </router-link>
 
               <!-- NAV LINK PROJECTS DESKTOP -->
@@ -99,17 +89,7 @@
                 title="See all Projects"
                 class="nav-link"
               >
-                <svg
-                  class="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                  ></path>
-                </svg>
-                <span>Projects</span>
+                Projects
               </router-link>
             </div>
           </div>
@@ -168,49 +148,51 @@
     </div>
 
     <!-- MOBILE DROPDOWN MENU SHOW/HIDE -->
-    <div :class="menu_dropdown ? 'block' : 'hidden'" class="sm:hidden">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <!-- NAV HOME MENU -->
-        <router-link
-          to="/home"
-          exact
-          title="Navigate Home"
-          class="hamburger-link"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+    <transition name="slide_right">
+      <div v-if="menu_dropdown">
+        <div class="px-2 pt-2 pb-3 space-y-1">
+          <!-- NAV HOME MENU -->
+          <router-link
+            to="/home"
+            exact
+            title="Navigate Home"
+            class="hamburger-link"
           >
-            <path
-              d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
-            ></path>
-          </svg>
-          <span>Home</span>
-        </router-link>
+            <svg
+              class="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
+              ></path>
+            </svg>
+            <span>Home</span>
+          </router-link>
 
-        <!-- NAV PROJECTS MENU -->
-        <router-link
-          to="/overview"
-          exact
-          title="See all Projects"
-          class="hamburger-link"
-        >
-          <svg
-            class="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
+          <!-- NAV PROJECTS MENU -->
+          <router-link
+            to="/overview"
+            exact
+            title="See all Projects"
+            class="hamburger-link"
           >
-            <path
-              d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-            ></path>
-          </svg>
-          <span>Projects</span>
-        </router-link>
+            <svg
+              class="w-5 h-5"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+              ></path>
+            </svg>
+            <span>Projects</span>
+          </router-link>
+        </div>
       </div>
-    </div>
+    </transition>
   </header>
 </template>
 

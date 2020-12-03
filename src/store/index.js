@@ -19,15 +19,55 @@ export default createStore({
         currency: 'EUR',
         features: [
           {
-            id: '3mlj2',
-            description: 'Feature 1',
+            id: '3ml31lkldqj2',
+            description: 'Developing header',
             segments: [
               {
-                id: '3123lfjslqfj',
-                start_date: '2020-10-02',
+                id: '31998lqfjq23lfjslqfj',
+                start_date: '2020-11-24',
+                start_time: '08:30',
+                stop_date: '2020-11-24',
+                stop_time: '11:00',
+              },
+            ],
+          },
+          {
+            id: 'mlqsdf310jml',
+            description: 'Set up routing and basic Vuex datastore',
+            segments: [
+              {
+                id: '3123fqsqld2dfjslqfj',
+                start_date: '2020-11-20',
+                start_time: '13:30',
+                stop_date: '2020-11-20',
+                stop_time: '15:30',
+              },
+              {
+                id: '3123fqsqld2dfjslqfj',
+                start_date: '2020-11-20',
+                start_time: '16:00',
+                stop_date: '2020-11-20',
+                stop_time: '18:00',
+              },
+            ],
+          },
+          {
+            id: '3mla&3lkamj2',
+            description: 'Init project & basic structure',
+            segments: [
+              {
+                id: '3123fafqslza2lfjslqfj',
+                start_date: '2020-11-20',
+                start_time: '08:00',
+                stop_date: '2020-11-20',
+                stop_time: '10:00',
+              },
+              {
+                id: '312flq2qslza2lfjslqfj',
+                start_date: '2020-11-20',
                 start_time: '10:30',
-                stop_date: '2020-10-02',
-                stop_time: '12:00',
+                stop_date: '2020-11-20',
+                stop_time: '12:30',
               },
             ],
           },

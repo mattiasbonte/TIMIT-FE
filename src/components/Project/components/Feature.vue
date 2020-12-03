@@ -168,7 +168,7 @@
     @apply flex items-center w-full justify-between space-x-2 overflow-hidden;
   }
   .feature__total-time {
-    @apply p-1 py-3 whitespace-nowrap text-right w-auto;
+    @apply p-3 whitespace-nowrap text-right w-auto;
     @apply sm:py-1;
     @apply rounded-md bg-gray-600 text-white font-bold;
     @apply dark:bg-white dark:text-black;

@@ -1,7 +1,7 @@
 <template>
   <div class="main">
     <TheHeader />
-    <Container class="flex-grow">
+    <Container class="flex-grow pt-8">
       <router-view v-slot="{ Component, route }">
         <transition
           :name="route.meta.transition || 'slide_right'"
