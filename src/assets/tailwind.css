@@ -4,7 +4,24 @@
 
 @tailwind utilities;
 
-/* BASE COMPONENTS */
+@layer components {
+  /* BASE COMPONENTS */
+  .btn__base {
+    /* Base */
+    @apply w-full max-w-5xl px-3 py-6;
+    @apply font-bold text-center text-white shadow-sm cursor-pointer;
+    @apply border border-transparent;
+    @apply bg-gradient-to-r from-light-blue-400 to-teal-500;
+    @apply hover:from-light-blue-500 hover:to-teal-600;
+    /* SM */
+    @apply sm:py-4;
+    /* Dark */
+    @apply dark:border-gray-300;
+    @apply dark:hover:border-white;
+    @apply dark:from-light-blue-500 dark:to-teal-600;
+    @apply dark:hover:from-light-blue-600 dark:hover:to-teal-700;
+  }
+}
 
 /* ----------- */
 /* TRANSITIONS */

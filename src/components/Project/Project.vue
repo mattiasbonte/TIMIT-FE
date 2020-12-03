@@ -8,7 +8,7 @@
     <button
       @click="toggle_feature_form = !toggle_feature_form"
       v-if="!toggle_feature_form || getStartFormDisabledState"
-      class="add__feature__button"
+      class="btn__base btn__new__feature"
       :class="getStartFormDisabledState ? 'opacity-50' : ''"
       :disabled="getStartFormDisabledState"
       :title="
@@ -99,17 +99,8 @@
     @apply dark:text-white;
   }
 
-  .add__feature__button {
-    @apply max-w-5xl;
-    @apply dark:text-white;
-
-    @apply px-3 py-6 shadow-sm rounded-md text-center font-bold text-white w-full;
-    @apply sm:py-4;
+  .btn__new__feature {
+    @apply rounded-md;
     @apply md:max-w-xs;
-    @apply border border-transparent;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
-
-    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
-    @apply hover:from-light-blue-600 hover:to-teal-700;
   }
 </style>

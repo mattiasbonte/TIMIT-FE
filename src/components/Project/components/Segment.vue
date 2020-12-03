@@ -8,19 +8,19 @@
       <div
         class="sm:space-x-3 flex items-center flex-grow space-x-3 space-x-reverse cursor-pointer"
       >
-        <div class="sm:inline segment__label hidden w-32">{{ start_date }}</div>
+        <div class="segment__date">{{ start_date }}</div>
         <div
           :title="`${start_date} ${startDay} ${start_time}`"
-          class="segment__label flex justify-between"
+          class="segment__datetime"
         >
           <span>{{ startDay }}</span>
           <span>{{ start_time }}</span>
         </div>
         <div>👉🏼</div>
-        <div class="sm:inline segment__label hidden w-32">{{ stop_date }}</div>
+        <div class=" segment__date">{{ stop_date }}</div>
         <div
           :title="`${stop_date} ${stopDay} ${stop_time}`"
-          class="segment__label flex justify-between"
+          class="segment__datetime"
         >
           <span>{{ stopDay }}</span>
           <span>{{ stop_time }}</span>
@@ -136,8 +136,14 @@
 </script>
 
 <style scoped>
-  .segment__label {
-    @apply px-4 py-4 rounded-md bg-gray-100;
+  .segment__date {
+    @apply px-2 py-4 rounded-md bg-gray-100 hidden;
+    @apply sm:py-3 sm:inline;
+    @apply dark:bg-gray-700;
+  }
+  .segment__datetime {
+    @apply flex justify-between;
+    @apply px-2 py-4 rounded-md bg-gray-100 w-28;
     @apply sm:py-3;
     @apply dark:bg-gray-700;
   }

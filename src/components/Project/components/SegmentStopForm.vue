@@ -75,7 +75,7 @@
     <!-- Submit Stop -->
     <button
       type="submit"
-      class="form__button"
+      class="btn__base btn__submit"
       name="stop_submit"
       id="stop_submit"
     >
@@ -276,14 +276,9 @@
     @apply dark:bg-gray-700 dark:hover:bg-gray-600;
   }
 
-  .form__button {
-    @apply px-1 py-4 text-center text-white font-bold shadow-sm rounded-md flex-grow;
+  .btn__submit {
+    @apply rounded-md w-auto flex-grow;
     @apply transform translate-x-2;
-    @apply sm:py-3 sm:translate-x-0;
-    @apply border border-transparent;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
-
-    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
-    @apply hover:from-light-blue-600 hover:to-teal-700;
+    @apply sm:translate-x-0;
   }
 </style>

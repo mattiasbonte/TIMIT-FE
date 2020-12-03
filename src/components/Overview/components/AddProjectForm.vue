@@ -43,7 +43,7 @@
 
       <button
         type="submit"
-        class="form__button"
+        class="btn__base btn__submit"
         name="project_submit"
         id="project_submit"
         title="Save new project."
@@ -141,20 +141,10 @@
     @apply dark:focus:ring-white dark:focus:border-white dark:focus:bg-gray-900;
   }
 
-  .form__button {
-    @apply flex-grow text-white text-center font-bold;
-    @apply px-3 py-6 rounded-md;
-    @apply sm:py-2 sm:w-1/2;
+  .btn__submit {
+    @apply flex-grow rounded-md;
+    @apply sm:w-1/2;
     @apply md:w-auto;
     @apply lg:w-auto;
-    @apply border border-transparent;
-    @apply hover:bg-indigo-700 hover:shadow-lg;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-600;
-    /* dark */
-    @apply dark:border-gray-300;
-    @apply dark:hover:border-white;
-
-    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
-    @apply hover:from-light-blue-600 hover:to-teal-700;
   }
 </style>

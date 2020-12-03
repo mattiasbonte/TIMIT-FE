@@ -5,7 +5,7 @@
         <button
           @click="add_project = !add_project"
           v-if="!add_project"
-          class="add__project__button"
+          class="btn__base btn__new__project"
         >
           NEW PROJECT
         </button>
@@ -59,17 +59,8 @@
     @apply max-w-5xl mx-auto;
     @apply grid gap-3 grid-cols-1 lg:grid-cols-2;
   }
-  .add__project__button {
-    @apply max-w-5xl;
-    @apply dark:text-white;
-
-    @apply px-3 py-6 shadow-sm rounded-md text-center font-bold text-white w-full;
-    @apply sm:py-4;
+  .btn__new__project {
+    @apply rounded-md;
     @apply md:max-w-xs;
-    @apply border border-transparent;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
-
-    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
-    @apply hover:from-light-blue-600 hover:to-teal-700;
   }
 </style>

@@ -72,7 +72,7 @@
         <button
           v-if="!featureInProgress && !getStartFormDisabledState"
           @click="addSegment"
-          class="feature__segments__new"
+          class="btn__base btn__new__segment"
         >
           Add
         </button>
@@ -192,14 +192,8 @@
     @apply p-3 space-y-3;
   }
 
-  .feature__segments__new {
-    @apply px-3 py-5 shadow-sm rounded-md text-center font-bold text-white w-full;
-    @apply sm:py-3;
-    @apply border border-transparent;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
-
-    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
-    @apply hover:from-light-blue-600 hover:to-teal-700;
+  .btn__new__segment {
+    @apply rounded-md;
   }
 
   /* transition */

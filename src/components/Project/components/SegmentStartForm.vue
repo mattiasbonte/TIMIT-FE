@@ -113,10 +113,10 @@
             {{ time_stamp }}
           </option>
         </select>
-        <!-- SUBMIT START -->
+        <!-- SUBMIT -->
         <button
           type="submit"
-          class="form__button rounded-r-md"
+          class="btn__base btn__submit"
           name="start_submit"
           id="start_submit"
           :disabled="getStartFormDisabledState"
@@ -313,7 +313,7 @@
 
   .form__description {
     @apply w-full px-3 py-6;
-    @apply sm:py-3;
+    @apply sm:py-4;
     @apply border-gray-300 rounded-md shadow-sm;
     @apply hover:border-light-blue-600 ring-light-blue-600;
     @apply focus:ring-light-blue-600 focus:border-light-blue-600;
@@ -388,14 +388,8 @@
     @apply dark:focus:bg-gray-900;
   }
 
-  .form__button {
-    @apply sm:w-auto w-24;
-    @apply px-3 p-3 text-center shadow-sm font-bold;
-    @apply text-white;
-    @apply border border-transparent;
-    @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-light-blue-600;
-
-    @apply bg-gradient-to-r from-light-blue-600 to-teal-600;
-    @apply hover:from-light-blue-600 hover:to-teal-700;
+  .btn__submit {
+    @apply w-24 rounded-r-md;
+    @apply sm:w-auto;
   }
 </style>
