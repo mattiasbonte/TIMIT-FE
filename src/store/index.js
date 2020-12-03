@@ -165,6 +165,9 @@ export default createStore({
     },
   },
   mutations: {
+    setProjects(state, payload) {
+      state.projects = payload.fetched_projects;
+    },
     addNewProject(state, payload) {
       state.projects = [payload.project, ...state.projects];
     },

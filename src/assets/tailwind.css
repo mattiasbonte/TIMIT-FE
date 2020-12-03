@@ -8,7 +8,7 @@
   /* BASE COMPONENTS */
   .btn__base {
     /* Base */
-    @apply w-full max-w-6xl px-3 py-6;
+    @apply w-full max-w-6xl px-3 py-5;
     @apply font-bold text-center text-white shadow-md cursor-pointer;
     @apply border border-transparent;
     @apply bg-gradient-to-r from-light-blue-400 to-teal-500;

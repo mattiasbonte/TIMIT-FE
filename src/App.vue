@@ -27,6 +27,32 @@
       TheFooter,
       Container,
     },
+    created() {
+      this.fetchLocalStorageProjects();
+    },
+    methods: {
+      fetchLocalStorageProjects() {
+        // Get Projects from localStorage if they exist
+        if (localStorage.getItem('projects')) {
+          this.$store.commit({
+            type: 'setProjects',
+            fetched_projects: JSON.parse(localStorage.getItem('projects')),
+          });
+        }
+      },
+      saveProjectsLocally() {
+        // Save Projects to localStorage
+        const projects = this.$store.getters.getProjects;
+        localStorage.setItem('projects', JSON.stringify(projects));
+        return true;
+      },
+    },
+    watch: {
+      //
+      '$store.state.projects'() {
+        this.saveProjectsLocally();
+      },
+    },
   };
 </script>
 

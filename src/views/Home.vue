@@ -76,7 +76,7 @@
     @apply font-extralight text-justify;
     @apply space-y-8 sm:bg-white rounded-sm sm:shadow-2xl;
     @apply sm:px-20 sm:py-10 sm:my-14 sm:rounded-3xl;
-    @apply dark:bg-gray-900;
+    @apply sm:dark:bg-gray-900;
   }
   .card__mid {
     @apply absolute max-w-prose mx-auto hidden transform;

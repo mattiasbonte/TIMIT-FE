@@ -261,14 +261,14 @@
     @apply dark:bg-gray-700;
   }
   .form__label {
-    @apply pl-2 pr-1 py-4 rounded-l-md;
+    @apply pl-2 pr-1 py-5 rounded-l-md;
     @apply sm:py-3;
     @apply cursor-pointer;
     @apply hover:bg-gray-200;
     @apply dark:bg-gray-700 dark:hover:bg-gray-600;
   }
   .form__select {
-    @apply p-0 pr-6 py-4 cursor-pointer rounded-r-md flex-grow;
+    @apply p-0 pr-6 py-5 cursor-pointer rounded-r-md flex-grow;
     @apply sm:py-3;
     @apply bg-transparent border-transparent outline-none appearance-none;
     @apply hover:bg-gray-200;
