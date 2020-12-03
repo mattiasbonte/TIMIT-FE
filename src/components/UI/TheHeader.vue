@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed top-0 dark:bg-gray-800 sticky bg-white shadow">
+  <header class="dark:bg-gray-800 sticky top-0 z-50 w-full bg-white shadow">
     <div class="sm:px-6 lg:px-8 container px-2 mx-auto">
       <div class="relative flex items-center justify-between h-16">
         <!-- HAMBURGER MENU DROPDOWN TOGGLE -->
