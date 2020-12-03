@@ -1,8 +1,9 @@
 <template>
   <div>
     <div class="card">
-      <div class="card__bg"></div>
-      <div class="card__text">
+      <div class="card__bot"></div>
+      <div class="card__mid"></div>
+      <div class="card__top">
         <!-- Welcome Message -->
         <h1
           class="dark:text-white -mb-2 text-lg italic font-thin text-center text-black"
@@ -67,24 +68,29 @@
 </template>
 
 <style scoped>
-  .btn__try {
-    @apply rounded-md;
-  }
   .card {
     @apply relative;
   }
-  .card__bg {
-    @apply absolute max-w-prose mx-auto hidden;
-    @apply rounded-xl shadow-lg inset-0;
-    @apply transform -skew-y-3;
-    @apply bg-gradient-to-r from-light-blue-500 to-teal-600;
-    @apply sm:block sm:skew-y-0 sm:-rotate-3 sm:rounded-3xl;
-  }
-  .card__text {
-    @apply relative max-w-prose mx-auto my-14 px-4 py-10;
+  .card__top {
+    @apply relative max-w-prose mx-auto px-4;
     @apply font-extralight text-justify;
     @apply space-y-8 sm:bg-white rounded-sm sm:shadow-2xl;
-    @apply sm:p-20 sm:rounded-3xl;
-    @apply dark:bg-gray-800;
+    @apply sm:px-20 sm:py-10 sm:my-14 sm:rounded-3xl;
+    @apply dark:bg-gray-900;
+  }
+  .card__mid {
+    @apply absolute max-w-prose mx-auto hidden transform;
+    @apply rounded-3xl shadow-lg inset-0;
+    @apply sm:block sm:-rotate-6;
+    @apply bg-gradient-to-r from-light-blue-500 to-teal-600;
+  }
+  .card__bot {
+    @apply absolute max-w-prose mx-auto hidden transform;
+    @apply rounded-3xl shadow-lg inset-0;
+    @apply sm:block sm:-rotate-12;
+    @apply bg-gradient-to-r from-amber-500 to-purple-500;
+  }
+  .btn__try {
+    @apply rounded-md;
   }
 </style>
