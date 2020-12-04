@@ -11,6 +11,29 @@ export default createStore({
     },
     projects: [
       {
+        id: 'qdql12013mAljUmcuSquriql',
+        description: 'Cohere.io',
+        project_start_date: '2020-12-04',
+        disable_start_form: false,
+        hourly_rate: 25,
+        currency: 'EUR',
+        features: [
+          {
+            id: '3ml31lkldqj2',
+            description: 'Company pitch & send application',
+            segments: [
+              {
+                id: '319&8fdsjq23lfjslqfj',
+                start_date: '2020-12-04',
+                start_time: '09:30',
+                stop_date: '2020-12-04',
+                stop_time: '10:45',
+              },
+            ],
+          },
+        ],
+      },
+      {
         id: 'FR2_mAljUdjmcuSquriql',
         description: 'Timit',
         project_start_date: '2020-11-20',
@@ -36,14 +59,14 @@ export default createStore({
             description: 'Set up routing and basic Vuex datastore',
             segments: [
               {
-                id: '3123fqsqld2dfjslqfj',
+                id: '3123fqsqld2dfadqqjslqfj',
                 start_date: '2020-11-20',
                 start_time: '13:30',
                 stop_date: '2020-11-20',
                 stop_time: '15:30',
               },
               {
-                id: '3123fqsqld2dfjslqfj',
+                id: '3123fqld2dfjslqfj',
                 start_date: '2020-11-20',
                 start_time: '16:00',
                 stop_date: '2020-11-20',
@@ -82,11 +105,35 @@ export default createStore({
     getProjects(state) {
       return state.projects;
     },
-    getProject: (state) => (id) => {
-      return state.projects.find((project) => project.id === id);
+    getProject: (state) => (payload) => {
+      return state.projects.find(
+        (project) => project.id === payload.project_id
+      );
     },
-    getFeatures: (state) => (id) => {
-      return state.projects.find((project) => project.id === id).features;
+    getFeatures: (state) => (payload) => {
+      return state.projects.find((project) => project.id === payload.project_id)
+        .features;
+    },
+    getSegment: (state) => (payload) => {
+      const project = state.projects.find(
+        (project) => project.id === payload.project_id
+      );
+      const feature = project.features.find(
+        (feature) => feature.id === payload.feature_id
+      );
+      const segment = feature.segments.find(
+        (segment) => segment.id === payload.segment_id
+      );
+      return segment;
+    },
+    getSegments: (state) => (payload) => {
+      const project = state.projects.find(
+        (project) => project.id === payload.project_id
+      );
+      const feature = project.features.find(
+        (feature) => feature.id === payload.feature_id
+      );
+      return feature.segments;
     },
     getProjectInProgress: (state) => (payload) => {
       // If we can find an empty stop_time timestamp in our segments, return true
@@ -120,18 +167,6 @@ export default createStore({
         return segment.stop_time === '';
       });
       return inProgress;
-    },
-    getSegment: (state) => (payload) => {
-      const project = state.projects.find(
-        (project) => project.id === payload.project_id
-      );
-      const feature = project.features.find(
-        (feature) => feature.id === payload.feature_id
-      );
-      const segment = feature.segments.find(
-        (segment) => segment.id === payload.segment_id
-      );
-      return segment;
     },
     getProjectTotalTime: (state) => (payload) => {
       const project = state.projects.find(
@@ -223,11 +258,24 @@ export default createStore({
                 if (segment.id === payload.segment_id) {
                   segment.stop_time = '';
                 }
-                return segment;
               });
             }
-            return feature;
           });
+        }
+        return project;
+      });
+    },
+    deleteProject(state, payload) {
+      state.projects = state.projects.filter(
+        (project) => project.id !== payload.project_id
+      );
+    },
+    deleteFeature(state, payload) {
+      state.projects = state.projects.map((project) => {
+        if (project.id === payload.project_id) {
+          project.features = project.features.filter(
+            (feature) => feature.id !== payload.feature_id
+          );
         }
         return project;
       });
@@ -237,12 +285,10 @@ export default createStore({
         if (project.id === payload.project_id) {
           project.features.map((feature) => {
             if (feature.id === payload.feature_id) {
-              const index = feature.segments.findIndex(
-                (segment) => segment.id === payload.segment_id
+              feature.segments = feature.segments.filter(
+                (segment) => segment.id !== payload.segment_id
               );
-              feature.segments.splice(index, 1);
             }
-            return feature;
           });
         }
         return project;

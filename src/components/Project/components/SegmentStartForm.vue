@@ -297,7 +297,7 @@
         return true;
       },
       getStartFormDisabledState() {
-        return this.$store.getters.getProject(this.project_id)
+        return this.$store.getters.getProject({ project_id: this.project_id })
           .disable_start_form;
       },
     },

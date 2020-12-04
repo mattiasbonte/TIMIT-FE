@@ -73,13 +73,14 @@
     computed: {
       getFeatures() {
         // Returns all the features of a specific project, project ID is send as payload
-        return this.$store.getters.getFeatures(this.project_id);
+        return this.$store.getters.getFeatures({ project_id: this.project_id });
       },
       getDescription() {
-        return this.$store.getters.getProject(this.project_id).description;
+        return this.$store.getters.getProject({ project_id: this.project_id })
+          .description;
       },
       getStartFormDisabledState() {
-        return this.$store.getters.getProject(this.project_id)
+        return this.$store.getters.getProject({ project_id: this.project_id })
           .disable_start_form;
       },
     },

@@ -99,6 +99,29 @@
           feature_id: this.feature_id,
           segment_id: this.segment_id,
         });
+
+        // If no segments inside feature, remove feature
+        if (
+          this.$store.getters.getSegments({
+            project_id: this.project_id,
+            feature_id: this.feature_id,
+          }).length === 0
+        ) {
+          this.$store.commit({
+            type: 'deleteFeature',
+            project_id: this.project_id,
+            feature_id: this.feature_id,
+          });
+        }
+
+        // If no features inside project, remove project
+        if (
+          this.$store.getters.getFeatures({
+            project_id: this.project_id,
+          }).length === 0
+        ) {
+          this.$router.push('/overview');
+        }
       },
       editSegment() {
         this.$store.commit({
@@ -137,7 +160,7 @@
 
 <style scoped>
   .segment__date {
-    @apply px-3 py-4 rounded-md bg-gray-100 hidden;
+    @apply px-3 py-4 rounded-md bg-gray-100 hidden w-28;
     @apply sm:py-3 sm:inline;
     @apply dark:bg-gray-700;
   }

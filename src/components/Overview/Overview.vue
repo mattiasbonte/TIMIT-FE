@@ -25,7 +25,6 @@
           :key="project.id"
           :project_id="project.id"
           :description="project.description"
-          @click="navToProject(project.id)"
         />
       </div>
     </div>
@@ -45,11 +44,6 @@
       return {
         add_project: false,
       };
-    },
-    methods: {
-      navToProject(id) {
-        this.$router.push(`/projects/${id}`);
-      },
     },
   };
 </script>
