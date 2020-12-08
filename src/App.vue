@@ -8,7 +8,10 @@
           route,
         }"
       >
-        <transition :name="route.meta.transition || 'slide_right'" mode="out-in">
+        <transition
+          :name="route.meta.transition || 'slide_right'"
+          mode="out-in"
+        >
           <component :is="Component" />
         </transition>
       </router-view>
@@ -52,7 +55,7 @@
     watch: {
       // Watch state for changes and save them local
       '$store.state.projects'() {
-        // this.saveProjectsLocally();
+        this.saveProjectsLocally();
       },
     },
   };

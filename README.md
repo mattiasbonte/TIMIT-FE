@@ -21,6 +21,7 @@
 
 - [Nanoid](https://www.npmjs.com/package/nanoid)
 - [DayJS](https://www.npmjs.com/package/dayjs)
+- [SwiperJS](https://swiperjs.com/vue)
 
 ## Back End
 

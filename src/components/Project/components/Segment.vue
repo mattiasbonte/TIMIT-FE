@@ -114,7 +114,7 @@
           });
         }
 
-        // If no features inside project, remove project
+        // If no features inside project, navigate to overview
         if (
           this.$store.getters.getFeatures({
             project_id: this.project_id,

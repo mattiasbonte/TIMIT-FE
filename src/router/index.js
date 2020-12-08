@@ -19,6 +19,7 @@ const routes = [
     component: NotFound,
     meta: { transition: 'slide_down' },
   },
+  // { path: '/test', name: 'test', component: Test },
 ];
 
 const router = createRouter({

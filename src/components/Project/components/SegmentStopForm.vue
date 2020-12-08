@@ -236,6 +236,31 @@
       setStopDay() {
         return dayjs(this.stop.date).format('ddd');
       },
+      stopDateIsBeforeStartDate() {
+        if (
+          dayjs(this.start.date).isBefore(dayjs()) &&
+          dayjs().isSame(this.start.date, 'day')
+        ) {
+          return false;
+        }
+        return true;
+      },
+    },
+    watch: {
+      'start.date'() {
+        // If the selected date is beyond today, select today's date instead
+        if (dayjs(this.start.date).isAfter(dayjs())) {
+          this.start.date = dayjs().format('YYYY-MM-DD');
+        }
+        this.start.day = this.setStartDay;
+      },
+      'stop.date'() {
+        // If the selected date is beyond today, select today's date instead
+        if (dayjs(this.stop.date).isAfter(dayjs())) {
+          this.stop.date = dayjs().format('YYYY-MM-DD');
+        }
+        this.stop.day = this.setStopDay;
+      },
     },
   };
 </script>

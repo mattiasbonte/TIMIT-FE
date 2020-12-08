@@ -325,11 +325,12 @@
   }
 
   .form__datetime__wrapper {
-    @apply sm:flex-row sm:space-y-0 sm:space-x-3 flex flex-col justify-between w-full space-y-3;
+    @apply sm:flex-row sm:space-y-0 sm:space-x-3 flex flex-col justify-between w-full;
   }
 
   .form__date__wrapper {
-    @apply flex flex-1;
+    @apply flex-1 hidden;
+    @apply sm:flex;
     @apply rounded-md;
     @apply border border-gray-300;
     @apply hover:border-light-blue-600;
