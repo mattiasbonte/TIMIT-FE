@@ -4,111 +4,121 @@
     @mouseleave="setTimeout"
     @mouseenter="clearTimeout"
   >
-    <!-- PREVIEW OPTIONS -->
-    <div class="preview__options" ref="preview_options">
-      <!-- Delete Project  -->
-      <div
-        @click="deleteProject"
-        class="btn__option__base btn__option__delete"
-        :title="`Delete Project ${description}`"
-      >
-        <!-- trashcan icon -->
-        <svg
-          class="btn__option__icon"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            fill-rule="evenodd"
-            d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
-            clip-rule="evenodd"
-          ></path>
-        </svg>
-      </div>
-      <!-- Share Project  -->
-      <div
-        class="btn__option__base btn__option__share"
-        title="Share public link"
-      >
-        <!-- share-link icon -->
-        <svg
-          class="btn__option__icon"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
-          ></path>
-          <path
-            d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
-          ></path>
-        </svg>
-      </div>
-    </div>
-
-    <!-- PREVIEW BAR -->
     <div
-      class="preview__bar"
-      ref="preview_bar"
-      @click="showOptions = !showOptions"
-      :title="`Click to navigate to the overview of ${description}`"
+      class="preview__scroll__container"
+      ref="preview_scroll_container"
+      :class="
+        showOptions
+          ? 'transform duration-300 ease-in'
+          : 'transform duration-300 -translate-x-32 ease-in'
+      "
     >
-      <div>
-        {{ description }}
-      </div>
-
-      <!-- Project in progress -->
-      <div class="flex items-center">
+      <!-- PREVIEW OPTIONS -->
+      <div class="preview__options" ref="preview_options">
+        <!-- Delete Project  -->
         <div
-          v-if="projectInProgress"
-          :title="`You are currently working on ${description}`"
+          @click="deleteProject"
+          class="btn__options__base btn__option__delete"
+          :title="`Delete Project ${description}`"
         >
-          <div class="project__logo">
-            <svg
-              fill="currentColor"
-              viewBox="0 0 20 20"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                clip-rule="evenodd"
-              ></path>
-            </svg>
-          </div>
-        </div>
-
-        <!-- Project Total Time -->
-        <div
-          v-else
-          class="project__total-time"
-          :title="
-            `You've worked ${getProjectTotalTime} hours on ${description}`
-          "
-        >
-          {{ getProjectTotalTime }}
-          <span class="sm:hidden pl-1 text-xs font-thin">h</span>
-          <span class="sm:inline-flex hidden pl-1 text-xs font-thin"
-            >hours</span
-          >
-        </div>
-
-        <!-- Navigate To Project Button -->
-        <div class="project__navigation" @click="navigateToProject">
+          <!-- trashcan icon -->
           <svg
-            class="self-center w-6 h-6"
+            class="btn__option__icon"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <path
               fill-rule="evenodd"
-              d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+              d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z"
               clip-rule="evenodd"
             ></path>
           </svg>
+        </div>
+        <!-- Share Project  -->
+        <div
+          class="btn__options__base btn__option__share"
+          title="Share public link"
+        >
+          <!-- share-link icon -->
+          <svg
+            class="btn__option__icon"
+            fill="currentColor"
+            viewBox="0 0 20 20"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z"
+            ></path>
+            <path
+              d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"
+            ></path>
+          </svg>
+        </div>
+      </div>
+
+      <!-- PREVIEW BAR -->
+      <div
+        class="preview__bar"
+        ref="preview_bar"
+        @click="showOptions = !showOptions"
+        :title="`Click to navigate to the overview of ${description}`"
+      >
+        <div>
+          {{ description }}
+        </div>
+
+        <!-- Project in progress -->
+        <div class="flex items-center">
+          <div
+            v-if="projectInProgress"
+            :title="`You are currently working on ${description}`"
+          >
+            <div class="project__logo">
+              <svg
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Project Total Time -->
+          <div
+            v-else
+            class="project__total-time"
+            :title="
+              `You've worked ${getProjectTotalTime} hours on ${description}`
+            "
+          >
+            {{ getProjectTotalTime }}
+            <span class="sm:hidden pl-1 text-xs font-thin">h</span>
+            <span class="sm:inline-flex hidden pl-1 text-xs font-thin"
+              >hours</span
+            >
+          </div>
+
+          <!-- Navigate To Project Button -->
+          <div class="project__navigation" @click="navigateToProject">
+            <svg
+              class="self-center w-6 h-6"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                clip-rule="evenodd"
+              ></path>
+            </svg>
+          </div>
         </div>
       </div>
     </div>
@@ -121,14 +131,9 @@
       description: { type: String, required: true },
       project_id: { type: String, required: true },
     },
-    mounted() {
-      setTimeout(() => {
-        this.showOptions = false;
-      }, 1000);
-    },
     data() {
       return {
-        showOptions: true,
+        showOptions: false,
         timeout: '',
       };
     },
@@ -171,22 +176,12 @@
         });
       },
     },
-    watch: {
-      showOptions() {
-        if (this.showOptions) {
-          this.$refs.preview_options.scrollIntoView({ behavior: 'smooth' });
-        } else {
-          this.$refs.preview_bar.scrollIntoView({ behavior: 'smooth' });
-        }
-      },
-    },
   };
 </script>
 
 <style scoped>
   .preview__container {
-    @apply relative flex items-center;
-    @apply w-full overflow-hidden;
+    @apply w-full h-full overflow-hidden;
     @apply border border-transparent;
     @apply rounded-md shadow-md cursor-pointer bg-white;
     @apply hover:shadow-lg hover:border-light-blue-600;
@@ -194,16 +189,19 @@
     @apply dark:text-white dark:bg-gray-800 dark:border-gray-500;
     @apply dark:hover:bg-gray-900 dark:hover:border-gray-300;
   }
+  .preview__scroll__container {
+    @apply relative flex items-center w-full h-full;
+  }
   .preview__bar {
     @apply relative w-full min-w-full;
     @apply px-4 py-4;
     @apply flex justify-between items-center relative;
   }
   .preview__options {
-    @apply h-full flex items-stretch;
+    @apply relative h-full flex items-stretch min-h-full;
   }
-  .btn__option__base {
-    @apply flex cursor-pointer w-16;
+  .btn__options__base {
+    @apply relative flex cursor-pointer w-16 h-full;
     @apply text-white bg-gray-800;
     /* dark */
     @apply dark:hover:text-white;
