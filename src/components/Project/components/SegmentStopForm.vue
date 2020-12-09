@@ -7,6 +7,7 @@
       class="form__input"
       type="date"
       name="start_date"
+      title="Select Start Date"
       id="start_date"
       required
     />
@@ -44,6 +45,7 @@
       class="form__input"
       type="date"
       name="stop_date"
+      title="Select Stop Date"
       id="stop_date"
       required
     />
@@ -78,6 +80,7 @@
       class="btn__base btn__submit"
       name="stop_submit"
       id="stop_submit"
+      title="Stop working and save segment"
     >
       SAVE
     </button>

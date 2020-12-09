@@ -9,11 +9,8 @@
       v-model="description"
       name="description"
       id="description"
-      :placeholder="
-        !getStartFormDisabledState
-          ? 'Add new feature...'
-          : 'Stop timer first...'
-      "
+      title="Please describe the feature you would like to add"
+      placeholder="Describe new feature..."
       :disabled="getStartFormDisabledState"
       required
     />

@@ -4,51 +4,74 @@
       @click="toggleDetails"
       class="feature__bar"
       :class="toggle_details ? 'border-b duration-75' : 'duration-75'"
+      :title="
+        toggle_details ? '⬆️ Close feature details' : '⬇️ Open feature details'
+      "
     >
       <div class="feature__wrap">
         <div class="feature__description">
-          <!-- Feature Details Toggle -->
-          <div
-            class="feature__details__toggle"
-            :class="
-              toggle_details
-                ? 'scale-150 transform duration-200'
-                : 'scale-100 transform duration-200'
-            "
-          >
-            💡
-          </div>
-
           <!-- Feature Description -->
           <p class="whitespace-nowrap">{{ description }}</p>
         </div>
 
-        <!-- Feature in progress -->
-        <div v-if="featureInProgress">
-          <div class="feature__logo">
+        <div class="flex items-center">
+          <!-- Feature in progress -->
+          <div v-if="featureInProgress">
+            <div class="feature__logo">
+              <svg
+                class=""
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Feature Total Time -->
+          <div
+            v-else
+            class="feature__total-time"
+            :title="
+              `⏱ You've spend ${getFeatureTotalTime} hour in total on '${description}'`
+            "
+          >
+            {{ getFeatureTotalTime }}
+            <span class="sm:hidden pl-1 text-xs font-thin">h</span>
+            <span class="sm:inline-flex hidden pl-1 text-xs font-thin"
+              >hours</span
+            >
+          </div>
+
+          <!-- Open Feature Button -->
+          <div
+            class="feature__toggle"
+            :title="
+              toggle_details
+                ? '⬆️ Close feature details'
+                : '⬇️ Open feature details'
+            "
+          >
             <svg
-              class=""
+              class="self-center w-6 h-6"
+              :class="toggle_details ? 'transform rotate-180' : 'transform'"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
                 fill-rule="evenodd"
-                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
                 clip-rule="evenodd"
               ></path>
             </svg>
           </div>
         </div>
-
-        <!-- Feature Total Time -->
-        <p v-else class="feature__total-time">
-          {{ getFeatureTotalTime }}
-          <span class="sm:hidden pl-1 text-xs font-thin">h</span>
-          <span class="sm:inline-flex hidden pl-1 text-xs font-thin"
-            >hours</span
-          >
-        </p>
       </div>
     </div>
 
@@ -68,11 +91,11 @@
         />
 
         <!-- Add New Segment -->
-
         <button
           v-if="!featureInProgress && !getStartFormDisabledState"
           @click="addSegment"
           class="btn__base btn__new__segment"
+          :title="`Start working on '${description}'`"
         >
           Add
         </button>
@@ -171,9 +194,8 @@
     @apply p-3 whitespace-nowrap text-right w-auto;
     @apply sm:py-1;
     @apply rounded-md bg-gray-600 text-white font-bold;
-    @apply dark:bg-white dark:text-black;
+    @apply dark:bg-gray-300 dark:text-black;
   }
-
   .feature__logo {
     @apply rounded-full w-12 h-12 text-white animate-pulse;
     @apply sm:w-8 sm:h-8;
@@ -185,11 +207,16 @@
     @apply overflow-x-auto flex space-x-3;
     @apply dark:bg-transparent;
   }
-  .feature__details__toggle {
-    @apply cursor-pointer;
-  }
   .feature__segments {
     @apply p-3 space-y-3;
+  }
+  .feature__toggle {
+    @apply flex px-1 ml-1;
+    @apply text-black rounded-md self-stretch;
+    @apply hover:bg-gray-600 hover:text-white;
+    /* dark */
+    @apply dark:text-white;
+    @apply dark:hover:bg-gray-300 dark:hover:text-black;
   }
 
   .btn__new__segment {

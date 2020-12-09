@@ -6,6 +6,7 @@
           @click="add_project = !add_project"
           v-if="!add_project"
           class="btn__base btn__new__project"
+          title="Click to start adding a new project"
         >
           NEW PROJECT
         </button>

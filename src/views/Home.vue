@@ -5,9 +5,7 @@
       <div class="card__mid"></div>
       <div class="card__top">
         <!-- Welcome Message -->
-        <h1
-          class="dark:text-white -mb-2 text-lg italic font-thin text-center text-black"
-        >
+        <h1 class="-mb-2 text-lg italic font-thin text-center">
           Welcome to TIMIT <span class="not-italic">👋🏼</span>
         </h1>
 
@@ -41,7 +39,10 @@
 
         <p>~Mattias</p>
 
-        <div class="text-center">
+        <div
+          class="text-center"
+          title="Click to start testing TIMIT yourself 🧪"
+        >
           <router-link exact to="/overview">
             <button class="btn__base btn__try">
               <p>TRY IT</p>
@@ -75,8 +76,8 @@
     @apply relative max-w-prose mx-auto px-4;
     @apply font-extralight text-justify;
     @apply space-y-8 sm:bg-white rounded-sm sm:shadow-2xl;
-    @apply sm:px-20 sm:py-10 sm:my-14 sm:rounded-3xl;
-    @apply sm:dark:bg-gray-900;
+    @apply sm:px-20 sm:py-10 sm:my-14 sm:rounded-3xl dark:text-white;
+    @apply sm:dark:text-white sm:dark:bg-gray-800;
   }
   .card__mid {
     @apply absolute max-w-prose mx-auto hidden transform;

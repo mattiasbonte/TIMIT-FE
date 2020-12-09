@@ -19,7 +19,7 @@
         <div
           @click="deleteProject"
           class="btn__options__base btn__option__delete"
-          :title="`Delete Project ${description}`"
+          :title="`⚠️ Delete '${description}'`"
         >
           <!-- trashcan icon -->
           <svg
@@ -38,7 +38,7 @@
         <!-- Share Project  -->
         <div
           class="btn__options__base btn__option__share"
-          title="Share public link"
+          title="🔗 Copy public link"
         >
           <!-- share-link icon -->
           <svg
@@ -62,14 +62,15 @@
         class="preview__bar"
         ref="preview_bar"
         @click="showOptions = !showOptions"
-        :title="`Click to navigate to the overview of ${description}`"
+        title="Click to show project options"
       >
+        <!-- Project Description -->
         <div>
           {{ description }}
         </div>
 
-        <!-- Project in progress -->
         <div class="flex items-center">
+          <!-- Project in progress -->
           <div
             v-if="projectInProgress"
             :title="`You are currently working on ${description}`"
@@ -94,7 +95,7 @@
             v-else
             class="project__total-time"
             :title="
-              `You've worked ${getProjectTotalTime} hours on ${description}`
+              `⏱ You've worked ${getProjectTotalTime} hours on ${description}`
             "
           >
             {{ getProjectTotalTime }}
@@ -105,7 +106,11 @@
           </div>
 
           <!-- Navigate To Project Button -->
-          <div class="project__navigation" @click="navigateToProject">
+          <div
+            class="project__navigation"
+            @click="navigateToProject"
+            :title="`➡️ Navigate to project overview of '${description}'`"
+          >
             <svg
               class="self-center w-6 h-6"
               fill="currentColor"
@@ -202,8 +207,9 @@
   }
   .btn__options__base {
     @apply relative flex cursor-pointer w-16 h-full;
-    @apply text-white bg-gray-800;
+    @apply text-white bg-gray-600;
     /* dark */
+    @apply dark:bg-gray-300 dark:text-gray-800;
     @apply dark:hover:text-white;
   }
   .btn__option__icon {
@@ -222,7 +228,7 @@
     @apply p-3 whitespace-nowrap text-right w-auto;
     @apply sm:py-1;
     @apply rounded-md bg-gray-600 text-white font-bold;
-    @apply dark:bg-white dark:text-black;
+    @apply dark:bg-gray-300 dark:text-black;
   }
   .project__logo {
     @apply rounded-full w-12 h-12 text-white animate-pulse;
@@ -231,12 +237,11 @@
     @apply dark:from-amber-600 dark:to-amber-800;
   }
   .project__navigation {
-    @apply flex px-1;
+    @apply flex px-1 ml-1;
     @apply text-black rounded-md self-stretch;
     @apply hover:bg-gray-600 hover:text-white;
-    @apply transform translate-x-1;
     /* dark */
     @apply dark:text-white;
-    @apply dark:hover:bg-white dark:hover:text-black;
+    @apply dark:hover:bg-gray-300 dark:hover:text-black;
   }
 </style>

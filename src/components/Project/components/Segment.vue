@@ -1,5 +1,5 @@
 <template>
-  <div @click="expandSegment = !expandSegment">
+  <div @click="expandSegment = !expandSegment" title="Toggle segment options">
     <!-- SEGMENT START & STOP DATE & TIME -->
     <div
       v-if="stop_time !== ''"
@@ -8,18 +8,28 @@
       <div
         class="sm:space-x-3 flex items-center flex-grow space-x-3 space-x-reverse cursor-pointer"
       >
-        <div class="segment__date">{{ start_date }}</div>
+        <div class="segment__date" :title="`Worked on ${start_date}`">
+          {{ start_date }}
+        </div>
         <div
-          :title="`${start_date} ${startDay} ${start_time}`"
+          :title="`Worked on ${startDay} from ${start_time}`"
           class="segment__datetime"
         >
           <span>{{ startDay }}</span>
           <span>{{ start_time }}</span>
         </div>
-        <div>👉🏼</div>
-        <div class=" segment__date">{{ stop_date }}</div>
         <div
-          :title="`${stop_date} ${stopDay} ${stop_time}`"
+          :title="
+            `On ${startDay} ${start_date} you worked from ${start_time} until ${stopDay} ${stop_time} 💪🏼`
+          "
+        >
+          👉🏼
+        </div>
+        <div class=" segment__date" :title="`Worked on ${stop_date}`">
+          {{ stop_date }}
+        </div>
+        <div
+          :title="`Worked on ${stopDay} until ${stop_time}`"
           class="segment__datetime"
         >
           <span>{{ stopDay }}</span>
@@ -29,7 +39,11 @@
 
       <!-- CONTROLS -->
       <div v-if="expandSegment" class="flex space-x-2">
-        <button @click="editSegment" class="button">
+        <button
+          @click="editSegment"
+          class="button"
+          title="✏️ Edit this segment"
+        >
           <svg
             class="hover:text-light-blue-500 w-6 h-6"
             fill="currentColor"
@@ -41,7 +55,11 @@
             ></path>
           </svg>
         </button>
-        <button @click="deleteSegment" class="button">
+        <button
+          @click="deleteSegment"
+          class="button"
+          title="⚠️ Delete this segment"
+        >
           <svg
             class="hover:text-red-500 w-6 h-6"
             fill="currentColor"
