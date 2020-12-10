@@ -57,18 +57,22 @@
       </div>
 
       <!-- PREVIEW BAR -->
-      <div
-        @click="showOptions = !showOptions"
-        title="Click to toggle project options"
-        class="preview__bar"
-      >
+      <div class="preview__bar">
         <!-- Project Description -->
-        <div>
+        <div
+          class="project__description"
+          @click="showOptions = !showOptions"
+          title="Click to toggle project options"
+        >
           {{ description }}
         </div>
 
-        <div class="flex items-center">
-          <!-- Project in progress -->
+        <!-- Project in progress -->
+        <div
+          class="project__navigation"
+          @click="navigateToProject"
+          :title="`➡️ Navigate to project overview of '${description}'`"
+        >
           <div
             v-if="projectInProgress"
             :title="`You are currently working on ${description}`"
@@ -91,7 +95,6 @@
           <!-- Project Total Time -->
           <div
             v-else
-            @click="navigateToProject"
             class="project__total-time"
             :title="
               `⏱ You've worked ${getProjectTotalTime} hours on ${description}`
@@ -105,11 +108,7 @@
           </div>
 
           <!-- Navigate To Project Button -->
-          <div
-            class="project__navigation"
-            @click="navigateToProject"
-            :title="`➡️ Navigate to project overview of '${description}'`"
-          >
+          <div class="project__navigation__btn">
             <svg
               class="self-center w-6 h-6"
               fill="currentColor"
@@ -187,7 +186,7 @@
   .preview__container {
     @apply w-full h-full overflow-hidden;
     @apply border border-transparent;
-    @apply rounded-md shadow-md cursor-pointer bg-white;
+    @apply rounded-md shadow-md bg-white;
     @apply hover:shadow-lg hover:border-light-blue-600;
     /* dark */
     @apply dark:text-white dark:bg-gray-800 dark:border-gray-500;
@@ -196,11 +195,12 @@
   .preview__scroll__container {
     @apply relative flex items-center w-full h-full;
   }
+
   .preview__bar {
     @apply relative w-full min-w-full;
-    @apply px-4 py-4;
-    @apply flex justify-between items-center relative;
+    @apply flex justify-between items-center;
   }
+
   .preview__options {
     @apply relative h-full flex items-stretch min-h-full;
   }
@@ -212,35 +212,51 @@
     @apply dark:hover:text-white;
   }
   .btn__option__icon {
-    @apply self-center w-8 h-8 mx-auto;
+    @apply self-center w-6 h-6 mx-auto;
   }
   .btn__option__delete {
     @apply hover:bg-red-500;
+
     @apply dark:hover:bg-red-600;
   }
   .btn__option__share {
     @apply hover:bg-blue-500;
+    /* dark */
     @apply dark:hover:bg-blue-600;
   }
 
+  .project__description {
+    @apply w-full h-full pl-4 py-7;
+    @apply overflow-x-auto cursor-pointer text-left;
+    @apply sm:py-5;
+    /* dark */
+    @apply dark:bg-transparent;
+  }
+
+  .project__navigation {
+    @apply flex items-center pl-4 pr-1 py-4 cursor-pointer;
+    @apply bg-gradient-to-r hover:from-light-blue-400 hover:to-teal-500;
+    /* dark */
+    @apply dark:hover:from-light-blue-500 dark:hover:to-teal-600;
+  }
   .project__total-time {
     @apply p-3 whitespace-nowrap text-right w-auto;
     @apply sm:py-1;
     @apply rounded-md bg-gray-600 text-white font-bold;
+    /* dark */
     @apply dark:bg-gray-300 dark:text-black;
   }
   .project__logo {
     @apply rounded-full w-12 h-12 text-white animate-pulse;
     @apply sm:w-8 sm:h-8;
     @apply bg-gradient-to-r  from-red-500 to-red-700;
+    /* dark */
     @apply dark:from-amber-600 dark:to-amber-800;
   }
-  .project__navigation {
+  .project__navigation__btn {
     @apply flex px-1 ml-1;
     @apply text-black rounded-md self-stretch;
-    @apply hover:bg-gray-600 hover:text-white;
     /* dark */
     @apply dark:text-white;
-    @apply dark:hover:bg-gray-300 dark:hover:text-black;
   }
 </style>

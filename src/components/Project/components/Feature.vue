@@ -15,13 +15,11 @@
       >
         <!-- Feature Options -->
         <div class="feature__options">
-          <!-- Delete Project  -->
           <div
             @click="deleteFeature"
             class="btn__options__base btn__option__delete"
             :title="`⚠️ Delete '${description}'`"
           >
-            <!-- trashcan icon -->
             <svg
               class="btn__option__icon"
               fill="currentColor"
@@ -39,14 +37,24 @@
 
         <!-- Feature Bar -->
         <div class="feature__bar">
-          <div class="feature__description" @click="showOptions = !showOptions">
-            <!-- Feature Description -->
+          <!-- Feature Description -->
+          <div
+            class="feature__description"
+            @click="showOptions = !showOptions"
+            title="Toggle feature options"
+          >
             <p class="whitespace-nowrap">{{ description }}</p>
           </div>
 
+          <!-- Feature Toggle -->
           <div
-            class="flex items-center px-4 py-4 cursor-pointer"
+            class="feature__toggle__container"
             @click="showDetails = !showDetails"
+            :title="
+              showDetails
+                ? '⬆️ Close feature details'
+                : '⬇️ Open feature details'
+            "
           >
             <!-- Feature in progress -->
             <div v-if="featureInProgress">
@@ -82,14 +90,7 @@
             </div>
 
             <!-- Open Feature Button -->
-            <div
-              class="feature__toggle"
-              :title="
-                showDetails
-                  ? '⬆️ Close feature details'
-                  : '⬇️ Open feature details'
-              "
-            >
+            <div class="feature__toggle__btn">
               <svg
                 class="self-center w-6 h-6"
                 :class="showDetails ? 'transform rotate-180' : 'transform'"
@@ -251,7 +252,7 @@
     @apply dark:hover:text-white;
   }
   .btn__option__icon {
-    @apply self-center w-8 h-8 mx-auto;
+    @apply self-center w-6 h-6 mx-auto;
   }
   .btn__option__delete {
     @apply hover:bg-red-500;
@@ -263,8 +264,18 @@
     @apply flex justify-between items-center relative;
   }
   .feature__description {
-    @apply overflow-x-auto flex space-x-3 w-full h-full px-4 py-4 cursor-pointer;
+    @apply w-full h-full pl-4 py-7;
+    @apply overflow-x-auto cursor-pointer text-left;
+    @apply sm:py-5;
+    /* dark */
     @apply dark:bg-transparent;
+  }
+
+  .feature__toggle__container {
+    @apply flex items-center px-4 py-4 cursor-pointer rounded-md;
+    @apply bg-gradient-to-r hover:from-light-blue-400 hover:to-teal-500;
+    /* dark */
+    @apply dark:hover:from-light-blue-500 dark:hover:to-teal-600;
   }
   .feature__total-time {
     @apply p-3 whitespace-nowrap text-right w-auto;
@@ -278,13 +289,11 @@
     @apply bg-gradient-to-r  from-red-500 to-red-700;
     @apply dark:from-amber-600 dark:to-amber-800;
   }
-  .feature__toggle {
+  .feature__toggle__btn {
     @apply flex px-1 ml-1;
     @apply text-black rounded-md self-stretch;
-    @apply hover:bg-gray-600 hover:text-white;
     /* dark */
     @apply dark:text-white;
-    @apply dark:hover:bg-gray-300 dark:hover:text-black;
   }
 
   .feature__segments {
