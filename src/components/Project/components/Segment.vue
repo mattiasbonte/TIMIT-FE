@@ -178,7 +178,7 @@
 
 <style scoped>
   .segment__date {
-    @apply px-3 py-4 rounded-md bg-gray-100 hidden w-28;
+    @apply px-3 py-4 rounded-md bg-gray-100 hidden w-28 whitespace-nowrap;
     @apply sm:py-3 sm:inline;
     @apply dark:bg-gray-700;
   }

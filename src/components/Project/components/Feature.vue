@@ -17,8 +17,8 @@
         <!-- Feature Options -->
         <div class="feature__options">
           <div
+            class="btn__option__delete"
             @click="deleteFeature"
-            class="btn__options__base btn__option__delete"
             :title="`⚠️ Delete '${description}'`"
           >
             <svg
@@ -226,7 +226,7 @@
 
 <style scoped>
   .feature {
-    @apply flex flex-col;
+    @apply relative flex flex-col items-stretch;
     @apply rounded-md shadow-md bg-white;
     @apply dark:text-white dark:bg-gray-800;
     /* dark */
@@ -235,7 +235,7 @@
   }
 
   .feature__container {
-    @apply w-full h-full overflow-hidden;
+    @apply relative w-full overflow-hidden;
     @apply border border-transparent;
   }
   .feature__container__scroll {
@@ -243,29 +243,26 @@
   }
 
   .feature__options {
-    @apply relative h-full flex items-stretch min-h-full;
+    @apply flex items-stretch h-full;
   }
-  .btn__options__base {
-    @apply relative flex cursor-pointer w-16 h-full;
+  .btn__option__delete {
+    @apply flex cursor-pointer w-16 h-20 sm:h-16;
     @apply text-white bg-gray-600;
+    @apply hover:bg-red-500 rounded-tl-md;
     /* dark */
     @apply dark:bg-gray-300 dark:text-gray-800;
-    @apply dark:hover:text-white;
+    @apply dark:hover:text-white dark:hover:bg-red-600;
   }
   .btn__option__icon {
     @apply self-center w-6 h-6 mx-auto;
   }
-  .btn__option__delete {
-    @apply hover:bg-red-500 rounded-tl-md;
-    @apply dark:hover:bg-red-600;
-  }
 
   .feature__bar {
     @apply relative w-full min-w-full;
-    @apply flex justify-between items-center relative;
+    @apply flex justify-between items-center;
   }
   .feature__description {
-    @apply w-full h-full pl-4 py-7;
+    @apply w-full pl-4 py-7;
     @apply overflow-x-auto cursor-pointer text-left;
     @apply sm:py-5;
     /* dark */

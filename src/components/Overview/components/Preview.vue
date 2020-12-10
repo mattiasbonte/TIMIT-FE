@@ -5,7 +5,7 @@
     @mouseenter="clearTimeout"
   >
     <div
-      class="preview__scroll__container"
+      class="preview__container__scroll"
       :class="
         showOptions
           ? 'transform duration-300 ease-in'
@@ -20,7 +20,6 @@
           class="btn__options__base btn__option__delete"
           :title="`⚠️ Delete '${description}'`"
         >
-          <!-- trashcan icon -->
           <svg
             class="btn__option__icon"
             fill="currentColor"
@@ -192,17 +191,12 @@
     @apply dark:text-white dark:bg-gray-800 dark:border-gray-500;
     @apply dark:hover:bg-gray-900 dark:hover:border-gray-300;
   }
-  .preview__scroll__container {
+  .preview__container__scroll {
     @apply relative flex items-center w-full h-full;
   }
 
-  .preview__bar {
-    @apply relative w-full min-w-full;
-    @apply flex justify-between items-center;
-  }
-
   .preview__options {
-    @apply relative h-full flex items-stretch min-h-full;
+    @apply relative h-full flex items-stretch;
   }
   .btn__options__base {
     @apply relative flex cursor-pointer w-16 h-full;
@@ -216,7 +210,6 @@
   }
   .btn__option__delete {
     @apply hover:bg-red-500;
-
     @apply dark:hover:bg-red-600;
   }
   .btn__option__share {
@@ -225,6 +218,10 @@
     @apply dark:hover:bg-blue-600;
   }
 
+  .preview__bar {
+    @apply relative w-full min-w-full;
+    @apply flex justify-between items-center;
+  }
   .project__description {
     @apply w-full h-full pl-4 py-7;
     @apply overflow-x-auto cursor-pointer text-left;
