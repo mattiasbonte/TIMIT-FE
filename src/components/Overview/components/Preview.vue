@@ -6,7 +6,6 @@
   >
     <div
       class="preview__scroll__container"
-      ref="preview_scroll_container"
       :class="
         showOptions
           ? 'transform duration-300 ease-in'
@@ -14,7 +13,7 @@
       "
     >
       <!-- PREVIEW OPTIONS -->
-      <div class="preview__options" ref="preview_options">
+      <div class="preview__options">
         <!-- Delete Project  -->
         <div
           @click="deleteProject"
@@ -59,10 +58,9 @@
 
       <!-- PREVIEW BAR -->
       <div
-        class="preview__bar"
-        ref="preview_bar"
         @click="showOptions = !showOptions"
-        title="Click to show project options"
+        title="Click to toggle project options"
+        class="preview__bar"
       >
         <!-- Project Description -->
         <div>
@@ -93,6 +91,7 @@
           <!-- Project Total Time -->
           <div
             v-else
+            @click="navigateToProject"
             class="project__total-time"
             :title="
               `⏱ You've worked ${getProjectTotalTime} hours on ${description}`

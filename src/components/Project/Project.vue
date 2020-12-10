@@ -4,7 +4,6 @@
     <h1 class="project__title">{{ project_description }}</h1>
 
     <!-- Toggle add feature form & button -->
-
     <button
       @click="toggle_feature_form = !toggle_feature_form"
       v-if="!toggle_feature_form || getStartFormDisabledState"
