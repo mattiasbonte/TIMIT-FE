@@ -2,6 +2,7 @@
   <div class="feature">
     <div
       class="feature__container"
+      :class="showDetails ? '' : 'rounded-md'"
       @mouseleave="setTimeout"
       @mouseenter="clearTimeout"
     >
@@ -234,7 +235,7 @@
   }
 
   .feature__container {
-    @apply w-full h-full overflow-hidden rounded-md;
+    @apply w-full h-full overflow-hidden;
     @apply border border-transparent;
   }
   .feature__container__scroll {
@@ -255,7 +256,7 @@
     @apply self-center w-6 h-6 mx-auto;
   }
   .btn__option__delete {
-    @apply hover:bg-red-500;
+    @apply hover:bg-red-500 rounded-tl-md;
     @apply dark:hover:bg-red-600;
   }
 

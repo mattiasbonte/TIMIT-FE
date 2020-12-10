@@ -20,9 +20,13 @@
       >
         Overview
       </h1>
-      <div class="preview__grid">
+      <!-- If no project exist -->
+      <div v-if="getProjects.length === 0" class="font-thin text-center">
+        💡 Please add a project...
+      </div>
+      <div v-else class="preview__grid">
         <Preview
-          v-for="project in this.$store.getters.getProjects"
+          v-for="project in getProjects"
           :key="project.id"
           :project_id="project.id"
           :description="project.description"
@@ -45,6 +49,11 @@
       return {
         add_project: false,
       };
+    },
+    computed: {
+      getProjects() {
+        return this.$store.getters.getProjects;
+      },
     },
   };
 </script>
