@@ -4,7 +4,7 @@
 
 ### 🏠 [Repo](https://github.com/mattiasbonte/timit)
 
-### ✨ [Demo](https://mattiasbonte.github.io/timit/)
+### ✨ [Demo](https://mattiasbonte.dev)
 
 ## Author
 
