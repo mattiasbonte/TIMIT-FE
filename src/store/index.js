@@ -11,29 +11,6 @@ export default createStore({
     },
     projects: [
       {
-        id: 'qdql12013mAljUmcuSquriql',
-        description: 'Cohere.io',
-        project_start_date: '2020-12-04',
-        disable_start_form: false,
-        hourly_rate: 25,
-        currency: 'EUR',
-        features: [
-          {
-            id: '3ml31lkldqj2',
-            description: 'Company pitch & send application',
-            segments: [
-              {
-                id: '319&8fdsjq23lfjslqfj',
-                start_date: '2020-12-04',
-                start_time: '09:30',
-                stop_date: '2020-12-04',
-                stop_time: '10:45',
-              },
-            ],
-          },
-        ],
-      },
-      {
         id: 'FR2_mAljUdjmcuSquriql',
         description: 'Timit',
         project_start_date: '2020-11-20',
@@ -106,40 +83,25 @@ export default createStore({
       return state.projects;
     },
     getProject: (state) => (payload) => {
-      return state.projects.find(
-        (project) => project.id === payload.project_id
-      );
+      return state.projects.find((project) => project.id === payload.project_id);
     },
     getFeatures: (state) => (payload) => {
-      return state.projects.find((project) => project.id === payload.project_id)
-        .features;
+      return state.projects.find((project) => project.id === payload.project_id).features;
     },
     getSegment: (state) => (payload) => {
-      const project = state.projects.find(
-        (project) => project.id === payload.project_id
-      );
-      const feature = project.features.find(
-        (feature) => feature.id === payload.feature_id
-      );
-      const segment = feature.segments.find(
-        (segment) => segment.id === payload.segment_id
-      );
+      const project = state.projects.find((project) => project.id === payload.project_id);
+      const feature = project.features.find((feature) => feature.id === payload.feature_id);
+      const segment = feature.segments.find((segment) => segment.id === payload.segment_id);
       return segment;
     },
     getSegments: (state) => (payload) => {
-      const project = state.projects.find(
-        (project) => project.id === payload.project_id
-      );
-      const feature = project.features.find(
-        (feature) => feature.id === payload.feature_id
-      );
+      const project = state.projects.find((project) => project.id === payload.project_id);
+      const feature = project.features.find((feature) => feature.id === payload.feature_id);
       return feature.segments;
     },
     getProjectInProgress: (state) => (payload) => {
       // If we can find an empty stop_time timestamp in our segments, return true
-      const project = state.projects.find(
-        (project) => project.id === payload.project_id
-      );
+      const project = state.projects.find((project) => project.id === payload.project_id);
 
       let projectInProgress = 0;
 
@@ -155,12 +117,8 @@ export default createStore({
     },
     getFeatureInProgress: (state) => (payload) => {
       // If we can find an empty stop_time timestamp in our segments, return true
-      const project = state.projects.find(
-        (project) => project.id === payload.project_id
-      );
-      const feature = project.features.find(
-        (feature) => feature.id === payload.feature_id
-      );
+      const project = state.projects.find((project) => project.id === payload.project_id);
+      const feature = project.features.find((feature) => feature.id === payload.feature_id);
 
       // When stop_time === '' is truthy, we return true, otherwise false
       const inProgress = feature.segments.some((segment) => {
@@ -169,9 +127,7 @@ export default createStore({
       return inProgress;
     },
     getProjectTotalTime: (state) => (payload) => {
-      const project = state.projects.find(
-        (project) => project.id === payload.project_id
-      );
+      const project = state.projects.find((project) => project.id === payload.project_id);
       let total_time = 0;
       project.features.forEach((feature) => {
         feature.segments.forEach((segment) => {
@@ -183,12 +139,8 @@ export default createStore({
       return total_time;
     },
     getFeatureTotalTime: (state) => (payload) => {
-      const project = state.projects.find(
-        (project) => project.id === payload.project_id
-      );
-      const feature = project.features.find(
-        (feature) => feature.id === payload.feature_id
-      );
+      const project = state.projects.find((project) => project.id === payload.project_id);
+      const feature = project.features.find((feature) => feature.id === payload.feature_id);
 
       let total_time = 0;
       feature.segments.forEach((segment) => {
@@ -266,16 +218,12 @@ export default createStore({
       });
     },
     deleteProject(state, payload) {
-      state.projects = state.projects.filter(
-        (project) => project.id !== payload.project_id
-      );
+      state.projects = state.projects.filter((project) => project.id !== payload.project_id);
     },
     deleteFeature(state, payload) {
       state.projects = state.projects.map((project) => {
         if (project.id === payload.project_id) {
-          project.features = project.features.filter(
-            (feature) => feature.id !== payload.feature_id
-          );
+          project.features = project.features.filter((feature) => feature.id !== payload.feature_id);
         }
         return project;
       });
@@ -285,9 +233,7 @@ export default createStore({
         if (project.id === payload.project_id) {
           project.features.map((feature) => {
             if (feature.id === payload.feature_id) {
-              feature.segments = feature.segments.filter(
-                (segment) => segment.id !== payload.segment_id
-              );
+              feature.segments = feature.segments.filter((segment) => segment.id !== payload.segment_id);
             }
           });
         }
